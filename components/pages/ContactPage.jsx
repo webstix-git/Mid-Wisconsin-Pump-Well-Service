@@ -40,8 +40,8 @@ export default class ContactPage extends React.Component {
       wide, narrow: !wide, menuOpen: !wide && this.state.menu,
       toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       closeMenu: () => this.setState({ menu: false }),
-      heroOv: w >= 900 ? "linear-gradient(90deg, rgba(255, 255, 255, 0.9) 23%, rgba(255, 255, 255, 0.91) 23%, rgba(255, 255, 255, 0.87) 33%, rgba(255, 255, 255, 0.79) 38%, rgba(255, 255, 255, 0.67) 44%, rgba(255, 255, 255, 0.53) 48%, rgba(255, 255, 255, 0.39) 52%, rgba(255, 255, 255, 0.26) 55%, rgba(255, 255, 255, 0.15) 57%, rgba(255, 255, 255, 0.07) 61%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0) 53%)" : 'linear-gradient(180deg,rgba(255,255,255,.93) 0%,rgba(255,255,255,.84) 100%)',
-      heroTop: "linear-gradient(rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 90%) 18%, rgb(255 255 255 / 84%) 30%, rgb(255 255 255 / 74%) 41%, rgb(255 255 255 / 61%) 51%, rgb(255 255 255 / 47%) 60%, rgb(255 255 255 / 33%) 69%, rgb(255 255 255 / 20%) 78%, rgb(255 255 255 / 10%) 86%, rgb(255 255 255 / 3%) 94%, rgb(255 255 255 / 0%) 100%)",
+      heroOv: w >= 900 ? "linear-gradient(90deg,rgba(255,255,255,.92) 24%,rgba(255,255,255,.86) 34%,rgba(255,255,255,.55) 42%,rgba(255,255,255,.18) 48%,rgba(255,255,255,0) 52%)" : 'linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.5) 100%)',
+      heroTop: "linear-gradient(180deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.9) 18%,rgba(255,255,255,.8) 34%,rgba(255,255,255,.64) 48%,rgba(255,255,255,.45) 62%,rgba(255,255,255,.26) 76%,rgba(255,255,255,.1) 89%,rgba(255,255,255,0) 100%)",
       heroTextMax: w < 900 ? '100%' : '600px',
       h1Fs: w >= 760 ? '48px' : '38px',
       topOpacity: this.state.showTop ? '1' : '0',
@@ -97,7 +97,7 @@ export default class ContactPage extends React.Component {
         <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
           <img src="/assets/truck-shop-contact-hero.jpg" alt="Mid-Wis Pump & Well service truck in the shop" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
-          <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '230px', background: v.heroTop, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', padding: '125px 24px 0' }}>
             <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Contact</h1>
           </div>
@@ -118,7 +118,9 @@ export default class ContactPage extends React.Component {
                 <>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 8px' }}>Request a free estimate</h3>
                   <p style={{ margin: '0 0 16px', fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Tell us what is going on and we will follow up with options.</p>
-                  <p role="note" style={{ margin: '0 0 12px', fontSize: '15.5px', lineHeight: '1.55', color: '#000' }}><strong>Do not use this form if you have an emergency.</strong> It might take up to 72 hours for us to reply to your inquiry. If you have an emergency, call <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '700', whiteSpace: 'nowrap', textDecoration: 'underline' }}>608-269-5178</a>.</p>
+                  <div role="note" style={{ margin: '0 0 16px', padding: '14px 16px', borderRadius: '10px', background: '#FFF6D5', border: '1px solid #F1DE94' }}>
+                    <p style={{ margin: '0', fontSize: '15.5px', lineHeight: '1.55', color: '#000' }}><strong>Do not use this form if you have an emergency.</strong> It might take up to 72 hours for us to reply to your inquiry. If you have an emergency, call <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '700', whiteSpace: 'nowrap', textDecoration: 'underline' }}>608-269-5178</a>.</p>
+                  </div>
                   <p style={{ margin: '0 0 24px', fontSize: '14px', lineHeight: '1.5', color: '#000' }}>Fields marked with an asterisk (<span style={{ color: '#C1272D' }}>*</span>) are required.</p>
                   <form onSubmit={v.submit} noValidate={true} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <label style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', fontWeight: '700', color: '#000' }}>
@@ -154,7 +156,7 @@ export default class ContactPage extends React.Component {
                     {v.hasErr && (
                       <p role="alert" style={{ margin: '0', fontSize: '15px', fontWeight: '600', color: '#C1272D' }}>{v.err}</p>
                     )}
-                    <button type="submit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '15px 22px', borderRadius: '8px', border: '0', fontWeight: '700', fontSize: '16px', cursor: 'pointer' }} className="h-bd9fe2">Send request</button>
+                    <button type="submit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '15px 22px', borderRadius: '30px', border: '0', fontWeight: '700', fontSize: '16px', cursor: 'pointer' }} className="h-bd9fe2">Send request</button>
                   </form>
                 </>
               )}
@@ -167,7 +169,7 @@ export default class ContactPage extends React.Component {
                   </span>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 12px' }}>Thanks, we got your request.</h3>
                   <p style={{ margin: '0 0 24px', fontSize: '17px', lineHeight: '1.6', color: '#000' }}>We will be in touch soon. If you have no water, please call 608-269-5178.</p>
-                  <button type="button" onClick={v.reset} style={{ background: 'transparent', color: '#004580', padding: '12px 22px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15px', cursor: 'pointer' }} className="h-d10c8f">Send another request</button>
+                  <button type="button" onClick={v.reset} style={{ background: 'transparent', color: '#004580', padding: '12px 22px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15px', cursor: 'pointer' }} className="h-d10c8f">Send another request</button>
                 </div>
               )}
             </div>
@@ -176,7 +178,7 @@ export default class ContactPage extends React.Component {
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Call, email, or stop by.</h2>
               <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>To schedule a free estimate or learn more about our products, reach out any time. If you have no water, call now and we will get you back up and running.</p>
               <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #DCE9F6' }}>
-                <a href="tel:6082695178" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
+                <a href="tel:6082695178" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
                   <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
@@ -184,10 +186,10 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Phone</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', color: '#000', overflowWrap: 'anywhere' }}>608-269-5178</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>608-269-5178</span>
                   </span>
                 </a>
-                <a href="tel:6082695178" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
+                <a href="tel:6082695178" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
                   <span style={{ width: '28px', color: '#C1272D', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 3 2 21h20L12 3z" />
@@ -197,7 +199,7 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>24/7 emergency service</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', color: '#000', overflowWrap: 'anywhere' }}>Available after hours, weekends, and holidays</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>Available after hours, weekends, and holidays</span>
                   </span>
                 </a>
                 <div style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6' }}>
@@ -209,10 +211,10 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Business hours</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', color: '#000', overflowWrap: 'anywhere' }}>Monday to Friday, 8:00 am to 5:30 pm</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>Monday to Friday, 8:00 am to 5:30 pm</span>
                   </span>
                 </div>
-                <a href="mailto:randismidwispump@outlook.com" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
+                <a href="mailto:randismidwispump@outlook.com" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
                   <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -221,10 +223,10 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Email</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', color: '#000', overflowWrap: 'anywhere' }}>randismidwispump@outlook.com</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>randismidwispump@outlook.com</span>
                   </span>
                 </a>
-                <a href="https://www.google.com/maps/search/?api=1&amp;query=17660+Icecap+Rd%2C+Sparta%2C+WI+54656" target="_blank" rel="noopener" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
+                <a href="https://www.google.com/maps/search/?api=1&amp;query=17660+Icecap+Rd%2C+Sparta%2C+WI+54656" target="_blank" rel="noopener" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
                   <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z" />
@@ -233,7 +235,7 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Shop address</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', color: '#000', overflowWrap: 'anywhere' }}>17660 Icecap Rd., Sparta, WI 54656</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>17660 Icecap Rd.<br />Sparta, WI 54656</span>
                   </span>
                 </a>
               </div>

@@ -80,7 +80,9 @@ export default class HomePage extends React.Component {
       wide, narrow: !wide, menuOpen: !wide && this.state.menu,
       toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       closeMenu: () => this.setState({ menu: false }),
-      svcCols: `repeat(${w >= 900 ? 3 : 1},minmax(0,1fr))`,      mwCols: mid ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
+      svcCols: `repeat(${w >= 900 ? 3 : 1},minmax(0,1fr))`,
+      areaCols: w >= 1000 ? 'minmax(0,1.35fr) minmax(0,1fr)' : 'minmax(0,1fr)',
+      aboutCols: w >= 1000 ? 'minmax(0,1fr) minmax(0,1.3fr)' : 'minmax(0,1fr)',      mwCols: mid ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       mwImgPos: mid ? 'absolute' : 'relative',
       mwImgLeft: mid ? '50%' : 'auto',
       mwImgMin: mid ? '0' : '360px',
@@ -108,9 +110,9 @@ export default class HomePage extends React.Component {
         { img: '/assets/14e122c5-c49e-5c53-aceb-f3506b7af981.jpg', pos: '35% 55%', alt: 'Mid-Wisconsin Pump & Well service truck ready for an emergency call', tag: '24/7 Emergency Pump Service', title: '24/7 Emergency No-Water Service', body: 'Fast emergency assistance when your water system stops working. Mid-Wisconsin Pump provides around-the-clock service for urgent no-water situations.', cta: 'Get Emergency Service', href: '/contact' }
       ],
       helpList: [
-        { home: true, title: 'Homeowners', body: 'Well and pump service for residential water systems.' },
-        { farm: true, title: 'Agricultural Properties', body: 'Well and pump services for farms and agricultural operations.' },
-        { biz: true, title: 'Businesses', body: 'Reliable water-system service for local businesses.' }
+        { icon: '/assets/icon-house.png', title: 'Homeowners', body: 'Well and pump service for residential water systems.' },
+        { icon: '/assets/icon-barn.png', title: 'Agricultural Properties', body: 'Well and pump services for farms and agricultural operations.' },
+        { icon: '/assets/icon-building.png', title: 'Businesses', body: 'Reliable water-system service for local businesses.' }
       ],
       triggers: [
         { title: 'No water', body: 'Sudden loss of water. We take emergency calls 24/7.', bg: '#C1272D', fg: '#fff', bd: '#C1272D', sub: '#fff' },
@@ -161,7 +163,7 @@ export default class HomePage extends React.Component {
                 <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '48px', lineHeight: '1.08', letterSpacing: '-.03em', margin: '0 0 20px', color: v.hx.fg, textWrap: 'balance' }}>Reliable Well &amp; Pump Service, Right When You Need It</h1>
               )}
               <p style={{ fontSize: '18px', lineHeight: '1.65', margin: '0 0 32px', color: v.hx.sub, maxWidth: '440px', textWrap: 'pretty' }}>Pump installation, repair, and video well inspection for homes, farms, and small businesses across Western Wisconsin.</p>
-              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', background: v.hx.btnBg, color: v.hx.btnFg, padding: '13px 22px', borderRadius: '8px', border: `1.5px solid ${v.hx.btnBd}`, fontWeight: '600', fontSize: '15.5px', lineHeight: '1.2' }} className="h-2eec3d">Get a Free Estimate</a>
+              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', background: v.hx.btnBg, color: v.hx.btnFg, padding: '13px 22px', borderRadius: '30px', border: `1.5px solid ${v.hx.btnBd}`, fontWeight: '600', fontSize: '15.5px', lineHeight: '1.2' }} className="h-2eec3d">Get a Free Estimate</a>
             </div>
           </div>
         </section>
@@ -169,10 +171,10 @@ export default class HomePage extends React.Component {
         {/* Services */}
         <section id="services" data-screen-label="Services" style={{ padding: '104px 24px 96px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'left', maxWidth: '680px', margin: '0 0 56px' }}>
+            <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Our services</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>Well and pump service, done right the first time.</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>Residential and agricultural systems, with experience on all makes and models of well pumps and pressure tanks.</p>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>Residential and agricultural systems, with experience on all makes and models of well pumps and pressure tanks.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.svcCols, gap: '24px' }}>
               {v.services.map((s, i) => (
@@ -181,10 +183,9 @@ export default class HomePage extends React.Component {
                     <img src={s.img} alt={s.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: s.pos, display: 'block' }} />
                   </div>
                   <div style={{ padding: '24px 22px 24px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
-                    <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>{s.tag}</div>
                     <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>{s.title}</h3>
                     <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', flex: '1' }}>{s.body}</p>
-                    <span style={{ fontWeight: '700', fontSize: '14px', color: '#C1272D', paddingTop: '8px', borderTop: '1px solid #F0EBE3', marginTop: '6px' }}>{s.cta} →</span>
+                    <span style={{ fontWeight: '700', fontSize: '17px', color: '#C1272D', paddingTop: '8px', borderTop: '1px solid #F0EBE3', marginTop: '6px' }}>{s.cta} →</span>
                   </div>
                 </a>
               ))}
@@ -195,10 +196,10 @@ export default class HomePage extends React.Component {
         {/* When to call */}
         <section data-screen-label="When to call" style={{ background: '#fff', padding: '112px 24px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ maxWidth: '680px', margin: '0 0 56px' }}>
+            <div style={{ margin: '0 0 56px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '16px' }}>Who we help</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>For Homes, Farms &amp; Businesses</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000' }}>Reliable well and pump service for homeowners, agricultural properties, and businesses throughout Western Wisconsin.</p>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '680px' }}>Reliable well and pump service for homeowners, agricultural properties, and businesses throughout Western Wisconsin.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: '48px 64px', alignItems: 'stretch' }}>
               <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', minHeight: '440px', background: '#E7E1D8' }}>
@@ -215,36 +216,8 @@ export default class HomePage extends React.Component {
               <div data-help-cards="" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px' }}>
                 {v.helpList.map((t, i) => (
                   <a key={i} href="/well-pump-services" style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr) 28px', gap: '20px', alignItems: 'center', padding: '28px 24px', background: '#fff', border: '1px solid #F0EBE3', borderRadius: '10px', color: '#000', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
-                    <span style={{ width: '56px', height: '56px', borderRadius: '12px', background: '#FBF8F3', color: '#C1272D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      {t.home && (
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M3 10.5 12 3l9 7.5" />
-                          <path d="M5 9.5V21h14V9.5" />
-                          <path d="M10 21v-6h4v6" />
-                        </svg>
-                      )}
-                      {t.farm && (
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <path d="M3 21V10l9-6 9 6v11" />
-                          <path d="M2 21h20" />
-                          <path d="M9 21v-6h6v6" />
-                          <path d="m9 15 6 6" />
-                          <path d="m15 15-6 6" />
-                          <path d="M10 10h4" />
-                        </svg>
-                      )}
-                      {t.biz && (
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="4" y="3" width="16" height="18" rx="1" />
-                          <path d="M9 7h1" />
-                          <path d="M14 7h1" />
-                          <path d="M9 11h1" />
-                          <path d="M14 11h1" />
-                          <path d="M9 15h1" />
-                          <path d="M14 15h1" />
-                          <path d="M10 21v-3h4v3" />
-                        </svg>
-                      )}
+                    <span style={{ width: '56px', height: '56px', borderRadius: '12px', background: '#FBF8F3', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src={t.icon} alt="" width="30" height="30" style={{ width: '30px', height: '30px', display: 'block' }} />
                     </span>
                     <span style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                       <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15' }}>{t.title}</span>
@@ -266,10 +239,10 @@ export default class HomePage extends React.Component {
         {/* Products */}
         <section id="products" data-screen-label="Products" style={{ background: '#FBF8F3', padding: '112px 24px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 56px' }}>
+            <div style={{ textAlign: 'center', margin: '0 auto 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Products we install</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>Quality brands built for the long haul.</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>We install pumps, drives, and pressure tanks from manufacturers we trust, so your system keeps working for years. All makes and models serviced and repaired.</p>
+              <p style={{ margin: '0 auto', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>We install pumps, drives, and pressure tanks from manufacturers we trust, so your system keeps working for years. All makes and models serviced and repaired.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.brandCols, gap: '24px' }}>
               {v.brands.map((b, i) => (
@@ -277,7 +250,7 @@ export default class HomePage extends React.Component {
                   <div style={{ height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 32px', background: '#fff' }}>
                     <img src={b.logo} alt={`${b.name} logo`} style={{ maxWidth: '100%', maxHeight: b.h, width: 'auto', height: 'auto', display: 'block', objectFit: 'contain' }} />
                   </div>
-                  <div style={{ padding: '18px 22px 22px', borderTop: '3px solid #C1272D', background: '#FBF8F3', display: 'flex', flexDirection: 'column', gap: '4px', flex: '1' }}>
+                  <div style={{ padding: '18px 22px 22px', borderTop: '3px solid #C1272D', background: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '4px', flex: '1' }}>
                     <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '19px', lineHeight: '1.2' }}>{b.name}</span>
                     <span style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D' }}>{b.what}</span>
                   </div>
@@ -285,7 +258,7 @@ export default class HomePage extends React.Component {
               ))}
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '48px' }}>
-              <a href="/products" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+              <a href="/products" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 View all products
                 <span>→</span>
               </a>
@@ -295,7 +268,7 @@ export default class HomePage extends React.Component {
 
         {/* About */}
         <section id="about" data-screen-label="About" style={{ background: '#fff', padding: '104px 24px' }}>
-          <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,440px),1fr))', gap: '64px', alignItems: 'center' }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.aboutCols, gap: '64px', alignItems: 'center' }}>
             <div style={{ position: 'relative', paddingBottom: '40px' }}>
               <div style={{ borderRadius: '12px', overflow: 'hidden', aspectRatio: '16/10', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.16)' }}>
                 <img src="/assets/8926e1af-2b46-42c6-b707-af49a85161ff.jpg" alt="Mike Schaitel with an early Mid-Wis Pump &amp; Well truck" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'sepia(.15)' }} />
@@ -331,7 +304,7 @@ export default class HomePage extends React.Component {
                   <div style={{ fontSize: '14px', lineHeight: '1.4', color: '#000', marginTop: '6px' }}>49+ years in business</div>
                 </div>
               </div>
-              <a href="/about-us" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+              <a href="/about-us" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 More about us
                 <span>→</span>
               </a>
@@ -377,7 +350,7 @@ export default class HomePage extends React.Component {
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
-              <a href="https://www.google.com/maps/search/?api=1&amp;query=Mid+Wisconsin+Pump+%26+Well+Service%2C+Sparta%2C+WI" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=Mid+Wisconsin+Pump+%26+Well+Service%2C+Sparta%2C+WI" target="_blank" rel="noopener" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Read all reviews on Google
                 <span>→</span>
               </a>
@@ -387,7 +360,7 @@ export default class HomePage extends React.Component {
 
         {/* Service area */}
         <section id="service-area" data-screen-label="Service area" style={{ background: '#fff', padding: '104px 24px' }}>
-          <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: '48px 72px', alignItems: 'center' }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.areaCols, gap: '48px 64px', alignItems: 'center' }}>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Where we work</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Serving Sparta and the Coulee Region.</h2>
@@ -398,7 +371,7 @@ export default class HomePage extends React.Component {
                 <span style={{ background: 'rgb(246, 250, 254)', border: '1px solid #DCE9F6', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Coulee Region</span>
                 <span style={{ background: 'rgb(246, 250, 254)', border: '1px solid #DCE9F6', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Western Wisconsin</span>
               </div>
-              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Contact us
                 <span>→</span>
               </a>
@@ -417,8 +390,8 @@ export default class HomePage extends React.Component {
             <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
             <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '430px' }}>Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
-              <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '4px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
-              <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '4px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>
+              <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '30px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
+              <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '30px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>
             </div>
           </div>
         </section>

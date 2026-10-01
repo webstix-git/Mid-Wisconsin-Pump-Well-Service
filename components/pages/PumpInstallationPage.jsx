@@ -39,8 +39,8 @@ export default class PumpInstallationPage extends React.Component {
       wide, narrow: !wide, menuOpen: !wide && this.state.menu,
       toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       closeMenu: () => this.setState({ menu: false }),
-      heroOv: w >= 900 ? "linear-gradient(90deg, rgba(255, 255, 255, 0.9) 23%, rgba(255, 255, 255, 0.91) 23%, rgba(255, 255, 255, 0.87) 33%, rgba(255, 255, 255, 0.79) 38%, rgba(255, 255, 255, 0.67) 44%, rgba(255, 255, 255, 0.53) 48%, rgba(255, 255, 255, 0.39) 52%, rgba(255, 255, 255, 0.26) 55%, rgba(255, 255, 255, 0.15) 57%, rgba(255, 255, 255, 0.07) 61%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0) 53%)" : 'linear-gradient(180deg,rgba(255,255,255,.93) 0%,rgba(255,255,255,.84) 100%)',
-      heroTop: "linear-gradient(rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 90%) 18%, rgb(255 255 255 / 84%) 30%, rgb(255 255 255 / 74%) 41%, rgb(255 255 255 / 61%) 51%, rgb(255 255 255 / 47%) 60%, rgb(255 255 255 / 33%) 69%, rgb(255 255 255 / 20%) 78%, rgb(255 255 255 / 10%) 86%, rgb(255 255 255 / 3%) 94%, rgb(255 255 255 / 0%) 100%)",
+      heroOv: w >= 900 ? "linear-gradient(90deg,rgba(255,255,255,.92) 24%,rgba(255,255,255,.86) 34%,rgba(255,255,255,.55) 42%,rgba(255,255,255,.18) 48%,rgba(255,255,255,0) 52%)" : 'linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.5) 100%)',
+      heroTop: "linear-gradient(180deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.9) 18%,rgba(255,255,255,.8) 34%,rgba(255,255,255,.64) 48%,rgba(255,255,255,.45) 62%,rgba(255,255,255,.26) 76%,rgba(255,255,255,.1) 89%,rgba(255,255,255,0) 100%)",
       heroTextMax: w < 900 ? '100%' : '600px',
       h1Fs: w >= 760 ? '48px' : '38px',
       topOpacity: this.state.showTop ? '1' : '0',
@@ -56,7 +56,7 @@ export default class PumpInstallationPage extends React.Component {
         mwImgRight: w >= 900 ? '50%' : 'auto',
         mwImgMin: w >= 900 ? '0' : '360px',
         mwTextCol: w >= 900 ? '2' : 'auto',
-        mwTextPad: w >= 900 ? '104px 24px 104px 64px' : '56px 24px 72px',
+        mwTextPad: w >= 900 ? '104px 24px 104px 36px' : '56px 24px 72px',
         problems: [
           { title: 'Pump Repair & Maintenance', body: 'Quick and effective pump repair, maintenance, upgrades and replacements.' },
           { title: 'Down Well Pumps', body: 'Service for down well pump problems as part of the company\u2019s pump installation and repair services.' },
@@ -110,9 +110,9 @@ export default class PumpInstallationPage extends React.Component {
 
         {/* Hero */}
         <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
-          <img src="/assets/a54c3fbf-7293-45f6-9983-9ae9ca3e8e57.jpg" alt="Mid-Wisconsin pump truck pulling a well pump" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '60% 45%', display: 'block' }} />
+          <img src="/assets/truck-side-installation-hero.jpg" alt="Mid-Wis Pump &amp; Well pump service truck with Grundfos branding" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 65%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
-          <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '230px', background: v.heroTop, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', padding: '125px 24px 0' }}>
             <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Pump Installation &amp; Repair</h1>
           </div>
@@ -143,7 +143,7 @@ export default class PumpInstallationPage extends React.Component {
                   </div>
                 ))}
               </div>
-              <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+              <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Plan your installation
                 <span>→</span>
               </a>
@@ -154,14 +154,14 @@ export default class PumpInstallationPage extends React.Component {
         {/* Pump repair */}
         <section id="repair" data-screen-label="Pump repair" style={{ padding: '104px 24px', background: '#FBF8F3', scrollMarginTop: '84px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'left', maxWidth: '680px', margin: '0 0 56px' }}>
+            <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Pump repair</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>Fast, Reliable Pump Repair</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>We diagnose the problem first, then repair or replace pumps, tanks, and parts as needed. We work on all makes and models, and our trucks are stocked for first-visit fixes.</p>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>We diagnose the problem first, then repair or replace pumps, tanks, and parts as needed. We work on all makes and models, and our trucks are stocked for first-visit fixes.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.cardCols, gap: '20px' }}>
               {v.problems.map((p, i) => (
-                <div key={i} style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', display: 'flex', flexDirection: 'column', gap: '10px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)' }}>
+                <div key={i} style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', display: 'flex', flexDirection: 'column', gap: '10px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '21px', lineHeight: '1.2', margin: '0' }}>{p.title}</h3>
                   <p style={{ margin: '0', fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{p.body}</p>
                 </div>
@@ -184,13 +184,13 @@ export default class PumpInstallationPage extends React.Component {
               <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '680px' }}>Sometimes a repair is the right call, and sometimes replacing or upgrading the system is the better investment. These are common signs it may be time for a replacement.</p>
               <div style={{ display: 'grid', gridTemplateColumns: v.signCols, gap: '16px' }}>
                 {v.signs.map((s, i) => (
-                  <div key={i} style={{ background: '#FBF8F3', border: '1px solid #EDE7DE', borderRadius: '14px', padding: '24px 20px 26px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div key={i} style={{ background: '#FBF8F3', border: '1px solid #EDE7DE', borderRadius: '14px', padding: '24px 20px 26px', display: 'flex', flexDirection: 'column', gap: '8px', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                     <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '19px', lineHeight: '1.2', margin: '0' }}>{s.title}</h3>
                     <p style={{ margin: '0', fontSize: '15.5px', lineHeight: '1.55', color: '#000' }}>{s.body}</p>
                   </div>
                 ))}
               </div>
-              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '32px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '32px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Talk to an Expert
                 <span>→</span>
               </a>
@@ -226,13 +226,13 @@ export default class PumpInstallationPage extends React.Component {
         {/* Installation process */}
         <section id="process" data-screen-label="Installation process" style={{ padding: '104px 24px', background: '#fff', scrollMarginTop: '84px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ maxWidth: '680px', margin: '0 0 56px' }}>
+            <div style={{ margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>How we work</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0', textWrap: 'balance' }}>Our Installation Process</h2>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.cardCols, gap: '20px' }}>
               {v.steps.map((s, i) => (
-                <div key={i} style={{ background: '#FBF8F3', border: '1px solid #EDE7DE', borderRadius: '14px', padding: '30px 26px 32px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div key={i} style={{ background: '#FBF8F3', border: '1px solid #EDE7DE', borderRadius: '14px', padding: '30px 26px 32px', display: 'flex', flexDirection: 'column', gap: '10px', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                   <span style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '4px' }}>{s.n}</span>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', margin: '0' }}>{s.title}</h3>
                   <p style={{ margin: '0', fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{s.body}</p>
@@ -277,8 +277,8 @@ export default class PumpInstallationPage extends React.Component {
             <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
             <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
-              <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '4px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
-              <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '4px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>
+              <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '30px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
+              <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '30px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>
             </div>
           </div>
         </section>

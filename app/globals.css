@@ -199,7 +199,7 @@ body{margin:0;background:#FBF8F3;color:#000;font-family:'Raleway',system-ui,sans
 a{color:#C1272D;text-decoration:none}
 a:hover{color:#951B20}
 input,select,textarea,button{font:inherit}
-body{font-variant-numeric:lining-nums tabular-nums}
+body{font-variant-numeric:lining-nums tabular-nums;text-wrap:pretty}
 
 /* Hover states */
 .h-2eec3d:hover{background:#004580 !important;color:#fff !important;border-color:#004580 !important}

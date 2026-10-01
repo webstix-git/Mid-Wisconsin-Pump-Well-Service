@@ -39,8 +39,8 @@ export default class WellPumpServicesPage extends React.Component {
       wide, narrow: !wide, menuOpen: !wide && this.state.menu,
       toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       closeMenu: () => this.setState({ menu: false }),
-      heroOv: w >= 900 ? "linear-gradient(90deg, rgba(255, 255, 255, 0.9) 23%, rgba(255, 255, 255, 0.91) 23%, rgba(255, 255, 255, 0.87) 33%, rgba(255, 255, 255, 0.79) 38%, rgba(255, 255, 255, 0.67) 44%, rgba(255, 255, 255, 0.53) 48%, rgba(255, 255, 255, 0.39) 52%, rgba(255, 255, 255, 0.26) 55%, rgba(255, 255, 255, 0.15) 57%, rgba(255, 255, 255, 0.07) 61%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0) 53%)" : 'linear-gradient(180deg,rgba(255,255,255,.93) 0%,rgba(255,255,255,.84) 100%)',
-      heroTop: "linear-gradient(rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 90%) 18%, rgb(255 255 255 / 84%) 30%, rgb(255 255 255 / 74%) 41%, rgb(255 255 255 / 61%) 51%, rgb(255 255 255 / 47%) 60%, rgb(255 255 255 / 33%) 69%, rgb(255 255 255 / 20%) 78%, rgb(255 255 255 / 10%) 86%, rgb(255 255 255 / 3%) 94%, rgb(255 255 255 / 0%) 100%)",
+      heroOv: w >= 900 ? "linear-gradient(90deg,rgba(255,255,255,.92) 24%,rgba(255,255,255,.86) 34%,rgba(255,255,255,.55) 42%,rgba(255,255,255,.18) 48%,rgba(255,255,255,0) 52%)" : 'linear-gradient(180deg,rgba(255,255,255,.72) 0%,rgba(255,255,255,.5) 100%)',
+      heroTop: "linear-gradient(180deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.9) 18%,rgba(255,255,255,.8) 34%,rgba(255,255,255,.64) 48%,rgba(255,255,255,.45) 62%,rgba(255,255,255,.26) 76%,rgba(255,255,255,.1) 89%,rgba(255,255,255,0) 100%)",
       heroTextMax: w < 900 ? '100%' : '600px',
       h1Fs: w >= 760 ? '48px' : '38px',
       topOpacity: this.state.showTop ? '1' : '0',
@@ -62,9 +62,9 @@ export default class WellPumpServicesPage extends React.Component {
 
         {/* Hero */}
         <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
-          <img src="/assets/d4f73fc3-0a22-4dbd-8423-f66c778e45df.jpg" alt="Technician testing a well pump pressure switch" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '40% 40%', display: 'block' }} />
+          <img src="/assets/truck-crew-well-services-hero.jpg" alt="Mid-Wis Pump &amp; Well service truck and technician at a customer's home" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 48%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
-          <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '230px', background: v.heroTop, pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', padding: '125px 24px 0' }}>
             <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Well Pump Services</h1>
           </div>
@@ -80,10 +80,10 @@ export default class WellPumpServicesPage extends React.Component {
         {/* Services */}
         <section id="services" data-screen-label="Pump Installation" style={{ padding: '104px 24px 96px', background: '#fff' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'left', maxWidth: '680px', margin: '0 0 64px' }}>
+            <div style={{ textAlign: 'left', margin: '0 0 64px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>What we do</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>Keeping your well and pump working reliably.</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>Installation, repair, diagnostics, and updates for residential and agricultural well systems, with experience on all makes and models.</p>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>Installation, repair, diagnostics, and updates for residential and agricultural well systems, with experience on all makes and models.</p>
             </div>
             <div id="pump-installation" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '40px 72px', alignItems: 'stretch', scrollMarginTop: '110px' }}>
               <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '380px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
@@ -112,7 +112,7 @@ export default class WellPumpServicesPage extends React.Component {
                     Agricultural properties
                   </div>
                 </div>
-                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
                   <span>→</span>
                 </a>
@@ -149,7 +149,7 @@ export default class WellPumpServicesPage extends React.Component {
                     Other well-system problems
                   </div>
                 </div>
-                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
                   <span>→</span>
                 </a>
@@ -186,7 +186,7 @@ export default class WellPumpServicesPage extends React.Component {
                     Planning repairs or updates
                   </div>
                 </div>
-                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
                   <span>→</span>
                 </a>
@@ -223,7 +223,7 @@ export default class WellPumpServicesPage extends React.Component {
                     Aging pumps, tanks, and controls
                   </div>
                 </div>
-                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+                <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
                   <span>→</span>
                 </a>
@@ -253,13 +253,13 @@ export default class WellPumpServicesPage extends React.Component {
                   ))}
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '14px' }}>
-                  <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #C1272D', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-6bbf96">
+                  <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #C1272D', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-6bbf96">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flex: 'none' }}>
                       <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
                     </svg>
                     Call 608-269-5178
                   </a>
-                  <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+                  <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                     Contact us
                     <span>→</span>
                   </a>
@@ -270,37 +270,37 @@ export default class WellPumpServicesPage extends React.Component {
         </section>
 
         {/* Service process */}
-        <section id="process" data-screen-label="Service process" style={{ padding: '104px 24px', background: 'rgb(246, 250, 254)', color: '#000' }}>
+        <section id="process" data-screen-label="Service process" style={{ padding: '104px 24px', background: '#FBF8F3', color: '#000' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ maxWidth: '680px', margin: '0 0 56px' }}>
+            <div style={{ margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>How a service call works</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', color: '#000', textWrap: 'balance' }}>Clear answers from the first call to the final fix.</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000' }}>We keep you in the loop at every step, and we will never charge you for something you do not need.</p>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '680px' }}>We keep you in the loop at every step, and we will never charge you for something you do not need.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.stepCols, gap: '20px' }}>
-              <div style={{ background: '#fff', border: '1px solid #DCE9F6', borderRadius: '14px', padding: '30px 26px 32px' }}>
+              <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 1</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>Call us</div>
                 <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Tell us what is going on with your water. Estimates are free, and no water calls are answered 24/7.</div>
               </div>
-              <div style={{ background: '#fff', border: '1px solid #DCE9F6', borderRadius: '14px', padding: '30px 26px 32px' }}>
+              <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 2</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>We diagnose</div>
                 <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>We test your pump and well system on site, using video well diagnostics when we need a closer look.</div>
               </div>
-              <div style={{ background: '#fff', border: '1px solid #DCE9F6', borderRadius: '14px', padding: '30px 26px 32px' }}>
+              <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 3</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>You choose</div>
                 <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>We explain what we found and your options, so you can make an informed decision that fits your budget.</div>
               </div>
-              <div style={{ background: '#fff', border: '1px solid #DCE9F6', borderRadius: '14px', padding: '30px 26px 32px' }}>
+              <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 4</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>We get it done</div>
                 <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Repair, replacement, or a new installation, with trucks stocked for first-visit fixes.</div>
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '48px' }}>
-              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '8px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
+              <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Contact us
                 <span>→</span>
               </a>
@@ -316,8 +316,8 @@ export default class WellPumpServicesPage extends React.Component {
             <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
             <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
-              <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '4px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
-              <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '4px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>
+              <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '30px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
+              <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '30px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>
             </div>
           </div>
         </section>
