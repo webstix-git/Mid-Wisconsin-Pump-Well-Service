@@ -217,6 +217,10 @@ body{font-variant-numeric:lining-nums tabular-nums;text-wrap:pretty}
 .h-bd9fe2:hover{background:#A51F25 !important}
 .h-a6c3ef:hover{color:#004580 !important}
 
+.site-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:559px){.site-footer-grid>:first-child,.site-footer-grid>:last-child{grid-column:1/-1}}
+@media (min-width:960px){.site-footer-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
 @media print {
   @page { margin: 0.5cm; }
   figure, table { break-inside: avoid; }

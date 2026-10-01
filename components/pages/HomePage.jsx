@@ -45,7 +45,7 @@ export default class HomePage extends React.Component {
     const L = mid ? Math.round(w * 0.38) : 0;
     const hx = white ? {
       fg: '#000', sub: '#000', eyebrow: '#C1272D', shadow: 'none',
-      overlay: 'linear-gradient(90deg, rgba(255, 255, 255, 0.9) 23%, rgba(255, 255, 255, 0.91) 23%, rgba(255, 255, 255, 0.87) 33%, rgba(255, 255, 255, 0.79) 38%, rgba(255, 255, 255, 0.67) 44%, rgba(255, 255, 255, 0.53) 48%, rgba(255, 255, 255, 0.39) 52%, rgba(255, 255, 255, 0.26) 55%, rgba(255, 255, 255, 0.15) 57%, rgba(255, 255, 255, 0.07) 61%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0) 53%)',
+      overlay: !mid ? 'linear-gradient(180deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.74) 55%,rgba(255,255,255,.55) 100%)' : 'linear-gradient(90deg, rgba(255, 255, 255, 0.9) 23%, rgba(255, 255, 255, 0.91) 23%, rgba(255, 255, 255, 0.87) 33%, rgba(255, 255, 255, 0.79) 38%, rgba(255, 255, 255, 0.67) 44%, rgba(255, 255, 255, 0.53) 48%, rgba(255, 255, 255, 0.39) 52%, rgba(255, 255, 255, 0.26) 55%, rgba(255, 255, 255, 0.15) 57%, rgba(255, 255, 255, 0.07) 61%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0) 53%)',
       radial: 'none',
       top: 'linear-gradient(rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 90%) 18%, rgb(255 255 255 / 84%) 30%, rgb(255 255 255 / 74%) 41%, rgb(255 255 255 / 61%) 51%, rgb(255 255 255 / 47%) 60%, rgb(255 255 255 / 33%) 69%, rgb(255 255 255 / 20%) 78%, rgb(255 255 255 / 10%) 86%, rgb(255 255 255 / 3%) 94%, rgb(255 255 255 / 0%) 100%)',
       pillBg: 'transparent', pillBd: 'transparent', btnBg: 'transparent', btnFg: '#004580', btnBd: '#004580', secBg: '#fff', bleed: 0
@@ -59,20 +59,22 @@ export default class HomePage extends React.Component {
       pillBg: 'transparent', pillBd: 'transparent', btnBg: 'transparent', btnFg: '#fff', btnBd: '#fff', secBg: '#004580', bleed: 0
     };
     const dark = solid || white;
+    const phone = w < 600;
     return {
-      navGap: w >= 1360 ? '18px' : '12px', navFs: w >= 1360 ? '16px' : '14.5px', phonePad: w >= 1360 ? '10px 20px 10px 10px' : '8px 14px 8px 8px', phoneLabel: w >= 1360 || !wide ? 'block' : 'none',
-      phoneIcon: '40px', phoneNumFs: '20px', phoneLabelFs: '11px', hdrGap: w >= 1360 ? '40px' : '28px',
-      logoTextDisplay: (wide && w < 1300) ? 'none' : 'flex',
+      navGap: w >= 1360 ? '18px' : '12px', navFs: w >= 1360 ? '16px' : '14.5px', phonePad: phone ? '4px' : w >= 1360 ? '10px 20px 10px 10px' : '8px 14px 8px 8px', phoneLabel: w >= 1360 || !wide ? 'block' : 'none',
+      phoneIcon: '40px', phoneNumFs: '20px', phoneLabelFs: '11px', hdrGap: phone ? '12px' : w >= 1360 ? '40px' : '28px',
+      phoneGap: phone ? '0' : '12px', phoneTextDisplay: phone ? 'none' : 'flex',
+      logoTextDisplay: w < 360 ? 'none' : 'flex',
       hx, photoLeft: L + 'px', photoMask: L ? 'linear-gradient(90deg,transparent 0,#000 260px)' : 'none',
       hdrBg: solid ? 'rgba(255,255,255,.97)' : 'transparent',
       hdrShadow: solid ? '0 1px 0 #E7E1D8, 0 6px 20px rgba(0,69,128,.08)' : 'none',
       hdrBlur: solid ? 'blur(8px)' : 'none',
-      hdrH: solid ? '84px' : '150px',
-      hdrShift: solid ? '-84px' : '-150px',
-      hdrPad: solid ? '8px 24px' : '10px 24px',
-      logoH: solid ? '56px' : '100px',
-      logoTitle: solid ? '17px' : '21px',
-      logoSub: solid ? '10px' : '11.5px',
+      hdrH: solid ? (phone ? '72px' : '84px') : (phone ? '100px' : '150px'),
+      hdrShift: solid ? (phone ? '-72px' : '-84px') : (phone ? '-100px' : '-150px'),
+      hdrPad: phone ? (solid ? '8px 16px' : '10px 16px') : (solid ? '8px 24px' : '10px 24px'),
+      logoH: solid ? (phone ? '44px' : '56px') : (phone ? '48px' : '100px'),
+      logoTitle: solid ? (phone ? '16px' : '17px') : (phone ? '17px' : '21px'),
+      logoSub: solid ? (phone ? '9.5px' : '10px') : (phone ? '9.5px' : '11.5px'),
       logoFilter: dark ? 'none' : 'drop-shadow(0 0 1px rgba(255,255,255,.85)) drop-shadow(0 2px 8px rgba(0,69,128,.4))',
       hdrFg: dark ? '#000' : '#fff',
       hdrAccent: dark ? '#C1272D' : '#F6B3B5',
@@ -80,7 +82,18 @@ export default class HomePage extends React.Component {
       wide, narrow: !wide, menuOpen: !wide && this.state.menu,
       toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
       closeMenu: () => this.setState({ menu: false }),
+      sp: (t, b = t) => { const k = phone ? .62 : mid ? 1 : .8, x = phone ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       svcCols: `repeat(${w >= 900 ? 3 : 1},minmax(0,1fr))`,
+      svcRow: !phone && !mid,
+      svcImgH: !phone && !mid ? 'auto' : phone ? '190px' : '210px',
+      svcImgFlex: !phone && !mid ? '0 0 42%' : 'none',
+      helpCols: phone ? '44px minmax(0,1fr) 20px' : '56px minmax(0,1fr) 28px',
+      helpGap: phone ? '14px' : '20px', helpPad: phone ? '20px 16px' : '28px 24px', helpIcon: phone ? '44px' : '56px',
+      helpTitleFs: phone ? '20px' : '23px', helpBodyFs: phone ? '16px' : '18px', helpImgMin: phone ? '340px' : '440px',
+      brandLogoH: phone ? '120px' : '150px',
+      aboutGap: w >= 1000 ? '64px' : '40px',
+      rvPad: phone ? '24px 22px 22px' : '30px 30px 28px',
+      mapH: phone ? '300px' : '400px',
       areaCols: w >= 1000 ? 'minmax(0,1.35fr) minmax(0,1fr)' : 'minmax(0,1fr)',
       aboutCols: w >= 1000 ? 'minmax(0,1fr) minmax(0,1.3fr)' : 'minmax(0,1fr)',      mwCols: mid ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
       mwImgPos: mid ? 'absolute' : 'relative',
@@ -91,8 +104,11 @@ export default class HomePage extends React.Component {
       heroMin: '750px',
       heroWide: w >= 760,
       heroNarrow: w < 760,
-      heroPad: '200px 24px 64px',
+      heroPad: phone ? '150px 20px 56px' : '200px 24px 64px',
+      h1NarrowFs: w < 480 ? '38px' : '48px',
       showAnniversary: this.props.showAnniversary ?? true,
+      ctaOv: mid ? 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.5) 40%,rgba(0,0,0,.12) 52%,rgba(0,0,0,0) 62%)' : 'linear-gradient(180deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.7) 60%,rgba(0,0,0,.6) 100%)',
+      badgeSz: phone ? '112px' : '140px', badgeFs: phone ? '40px' : '50px', badgeRight: phone ? '12px' : '20px',
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
@@ -134,6 +150,7 @@ export default class HomePage extends React.Component {
         return {
           rvCards: cards,
           rvCardW: `calc((100% - ${(per - 1) * 24}px) / ${per})`,
+          rvAlign: per === 1 ? 'flex-start' : 'stretch',
           rvShift: `calc(${-slide} * (100% + 24px))`,
           rvDots: Array.from({ length: pages }, (_, i) => ({ label: `Show reviews ${i + 1} of ${pages}`, go: () => this.rvGo(i), w: i === slide ? '28px' : '10px', bg: i === slide ? '#C1272D' : '#C9DDF0' }))
         };
@@ -160,7 +177,7 @@ export default class HomePage extends React.Component {
                 <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '60px', lineHeight: '1.05', letterSpacing: '-.03em', margin: '0 0 20px', color: v.hx.fg, textWrap: 'balance' }}>Reliable Well &amp; Pump Service, Right When You Need It</h1>
               )}
               {v.heroNarrow && (
-                <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '48px', lineHeight: '1.08', letterSpacing: '-.03em', margin: '0 0 20px', color: v.hx.fg, textWrap: 'balance' }}>Reliable Well &amp; Pump Service, Right When You Need It</h1>
+                <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1NarrowFs, lineHeight: '1.08', letterSpacing: '-.03em', margin: '0 0 20px', color: v.hx.fg, textWrap: 'balance' }}>Reliable Well &amp; Pump Service, Right When You Need It</h1>
               )}
               <p style={{ fontSize: '18px', lineHeight: '1.65', margin: '0 0 32px', color: v.hx.sub, maxWidth: '440px', textWrap: 'pretty' }}>Pump installation, repair, and video well inspection for homes, farms, and small businesses across Western Wisconsin.</p>
               <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', background: v.hx.btnBg, color: v.hx.btnFg, padding: '13px 22px', borderRadius: '30px', border: `1.5px solid ${v.hx.btnBd}`, fontWeight: '600', fontSize: '15.5px', lineHeight: '1.2' }} className="h-2eec3d">Get a Free Estimate</a>
@@ -169,18 +186,18 @@ export default class HomePage extends React.Component {
         </section>
 
         {/* Services */}
-        <section id="services" data-screen-label="Services" style={{ padding: '104px 24px 96px' }}>
+        <section id="services" data-screen-label="Services" style={{ padding: v.sp(104, 96) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
+            <div style={{ textAlign: 'left', margin: '0 0 48px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Our services</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>Well and pump service, done right the first time.</h2>
               <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>Residential and agricultural systems, with experience on all makes and models of well pumps and pressure tanks.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.svcCols, gap: '24px' }}>
               {v.services.map((s, i) => (
-                <a key={i} href={s.href} style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', color: '#000', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
-                  <div style={{ height: '210px', background: '#E7E1D8', position: 'relative' }}>
-                    <img src={s.img} alt={s.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: s.pos, display: 'block' }} />
+                <a key={i} href={s.href} style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', color: '#000', display: 'flex', flexDirection: v.svcRow ? 'row' : 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
+                  <div style={{ height: v.svcImgH, flex: v.svcImgFlex, background: '#E7E1D8', position: 'relative' }}>
+                    <img src={s.img} alt={s.alt} style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: s.pos, display: 'block' }} />
                   </div>
                   <div style={{ padding: '24px 22px 24px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
                     <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0', whiteSpace: 'pre-line' }}>{s.title}</h3>
@@ -194,15 +211,15 @@ export default class HomePage extends React.Component {
         </section>
 
         {/* When to call */}
-        <section data-screen-label="When to call" style={{ background: '#fff', padding: '112px 24px' }}>
+        <section data-screen-label="When to call" style={{ background: '#fff', padding: v.sp(112) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ margin: '0 0 56px' }}>
+            <div style={{ margin: '0 0 48px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '16px' }}>Who we help</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>For Homes, Farms &amp; Businesses</h2>
               <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '680px' }}>Reliable well and pump service for homeowners, agricultural properties, and businesses throughout Western Wisconsin.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: '48px 64px', alignItems: 'stretch' }}>
-              <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', minHeight: '440px', background: '#E7E1D8' }}>
+              <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', minHeight: v.helpImgMin, background: '#E7E1D8' }}>
                 <img src="/assets/truck-valley-who-we-help.jpg" alt="Mid-Wis Pump & Well service truck on a rural job site" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 100%', display: 'block' }} />
                 <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.5) 18%,rgba(0,0,0,0) 38%)' }} />
                 <div style={{ position: 'absolute', left: '24px', right: '24px', bottom: '24px', display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'flex-end', justifyContent: 'space-between', color: '#fff' }}>
@@ -215,13 +232,13 @@ export default class HomePage extends React.Component {
               </div>
               <div data-help-cards="" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px' }}>
                 {v.helpList.map((t, i) => (
-                  <a key={i} href="/well-pump-services" style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr) 28px', gap: '20px', alignItems: 'center', padding: '28px 24px', background: '#fff', border: '1px solid #F0EBE3', borderRadius: '10px', color: '#000', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
-                    <span style={{ width: '56px', height: '56px', borderRadius: '12px', background: '#FBF8F3', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <a key={i} href="/well-pump-services" style={{ display: 'grid', gridTemplateColumns: v.helpCols, gap: v.helpGap, alignItems: 'center', padding: v.helpPad, background: '#fff', border: '1px solid #F0EBE3', borderRadius: '10px', color: '#000', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
+                    <span style={{ width: v.helpIcon, height: v.helpIcon, borderRadius: '12px', background: '#FBF8F3', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <img src={t.icon} alt="" width="30" height="30" style={{ width: '30px', height: '30px', display: 'block' }} />
                     </span>
                     <span style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                      <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15' }}>{t.title}</span>
-                      <span style={{ fontSize: '18px', lineHeight: '1.55', color: '#000' }}>{t.body}</span>
+                      <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.helpTitleFs, lineHeight: '1.15' }}>{t.title}</span>
+                      <span style={{ fontSize: v.helpBodyFs, lineHeight: '1.55', color: '#000' }}>{t.body}</span>
                     </span>
                     <span aria-hidden="true" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#C1272D' }}>
                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.75" strokeLinecap="round" strokeLinejoin="round">
@@ -237,9 +254,9 @@ export default class HomePage extends React.Component {
         </section>
 
         {/* Products */}
-        <section id="products" data-screen-label="Products" style={{ background: '#FBF8F3', padding: '112px 24px' }}>
+        <section id="products" data-screen-label="Products" style={{ background: '#FBF8F3', padding: v.sp(112) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', margin: '0 auto 56px' }}>
+            <div style={{ textAlign: 'center', margin: '0 auto 48px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Products we install</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>Quality brands built for the long haul.</h2>
               <p style={{ margin: '0 auto', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>We install pumps, drives, and pressure tanks from manufacturers we trust, so your system keeps working for years. All makes and models serviced and repaired.</p>
@@ -247,7 +264,7 @@ export default class HomePage extends React.Component {
             <div style={{ display: 'grid', gridTemplateColumns: v.brandCols, gap: '24px' }}>
               {v.brands.map((b, i) => (
                 <div key={i} style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-63709b">
-                  <div style={{ height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 32px', background: '#fff' }}>
+                  <div style={{ height: v.brandLogoH, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '28px 32px', background: '#fff' }}>
                     <img src={b.logo} alt={`${b.name} logo`} style={{ maxWidth: '100%', maxHeight: b.h, width: 'auto', height: 'auto', display: 'block', objectFit: 'contain' }} />
                   </div>
                   <div style={{ padding: '18px 22px 22px', borderTop: '3px solid #C1272D', background: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: '4px', flex: '1' }}>
@@ -267,15 +284,15 @@ export default class HomePage extends React.Component {
         </section>
 
         {/* About */}
-        <section id="about" data-screen-label="About" style={{ background: '#fff', padding: '104px 24px' }}>
-          <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.aboutCols, gap: '64px', alignItems: 'center' }}>
+        <section id="about" data-screen-label="About" style={{ background: '#fff', padding: v.sp(104) }}>
+          <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.aboutCols, gap: v.aboutGap, alignItems: 'center' }}>
             <div style={{ position: 'relative', paddingBottom: '40px' }}>
               <div style={{ borderRadius: '12px', overflow: 'hidden', aspectRatio: '16/10', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.16)' }}>
                 <img src="/assets/8926e1af-2b46-42c6-b707-af49a85161ff.jpg" alt="Mike Schaitel with an early Mid-Wis Pump &amp; Well truck" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'sepia(.15)' }} />
               </div>
               {v.showAnniversary && (
-                <div style={{ position: 'absolute', right: '20px', bottom: '0', width: '140px', height: '140px', borderRadius: '50%', background: '#C1272D', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', border: '5px solid #fff', boxShadow: '0 10px 24px rgba(193,39,45,.35)' }}>
-                  <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '50px', lineHeight: '.9' }}>49+</div>
+                <div style={{ position: 'absolute', right: v.badgeRight, bottom: '0', width: v.badgeSz, height: v.badgeSz, borderRadius: '50%', background: '#C1272D', color: '#fff', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', border: '5px solid #fff', boxShadow: '0 10px 24px rgba(193,39,45,.35)' }}>
+                  <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.badgeFs, lineHeight: '.9' }}>49+</div>
                   <div style={{ fontSize: '11px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', marginTop: '4px' }}>Years</div>
                   <div style={{ fontSize: '12px', fontWeight: '600', marginTop: '2px' }}>1977–2026</div>
                 </div>
@@ -313,16 +330,16 @@ export default class HomePage extends React.Component {
         </section>
 
         {/* Reviews */}
-        <section data-screen-label="Reviews" style={{ background: 'rgb(246, 250, 254)', color: '#000', padding: '96px 24px' }}>
+        <section data-screen-label="Reviews" style={{ background: 'rgb(246, 250, 254)', color: '#000', padding: v.sp(96) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ textAlign: 'center', marginBottom: '44px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Google reviews</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0' }}>What our neighbors say.</h2>
             </div>
             <div id="rv-carousel" aria-roledescription="carousel" aria-label="Google reviews" style={{ overflow: 'hidden', padding: '0 0 24px' }}>
-              <div style={{ display: 'flex', gap: '24px', alignItems: 'stretch', transform: `translateX(${v.rvShift})`, transition: 'transform .7s cubic-bezier(.65,0,.35,1)' }}>
+              <div style={{ display: 'flex', gap: '24px', alignItems: v.rvAlign, transform: `translateX(${v.rvShift})`, transition: 'transform .7s cubic-bezier(.65,0,.35,1)' }}>
                 {v.rvCards.map((r, i) => (
-                  <figure key={i} style={{ margin: '0', flex: `0 0 ${v.rvCardW}`, position: 'relative', background: '#fff', borderRadius: '16px', padding: '30px 30px 28px', display: 'flex', flexDirection: 'column', gap: '18px', border: '1px solid #DCE9F6', borderBottom: '4px solid #C1272D' }}>
+                  <figure key={i} style={{ margin: '0', flex: `0 0 ${v.rvCardW}`, position: 'relative', background: '#fff', borderRadius: '16px', padding: v.rvPad, display: 'flex', flexDirection: 'column', gap: '18px', border: '1px solid #DCE9F6', borderBottom: '4px solid #C1272D' }}>
                     <div style={{ color: '#E0A21B', fontSize: '18px', letterSpacing: '3px', lineHeight: '1' }}>★★★★★</div>
                     <blockquote style={{ margin: '0', fontSize: '17px', lineHeight: '1.65', color: '#000', fontStyle: 'normal', flex: '1' }}>{r.text}</blockquote>
                     <figcaption style={{ display: 'flex', alignItems: 'center', gap: '14px', paddingTop: '20px', borderTop: '1px solid #DCE9F6' }}>
@@ -359,7 +376,7 @@ export default class HomePage extends React.Component {
         </section>
 
         {/* Service area */}
-        <section id="service-area" data-screen-label="Service area" style={{ background: '#fff', padding: '104px 24px' }}>
+        <section id="service-area" data-screen-label="Service area" style={{ background: '#fff', padding: v.sp(104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.areaCols, gap: '48px 64px', alignItems: 'center' }}>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Where we work</div>
@@ -376,7 +393,7 @@ export default class HomePage extends React.Component {
                 <span>→</span>
               </a>
             </div>
-            <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #EDE7DE', boxShadow: '0 18px 40px rgba(0,69,128,.12)', background: '#E7E1D8', height: '400px' }}>
+            <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #EDE7DE', boxShadow: '0 18px 40px rgba(0,69,128,.12)', background: '#E7E1D8', height: v.mapH }}>
               <iframe title="Map to Mid-Wisconsin Pump &amp; Well, 17660 Icecap Rd, Sparta, WI" src="https://www.google.com/maps?q=17660%20Icecap%20Rd%2C%20Sparta%2C%20WI%2054656&amp;output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade" style={{ width: '100%', height: '100%', border: '0', display: 'block' }} />
             </div>
           </div>
@@ -385,8 +402,8 @@ export default class HomePage extends React.Component {
         {/* Contact */}
         <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff' }}>
           <img src="/assets/truck-lawn-cta-banner.jpg" alt="" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
-          <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.5) 40%,rgba(0,0,0,.12) 52%,rgba(0,0,0,0) 62%)' }} />
-          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: '92px 24px 84px' }}>
+          <div style={{ position: 'absolute', inset: '0', background: v.ctaOv }} />
+          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: v.sp(92, 84) }}>
             <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
             <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '430px' }}>Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>

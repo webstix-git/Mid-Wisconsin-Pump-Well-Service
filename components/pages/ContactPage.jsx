@@ -8,7 +8,7 @@ import BackToTop from '@/components/BackToTop';
 const REQUIRED = ["fullName","phone","email","message"];
 
 export default class ContactPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false, sent: false, err: '', errs: {} };
+  state = { w: 1280, menu: false, scrolled: false, showTop: false, err: '', errs: {} };
   componentDidMount() {
     document.title = "Contact Us | Mid-Wisconsin Pump & Well";
     this.onR = () => this.setState({ w: window.innerWidth });
@@ -49,7 +49,6 @@ export default class ContactPage extends React.Component {
       topShift: this.state.showTop ? '0' : '12px',
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
       ...(() => ({
-        sent: this.state.sent, notSent: !this.state.sent,
         err: this.state.err, hasErr: !!this.state.err,
         ...Object.fromEntries(REQUIRED.flatMap(k => [
           ['err_' + k, !!this.state.errs[k]],
@@ -79,9 +78,9 @@ export default class ContactPage extends React.Component {
             f[bad[0]].focus();
             return;
           }
-          this.setState({ sent: true, err: '', errs: {} });
-        },
-        reset: () => this.setState({ sent: false, err: '', errs: {} })
+          this.setState({ err: '', errs: {} });
+          window.location.assign('/contact/thank-you');
+        }
       }))()
     };
   }
@@ -114,8 +113,6 @@ export default class ContactPage extends React.Component {
         <section id="estimate" data-screen-label="Contact form" style={{ background: 'rgb(246, 250, 254)', padding: '104px 24px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,440px),1fr))', gap: '48px 64px', alignItems: 'start' }}>
             <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '16px', padding: '36px 32px', boxShadow: '0 2px 6px rgba(0,0,0,.04),0 18px 44px rgba(0,69,128,.1)' }}>
-              {v.notSent && (
-                <>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 8px' }}>Request a free estimate</h3>
                   <p style={{ margin: '0 0 16px', fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Tell us what is going on and we will follow up with options.</p>
                   <div role="note" style={{ margin: '0 0 16px', padding: '14px 16px', borderRadius: '10px', background: '#FFF6D5', border: '1px solid #F1DE94' }}>
@@ -158,20 +155,6 @@ export default class ContactPage extends React.Component {
                     )}
                     <button type="submit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '15px 22px', borderRadius: '30px', border: '0', fontWeight: '700', fontSize: '16px', cursor: 'pointer' }} className="h-bd9fe2">Send request</button>
                   </form>
-                </>
-              )}
-              {v.sent && (
-                <div style={{ textAlign: 'center', padding: '32px 8px' }}>
-                  <span style={{ display: 'inline-flex', width: '64px', height: '64px', borderRadius: '50%', background: '#004580', color: '#fff', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20 6 9 17l-5-5" />
-                    </svg>
-                  </span>
-                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 12px' }}>Thanks, we got your request.</h3>
-                  <p style={{ margin: '0 0 24px', fontSize: '17px', lineHeight: '1.6', color: '#000' }}>We will be in touch soon. If you have no water, please call 608-269-5178.</p>
-                  <button type="button" onClick={v.reset} style={{ background: 'transparent', color: '#004580', padding: '12px 22px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15px', cursor: 'pointer' }} className="h-d10c8f">Send another request</button>
-                </div>
-              )}
             </div>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Get in touch</div>
