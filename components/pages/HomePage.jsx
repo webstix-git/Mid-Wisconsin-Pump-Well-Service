@@ -107,7 +107,7 @@ export default class HomePage extends React.Component {
       services: [
         { img: '/assets/3b9f8afd-f873-440d-8fd9-cbe2398c7ffc.jpg', pos: '50% 40%', alt: 'Technician installing a new pressure tank', tag: 'Pump Installation', title: 'New Well Pump & System Installation', body: 'Professional installation of new well pump systems, pressure tanks, and related equipment for residential and agricultural properties.', cta: 'Explore Installation Services', href: '/pump-installation-and-repair' },
         { img: '/assets/d4f73fc3-0a22-4dbd-8423-f66c778e45df.jpg', pos: '50% 40%', alt: 'Technician testing a well pump pressure switch', tag: 'Pump Repair & Service', title: 'Well Pump Repair & Service', body: 'Diagnosing and repairing well pump and water system problems, including outdated or failed components. Service is available for all makes and models.', cta: 'Get Pump Service', href: '/pump-installation-and-repair#repair' },
-        { img: '/assets/14e122c5-c49e-5c53-aceb-f3506b7af981.jpg', pos: '35% 55%', alt: 'Mid-Wisconsin Pump & Well service truck ready for an emergency call', tag: '24/7 Emergency Pump Service', title: '24/7 Emergency No-Water Service', body: 'Fast emergency assistance when your water system stops working. Mid-Wisconsin Pump provides around-the-clock service for urgent no-water situations.', cta: 'Get Emergency Service', href: '/contact' }
+        { img: '/assets/14e122c5-c49e-5c53-aceb-f3506b7af981.jpg', pos: '35% 55%', alt: 'Mid-Wisconsin Pump & Well service truck ready for an emergency call', tag: '24/7 Emergency Pump Service', title: '24/7 Emergency\nNo\u2011Water Service', body: 'Fast emergency assistance when your water system stops working. Mid-Wisconsin Pump provides around-the-clock service for urgent no-water situations.', cta: 'Get Emergency Service', href: '/contact' }
       ],
       helpList: [
         { icon: '/assets/icon-house.png', title: 'Homeowners', body: 'Well and pump service for residential water systems.' },
@@ -183,7 +183,7 @@ export default class HomePage extends React.Component {
                     <img src={s.img} alt={s.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: s.pos, display: 'block' }} />
                   </div>
                   <div style={{ padding: '24px 22px 24px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
-                    <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>{s.title}</h3>
+                    <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0', whiteSpace: 'pre-line' }}>{s.title}</h3>
                     <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', flex: '1' }}>{s.body}</p>
                     <span style={{ fontWeight: '700', fontSize: '17px', color: '#C1272D', paddingTop: '8px', borderTop: '1px solid #F0EBE3', marginTop: '6px' }}>{s.cta} →</span>
                   </div>

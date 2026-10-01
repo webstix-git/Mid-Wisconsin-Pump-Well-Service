@@ -177,7 +177,7 @@ export default class ProductsPage extends React.Component {
             <div>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Upgrade your system</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Enjoy the benefits of a premium water system.</h2>
-              <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>From saving money on energy bills to enjoying consistent water pressure, there are plenty of perks to upgrading your well pump and pressure tank. We provide quick, professional installation, so you feel the difference right away.</p>
+              <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>From saving money on energy bills to enjoying consistent water pressure, there are plenty of perks to upgrading your well pump and pressure tank. We provide quick, professional installation, so you feel <span style={{ whiteSpace: 'nowrap' }}>the difference right away.</span></p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,minmax(0,1fr))', gap: '1px', background: '#DCE9F6', borderRadius: '14px', overflow: 'hidden', border: '1px solid #DCE9F6' }}>
                 <div style={{ background: '#fff', padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.15' }}>Steady pressure</span>
@@ -217,9 +217,10 @@ export default class ProductsPage extends React.Component {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', background: '#F6FAFE', border: '1px solid #DCE9F6', borderRadius: '14px', padding: '30px 28px' }}>
                 <span style={{ width: '52px', height: '52px', borderRadius: '12px', background: '#004580', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <path d="m9 12 2 2 4-4" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="8" r="6" />
+                    <path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11" />
+                    <path d="m9.5 8 1.75 1.75L14.5 6.5" />
                   </svg>
                 </span>
                 <div>
@@ -229,9 +230,8 @@ export default class ProductsPage extends React.Component {
               </div>
               <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', background: '#F6FAFE', border: '1px solid #DCE9F6', borderRadius: '14px', padding: '30px 28px' }}>
                 <span style={{ width: '52px', height: '52px', borderRadius: '12px', background: '#004580', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    <path d="m9 12 2 2 4-4" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                   </svg>
                 </span>
                 <div>

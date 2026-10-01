@@ -48,6 +48,7 @@ export default class AboutUsPage extends React.Component {
       topShift: this.state.showTop ? '0' : '12px',
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
       ...(() => ({
+        storyKeep: w >= 700 ? 'nowrap' : 'normal',
         tl: w >= 900 ? {
           cols: 'minmax(0,1fr) 88px minmax(0,1fr)', lineLeft: '50%', rowGap: '0',
           thenText: '1 / 2', thenImg: '3 / 4', nowText: '3 / 4', nowImg: '1 / 2', dotCol: '2 / 3', dotRow: '1 / 2', imgRow: '1 / 2', dotAlign: 'center', dotTop: '0'
@@ -95,7 +96,7 @@ export default class AboutUsPage extends React.Component {
             <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Our story</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>From a garage shop to a family known name.</h2>
-              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '720px' }}>Two generations, one shop in Sparta, and the same promise since day one: show up quickly, explain things clearly, and do the job right.</p>
+              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '720px' }}>Two generations, one shop in Sparta, and the same promise since day one: <span style={{ whiteSpace: v.storyKeep }}>show up quickly, explain things clearly, and do the job right.</span></p>
             </div>
             <div style={{ position: 'relative' }}>
               <div aria-hidden="true" style={{ position: 'absolute', top: '0', bottom: '0', left: v.tl.lineLeft, width: '2px', marginLeft: '-1px', background: '#E4DACC' }} />

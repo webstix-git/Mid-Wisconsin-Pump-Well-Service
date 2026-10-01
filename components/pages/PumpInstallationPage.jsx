@@ -94,8 +94,8 @@ export default class PumpInstallationPage extends React.Component {
           { n: 'Step 4', title: 'Test', body: 'Verify proper operation and water pressure.' }
         ],
         warranties: [
-          { title: 'Manufacturer warranties honored', body: 'We honor the manufacturer warranty on the products we sell, so your new equipment is covered the way it should be.' },
-          { title: 'Personal one-year warranty', body: 'Other parts we install carry our personal one-year warranty, covering both the part and the labor to repair it.' }
+          { icon: 'award', title: 'Manufacturer warranties honored', body: 'We honor the manufacturer warranty on the products we sell, so your new equipment is covered the way it should be.' },
+          { icon: 'wrench', title: 'Personal one-year warranty', body: 'Other parts we install carry our personal one-year warranty, covering both the part and the labor to repair it.' }
         ]
       }))()
     };
@@ -157,7 +157,7 @@ export default class PumpInstallationPage extends React.Component {
             <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Pump repair</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>Fast, Reliable Pump Repair</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>We diagnose the problem first, then repair or replace pumps, tanks, and parts as needed. We work on all makes and models, and our trucks are stocked for first-visit fixes.</p>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>We diagnose the problem first, then repair or replace pumps, tanks, and parts as needed. We work on all makes and models, and our trucks are stocked for <span style={{ whiteSpace: 'nowrap' }}>first-visit fixes.</span></p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.cardCols, gap: '20px' }}>
               {v.problems.map((p, i) => (
@@ -254,9 +254,16 @@ export default class PumpInstallationPage extends React.Component {
               {v.warranties.map((c, i) => (
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '56px minmax(0,1fr)', gap: '20px', alignItems: 'start', padding: '28px 24px', background: '#fff', border: '1px solid #F0EBE3', borderRadius: '10px', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)' }}>
                   <span style={{ width: '56px', height: '56px', borderRadius: '12px', background: '#FBF8F3', color: '#C1272D', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                      <path d="m9 12 2 2 4-4" />
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      {c.icon === 'award' ? (
+                        <>
+                          <circle cx="12" cy="8" r="6" />
+                          <path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11" />
+                          <path d="m9.5 8 1.75 1.75L14.5 6.5" />
+                        </>
+                      ) : (
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                      )}
                     </svg>
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
