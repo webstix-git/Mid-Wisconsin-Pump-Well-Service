@@ -1,5 +1,6 @@
 import './globals.css';
 import HydrationGate from '@/components/HydrationGate';
+import MobileCallBar from '@/components/MobileCallBar';
 
 export default function RootLayout({ children }) {
   return (
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         {children}
+        <MobileCallBar />
         <HydrationGate />
       </body>
     </html>

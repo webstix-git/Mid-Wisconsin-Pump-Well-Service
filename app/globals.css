@@ -258,6 +258,14 @@ a[href^="mailto:"]{overflow-wrap:anywhere}
 }
 @media (min-width:960px){.site-footer-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
+.call-bar{display:none}
+.h-f66091{transition:opacity .25s,transform .25s,visibility .25s,background .2s,bottom .35s cubic-bezier(.4,0,.2,1) !important}
+@media (max-width:599px){
+  .call-bar{display:block}
+  .site-footer{padding-bottom:100px !important}
+  html[data-callbar] .h-f66091{bottom:calc(88px + env(safe-area-inset-bottom)) !important}
+}
+
 @media print {
   @page { margin: 0.5cm; }
   figure, table { break-inside: avoid; }
