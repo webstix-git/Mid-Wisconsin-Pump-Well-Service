@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 const NAV = [
   ['Home', '/'],
   ['Well Pump Services', '/well-pump-services'],
@@ -8,14 +12,33 @@ const NAV = [
 ];
 
 export default function SiteHeader({ v, active, logoHref = '/' }) {
+  const open = !!v.menuOpen;
+  const burgerRef = useRef(null), closeRef = useRef(null), wasOpen = useRef(false);
+
+  useEffect(() => {
+    if (!open) {
+      if (wasOpen.current && burgerRef.current) burgerRef.current.focus();
+      wasOpen.current = false;
+      return;
+    }
+    wasOpen.current = true;
+    const body = document.body, prev = body.style.overflow;
+    body.style.overflow = 'hidden';
+    if (closeRef.current) closeRef.current.focus();
+    const onKey = e => { if (e.key === 'Escape') v.closeMenu(); };
+    window.addEventListener('keydown', onKey);
+    return () => { body.style.overflow = prev; window.removeEventListener('keydown', onKey); };
+  }, [open]);
+
   return (
+    <>
     <header style={{ position: 'sticky', top: '0', zIndex: '40', marginBottom: v.hdrShift, background: v.hdrBg, boxShadow: v.hdrShadow, backdropFilter: v.hdrBlur, transition: 'background .3s,box-shadow .3s,margin-bottom .3s' }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: v.hdrPad, height: v.hdrH, display: 'flex', gap: v.hdrGap, alignItems: 'center', justifyContent: 'space-between', transition: 'height .3s' }}>
-        <a href={logoHref} style={{ display: 'flex', alignItems: 'center', gap: '12px', color: v.hdrFg, flex: 'none' }}>
-          <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well logo" style={{ height: v.logoH, width: 'auto', display: 'block', filter: v.logoFilter, transition: 'height .3s' }} />
+      <div className="hdr-row" style={{ maxWidth: '1280px', margin: '0 auto', padding: v.hdrPad, height: v.hdrH, display: 'flex', gap: v.hdrGap, alignItems: 'center', justifyContent: 'space-between', transition: 'height .3s' }}>
+        <a href={logoHref} className="hdr-logo" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: v.hdrFg, flex: 'none' }}>
+          <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well logo" width="195" height="144" style={{ height: v.logoH, width: 'auto', display: 'block', filter: v.logoFilter, transition: 'height .3s' }} />
           <div style={{ display: v.logoTextDisplay || 'flex', flexDirection: 'column', lineHeight: '1.05' }}>
-            <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.logoTitle }}>Mid-Wisconsin</span>
-            <span style={{ fontSize: v.logoSub, fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: v.hdrAccent, marginTop: '3px' }}>Pump &amp; Well Service</span>
+            <span className="hdr-title" style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.logoTitle }}>Mid-Wisconsin</span>
+            <span className="hdr-sub" style={{ fontSize: v.logoSub, fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: v.hdrAccent, marginTop: '3px' }}>Pump &amp; Well Service</span>
           </div>
         </a>
         {v.wide && (
@@ -36,9 +59,10 @@ export default function SiteHeader({ v, active, logoHref = '/' }) {
               <span style={{ fontSize: v.phoneLabelFs, fontWeight: '700', letterSpacing: '.1em', textTransform: 'uppercase', opacity: '.9', display: v.phoneLabel }}>24/7 Emergency</span>
               <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.phoneNumFs, whiteSpace: 'nowrap' }}>608-269-5178</span>
             </span>
+            <span aria-hidden="true" style={{ display: v.phoneTextDisplay === 'none' ? 'block' : 'none', fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '15px', lineHeight: '1' }}>Call</span>
           </a>
           {v.narrow && (
-            <button type="button" onClick={v.toggleMenu} aria-label={v.menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={!!v.menuOpen} style={{ width: '46px', height: '46px', border: `1px solid ${v.burgerBd}`, background: '#fff', boxShadow: '0 4px 14px rgba(0,69,128,.18)', borderRadius: '6px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>
+            <button ref={burgerRef} type="button" onClick={v.toggleMenu} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="site-drawer" style={{ width: v.burgerSz || '46px', height: v.burgerSz || '46px', border: `1px solid ${v.burgerBd}`, background: '#fff', boxShadow: '0 4px 14px rgba(0,69,128,.18)', borderRadius: '6px', cursor: 'pointer', display: 'flex', flexDirection: 'column', gap: '5px', alignItems: 'center', justifyContent: 'center' }}>
               <span style={{ width: '18px', height: '2px', background: '#000' }} />
               <span style={{ width: '18px', height: '2px', background: '#000' }} />
               <span style={{ width: '18px', height: '2px', background: '#000' }} />
@@ -46,13 +70,39 @@ export default function SiteHeader({ v, active, logoHref = '/' }) {
           )}
         </div>
       </div>
-      {v.menuOpen && (
-        <nav style={{ background: '#fff', borderTop: '1px solid #E7E1D8', padding: '8px 24px 16px', display: 'flex', flexDirection: 'column', fontWeight: '600' }}>
-          {NAV.map(([label, href], i) => (
-            <a key={href} href={href} onClick={v.closeMenu} style={{ padding: '12px 0', color: label === active ? '#C1272D' : '#000', borderBottom: i < NAV.length - 1 ? '1px solid #F0EBE3' : undefined }}>{label}</a>
-          ))}
-        </nav>
-      )}
     </header>
+    {v.narrow && (
+      <>
+        <div aria-hidden="true" onClick={v.closeMenu} style={{ position: 'fixed', inset: '0', zIndex: '60', background: 'rgba(0,0,0,.45)', opacity: open ? '1' : '0', pointerEvents: open ? 'auto' : 'none', transition: 'opacity .3s ease' }} />
+        <div id="site-drawer" role="dialog" aria-modal="true" aria-label="Site menu" inert={!open} style={{ position: 'fixed', top: '0', right: '0', bottom: '0', zIndex: '61', width: 'min(86vw, 360px)', background: '#fff', boxShadow: '-12px 0 40px rgba(0,0,0,.18)', display: 'flex', flexDirection: 'column', overflowY: 'auto', transform: open ? 'translateX(0)' : 'translateX(100%)', visibility: open ? 'visible' : 'hidden', transition: `transform .35s cubic-bezier(.4,0,.2,1), visibility 0s linear ${open ? '0s' : '.35s'}` }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '14px 20px', borderBottom: '1px solid #F0EBE3' }}>
+            <a href="/" onClick={v.closeMenu} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#000' }}>
+              <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="" width="195" height="144" style={{ height: '44px', width: 'auto', display: 'block' }} />
+              <span style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.05' }}>
+                <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '16px' }}>Mid-Wisconsin</span>
+                <span style={{ fontSize: '9.5px', fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', marginTop: '3px' }}>Pump &amp; Well Service</span>
+              </span>
+            </a>
+            <button ref={closeRef} type="button" onClick={v.closeMenu} aria-label="Close menu" style={{ width: '42px', height: '42px', flex: 'none', border: '1px solid #D9D2C7', background: '#fff', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+          </div>
+          <nav style={{ display: 'flex', flexDirection: 'column', padding: '8px 20px', fontWeight: '600', fontSize: '17px' }}>
+            {NAV.map(([label, href], i) => (
+              <a key={href} href={href} onClick={v.closeMenu} aria-current={label === active ? 'page' : undefined} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '15px 0', color: label === active ? '#C1272D' : '#000', borderBottom: i < NAV.length - 1 ? '1px solid #F0EBE3' : undefined }}>
+                {label}
+                <span aria-hidden="true" style={{ color: label === active ? '#C1272D' : '#B9B2A7' }}>›</span>
+              </a>
+            ))}
+          </nav>
+          <div style={{ marginTop: 'auto', padding: '20px', display: 'flex', flexDirection: 'column', gap: '10px', borderTop: '1px solid #F0EBE3', background: '#FBF8F3' }}>
+            <span style={{ fontSize: '11px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D' }}>24/7 Emergency</span>
+            <a href="tel:6082695178" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '14px 20px', borderRadius: '30px', fontWeight: '700', fontSize: '16px', boxShadow: '0 6px 18px rgba(193,39,45,.3)' }} className="h-6bbf96">Call 608-269-5178</a>
+            <a href="mailto:randismidwispump@outlook.com" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#004580', padding: '13px 20px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15px' }} className="h-d10c8f">Email Us</a>
+          </div>
+        </div>
+      </>
+    )}
+    </>
   );
 }

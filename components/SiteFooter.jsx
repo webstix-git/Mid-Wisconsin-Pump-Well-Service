@@ -1,10 +1,10 @@
 export default function SiteFooter() {
   return (
-    <footer style={{ background: '#fff', color: '#000', padding: '64px 24px 28px' }}>
+    <footer className="site-footer" style={{ background: '#fff', color: '#000', padding: '64px 24px 28px' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div className="site-footer-grid" style={{ display: 'grid', gap: '40px 32px', paddingBottom: '36px' }}>
           <div>
-            <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well" style={{ height: '125px', width: 'auto', display: 'block', marginBottom: '16px' }} />
+            <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well" width="195" height="144" style={{ height: '125px', width: 'auto', display: 'block', marginBottom: '16px' }} />
             <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '26px', lineHeight: '1.05', color: '#000', letterSpacing: '.01em', marginBottom: '14px' }}>Mid-Wisconsin<br />Pump &amp; Well</div>
             <p style={{ margin: '0 0 22px', fontSize: '18px', lineHeight: '1.55', maxWidth: '240px' }}>Locally owned since 1977. Serving Western Wisconsin.</p>
             <div style={{ display: 'flex', gap: '10px' }}>
@@ -63,7 +63,7 @@ export default function SiteFooter() {
             </div>
           </div>
         </div>
-        <div style={{ position: 'relative', borderTop: '1px solid #E7E1D8', padding: '18px 44px 0', display: 'flex', flexWrap: 'wrap', gap: '8px 12px', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontSize: '13px', color: '#000' }}>
+        <div className="site-footer-bottom" style={{ position: 'relative', borderTop: '1px solid #E7E1D8', padding: '18px 44px 0', display: 'flex', flexWrap: 'wrap', gap: '8px 12px', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontSize: '13px', color: '#000' }}>
           <span>© 2026 Mid-Wisconsin Pump &amp; Well Service, LLC. All rights reserved.</span>
           <span aria-hidden="true" style={{ color: '#B9B2A7' }}>|</span>
           <a href="/site-map" style={{ color: '#000', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-6bd792">Site Map</a>

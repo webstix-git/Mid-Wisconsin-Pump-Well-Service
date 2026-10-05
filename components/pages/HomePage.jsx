@@ -2,6 +2,7 @@
 
 import React from 'react';
 import SiteHeader from '@/components/SiteHeader';
+import viewportWidth from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
 
@@ -26,12 +27,22 @@ export default class HomePage extends React.Component {
   }
   componentDidMount() {
     document.title = "Mid-Wisconsin Pump & Well | Well Pump Service in Sparta, WI";
-    this.onR = () => this.setState(s => ({ w: window.innerWidth, rvSlide: Math.min(s.rvSlide, Math.ceil(REVIEWS.length / (window.innerWidth >= 1000 ? 3 : window.innerWidth >= 680 ? 2 : 1)) - 1) }));
+    this.onR = () => { const w = viewportWidth(); this.setState(s => ({ w, rvSlide: Math.min(s.rvSlide, Math.ceil(REVIEWS.length / (w >= 1000 ? 3 : w >= 680 ? 2 : 1)) - 1) })); };
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
     window.addEventListener('resize', this.onR); window.addEventListener('scroll', this.onS, { passive: true }); this.onR(); this.onS();
     this.rvPause = () => { this.rvPaused = true; }; this.rvResume = () => { this.rvPaused = false; };
     this.rvBind = setTimeout(() => { this.rvEl = document.getElementById('rv-carousel'); if (this.rvEl) { this.rvEl.addEventListener('mouseenter', this.rvPause); this.rvEl.addEventListener('mouseleave', this.rvResume); } }, 0);
     this.rvStart();
+    if (document.fonts) document.fonts.ready.then(() => this.rvMeasure());
+  }
+  componentDidUpdate() { this.rvMeasure(); }
+  rvMeasure() {
+    const t = document.getElementById('rv-track');
+    if (!t) return;
+    if (this.rvPer() !== 1) { if (this.state.rvH) this.setState({ rvH: 0 }); return; }
+    const card = t.children[Math.min(this.state.rvSlide, this.rvPages() - 1)];
+    const h = card ? card.offsetHeight : 0;
+    if (h && h !== this.state.rvH) this.setState({ rvH: h });
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.onR); window.removeEventListener('scroll', this.onS);
@@ -39,15 +50,15 @@ export default class HomePage extends React.Component {
     if (this.rvEl) { this.rvEl.removeEventListener('mouseenter', this.rvPause); this.rvEl.removeEventListener('mouseleave', this.rvResume); }
   }
   renderVals() {
-    const w = this.state.w, wide = w >= 1180, mid = w >= 900;
-    const solid = this.state.scrolled || (!wide && this.state.menu);
+    const w = this.state.w, wide = w >= 1220, mid = w >= 900;
+    const solid = this.state.scrolled;
     const white = (this.props.heroOverlay ?? 'White') === 'White';
     const L = mid ? Math.round(w * 0.38) : 0;
     const hx = white ? {
       fg: '#000', sub: '#000', eyebrow: '#C1272D', shadow: 'none',
-      overlay: !mid ? 'linear-gradient(180deg,rgba(255,255,255,.82) 0%,rgba(255,255,255,.74) 55%,rgba(255,255,255,.55) 100%)' : 'linear-gradient(90deg, rgba(255, 255, 255, 0.9) 23%, rgba(255, 255, 255, 0.91) 23%, rgba(255, 255, 255, 0.87) 33%, rgba(255, 255, 255, 0.79) 38%, rgba(255, 255, 255, 0.67) 44%, rgba(255, 255, 255, 0.53) 48%, rgba(255, 255, 255, 0.39) 52%, rgba(255, 255, 255, 0.26) 55%, rgba(255, 255, 255, 0.15) 57%, rgba(255, 255, 255, 0.07) 61%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0) 53%)',
+      overlay: !mid ? (w >= 600 ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.84) 42%, rgba(255, 255, 255, 0.55) 63%, rgba(255, 255, 255, 0.2) 77%)' : 'linear-gradient(90deg,rgba(255,255,255,.92) 0%,rgba(255,255,255,.84) 45%,rgba(255,255,255,.55) 78%,rgba(255,255,255,.2) 100%)') : 'linear-gradient(90deg, rgba(255, 255, 255, 0.9) 23%, rgba(255, 255, 255, 0.91) 23%, rgba(255, 255, 255, 0.87) 33%, rgba(255, 255, 255, 0.79) 38%, rgba(255, 255, 255, 0.67) 44%, rgba(255, 255, 255, 0.53) 48%, rgba(255, 255, 255, 0.39) 52%, rgba(255, 255, 255, 0.26) 55%, rgba(255, 255, 255, 0.15) 57%, rgba(255, 255, 255, 0.07) 61%, rgba(255, 255, 255, 0.02) 66%, rgba(255, 255, 255, 0) 53%)',
       radial: 'none',
-      top: 'linear-gradient(rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 90%) 18%, rgb(255 255 255 / 84%) 30%, rgb(255 255 255 / 74%) 41%, rgb(255 255 255 / 61%) 51%, rgb(255 255 255 / 47%) 60%, rgb(255 255 255 / 33%) 69%, rgb(255 255 255 / 20%) 78%, rgb(255 255 255 / 10%) 86%, rgb(255 255 255 / 3%) 94%, rgb(255 255 255 / 0%) 100%)',
+      top: !mid ? 'linear-gradient(180deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.86) 28%,rgba(255,255,255,.5) 46%,rgba(255,255,255,0) 66%)' : 'linear-gradient(rgb(255 255 255 / 92%) 0%, rgb(255 255 255 / 90%) 18%, rgb(255 255 255 / 84%) 30%, rgb(255 255 255 / 74%) 41%, rgb(255 255 255 / 61%) 51%, rgb(255 255 255 / 47%) 60%, rgb(255 255 255 / 33%) 69%, rgb(255 255 255 / 20%) 78%, rgb(255 255 255 / 10%) 86%, rgb(255 255 255 / 3%) 94%, rgb(255 255 255 / 0%) 100%)',
       pillBg: 'transparent', pillBd: 'transparent', btnBg: 'transparent', btnFg: '#004580', btnBd: '#004580', secBg: '#fff', bleed: 0
     } : {
       fg: '#fff', sub: '#DCE3EC', eyebrow: '#F6B3B5', shadow: 'none',
@@ -59,11 +70,11 @@ export default class HomePage extends React.Component {
       pillBg: 'transparent', pillBd: 'transparent', btnBg: 'transparent', btnFg: '#fff', btnBd: '#fff', secBg: '#004580', bleed: 0
     };
     const dark = solid || white;
-    const phone = w < 600;
+    const phone = w < 600, compactHdr = w < 680;
     return {
-      navGap: w >= 1360 ? '18px' : '12px', navFs: w >= 1360 ? '16px' : '14.5px', phonePad: phone ? '4px' : w >= 1360 ? '10px 20px 10px 10px' : '8px 14px 8px 8px', phoneLabel: w >= 1360 || !wide ? 'block' : 'none',
-      phoneIcon: '40px', phoneNumFs: '20px', phoneLabelFs: '11px', hdrGap: phone ? '12px' : w >= 1360 ? '40px' : '28px',
-      phoneGap: phone ? '0' : '12px', phoneTextDisplay: phone ? 'none' : 'flex',
+      navGap: w >= 1360 ? '18px' : '12px', navFs: w >= 1360 ? '16px' : '14.5px', phonePad: compactHdr ? '3px 16px 3px 3px' : w >= 1360 ? '10px 20px 10px 10px' : '8px 14px 8px 8px', phoneLabel: w >= 1360 || !wide ? 'block' : 'none',
+      phoneIcon: compactHdr ? '36px' : '40px', phoneNumFs: '20px', phoneLabelFs: '11px', hdrGap: compactHdr ? '12px' : w >= 1360 ? '40px' : '28px',
+      phoneGap: compactHdr ? '8px' : '12px', phoneTextDisplay: compactHdr ? 'none' : 'flex',
       logoTextDisplay: w < 360 ? 'none' : 'flex',
       hx, photoLeft: L + 'px', photoMask: L ? 'linear-gradient(90deg,transparent 0,#000 260px)' : 'none',
       hdrBg: solid ? 'rgba(255,255,255,.97)' : 'transparent',
@@ -71,7 +82,7 @@ export default class HomePage extends React.Component {
       hdrBlur: solid ? 'blur(8px)' : 'none',
       hdrH: solid ? (phone ? '72px' : '84px') : (phone ? '100px' : '150px'),
       hdrShift: solid ? (phone ? '-72px' : '-84px') : (phone ? '-100px' : '-150px'),
-      hdrPad: phone ? (solid ? '8px 16px' : '10px 16px') : (solid ? '8px 24px' : '10px 24px'),
+      hdrPad: phone ? (solid ? '8px 20px' : '10px 20px') : (solid ? '8px 24px' : '10px 24px'), burgerSz: phone ? '42px' : '46px',
       logoH: solid ? (phone ? '44px' : '56px') : (phone ? '48px' : '100px'),
       logoTitle: solid ? (phone ? '16px' : '17px') : (phone ? '17px' : '21px'),
       logoSub: solid ? (phone ? '9.5px' : '10px') : (phone ? '9.5px' : '11.5px'),
@@ -104,7 +115,7 @@ export default class HomePage extends React.Component {
       heroMin: '750px',
       heroWide: w >= 760,
       heroNarrow: w < 760,
-      heroPad: phone ? '150px 20px 56px' : '200px 24px 64px',
+      heroPad: phone ? '156px 20px 56px' : '206px 24px 64px',
       h1NarrowFs: w < 480 ? '38px' : '48px',
       showAnniversary: this.props.showAnniversary ?? true,
       ctaOv: mid ? 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.5) 40%,rgba(0,0,0,.12) 52%,rgba(0,0,0,0) 62%)' : 'linear-gradient(180deg,rgba(0,0,0,.78) 0%,rgba(0,0,0,.7) 60%,rgba(0,0,0,.6) 100%)',
@@ -151,6 +162,7 @@ export default class HomePage extends React.Component {
           rvCards: cards,
           rvCardW: `calc((100% - ${(per - 1) * 24}px) / ${per})`,
           rvAlign: per === 1 ? 'flex-start' : 'stretch',
+          rvH: per === 1 && this.state.rvH ? `${this.state.rvH}px` : 'auto',
           rvShift: `calc(${-slide} * (100% + 24px))`,
           rvDots: Array.from({ length: pages }, (_, i) => ({ label: `Show reviews ${i + 1} of ${pages}`, go: () => this.rvGo(i), w: i === slide ? '28px' : '10px', bg: i === slide ? '#C1272D' : '#C9DDF0' }))
         };
@@ -170,7 +182,7 @@ export default class HomePage extends React.Component {
           <img src="/assets/ea5835eb-eaa4-480f-aef2-fd1853e74826.jpg" alt="Mid-Wisconsin pump truck lifting an old pressure tank from the ground" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '72% 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.hx.overlay }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '230px', background: v.hx.top, pointerEvents: 'none' }} />
-          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', minHeight: '750px', display: 'flex', alignItems: 'center', padding: v.heroPad }}>
+          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', minHeight: '750px', display: 'flex', alignItems: 'flex-start', padding: v.heroPad }}>
             <div style={{ maxWidth: v.heroTextMax }}>
               <div style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: v.hx.eyebrow, margin: '0 0 18px' }}>Sparta &amp; Western Wisconsin</div>
               {v.heroWide && (
@@ -221,7 +233,7 @@ export default class HomePage extends React.Component {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,420px),1fr))', gap: '48px 64px', alignItems: 'stretch' }}>
               <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', minHeight: v.helpImgMin, background: '#E7E1D8' }}>
                 <img src="/assets/truck-valley-who-we-help.jpg" alt="Mid-Wis Pump & Well service truck on a rural job site" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 100%', display: 'block' }} />
-                <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.5) 18%,rgba(0,0,0,0) 38%)' }} />
+                <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(0deg,rgba(0,0,0,.88) 7%,rgba(0,0,0,.5) 27%,rgba(0,0,0,0) 45%)' }} />
                 <div style={{ position: 'absolute', left: '24px', right: '24px', bottom: '24px', display: 'flex', flexWrap: 'wrap', gap: '16px', alignItems: 'flex-end', justifyContent: 'space-between', color: '#fff' }}>
                   <div>
                     <div style={{ fontSize: '12px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#fff', marginBottom: '6px' }}>No water?</div>
@@ -337,7 +349,7 @@ export default class HomePage extends React.Component {
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0' }}>What our neighbors say.</h2>
             </div>
             <div id="rv-carousel" aria-roledescription="carousel" aria-label="Google reviews" style={{ overflow: 'hidden', padding: '0 0 24px' }}>
-              <div style={{ display: 'flex', gap: '24px', alignItems: v.rvAlign, transform: `translateX(${v.rvShift})`, transition: 'transform .7s cubic-bezier(.65,0,.35,1)' }}>
+              <div id="rv-track" style={{ display: 'flex', gap: '24px', alignItems: v.rvAlign, height: v.rvH, transform: `translateX(${v.rvShift})`, transition: 'transform .7s cubic-bezier(.65,0,.35,1),height .5s ease' }}>
                 {v.rvCards.map((r, i) => (
                   <figure key={i} style={{ margin: '0', flex: `0 0 ${v.rvCardW}`, position: 'relative', background: '#fff', borderRadius: '16px', padding: v.rvPad, display: 'flex', flexDirection: 'column', gap: '18px', border: '1px solid #DCE9F6', borderBottom: '4px solid #C1272D' }}>
                     <div style={{ color: '#E0A21B', fontSize: '18px', letterSpacing: '3px', lineHeight: '1' }}>★★★★★</div>

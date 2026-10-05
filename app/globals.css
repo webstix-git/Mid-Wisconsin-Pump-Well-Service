@@ -3,6 +3,8 @@ html,body{height:100%;margin:0}
 /* Pages are laid out from the measured window width, so keep the server-rendered
    markup hidden until hydration has applied the real width. */
 html:not([data-hydrated]) body{visibility:hidden}
+/* The first measured render resizes the header; animating that would make it overflow on phones. */
+html:not([data-anim]) *{transition:none !important}
 
 /* vietnamese */
 @font-face {
@@ -217,8 +219,43 @@ body{font-variant-numeric:lining-nums tabular-nums;text-wrap:pretty}
 .h-bd9fe2:hover{background:#A51F25 !important}
 .h-a6c3ef:hover{color:#004580 !important}
 
+body{overflow-wrap:break-word}
+a[href^="mailto:"]{overflow-wrap:anywhere}
+
+@media (max-width:399px){
+  .hdr-row{gap:8px !important}
+  .hdr-logo{gap:8px !important}
+  .hdr-logo img{height:48px !important}
+  .hdr-title{font-size:15px !important}
+  .hdr-sub{font-size:8.5px !important}
+}
+
+@media (max-width:599px){
+  .ai-table{min-width:0 !important;display:block}
+  .ai-table thead{display:none}
+  .ai-table tbody,.ai-table tr,.ai-table td{display:block}
+  .ai-table tr{padding:14px 0}
+  .ai-table tr:first-child{border-top:0 !important}
+  .ai-table td{padding:4px 18px !important}
+}
+
+@media (max-width:479px){
+  .brand-card{flex-direction:column;align-items:stretch !important;gap:16px !important;padding:22px 24px !important;text-align:center}
+  .brand-card>:first-child{flex:none !important;align-self:center;width:100%;max-width:200px}
+  .brand-card>:last-child{padding:16px 0 0 !important;border-left:0 !important;border-top:1px solid #EDE7DE;align-items:center}
+}
+
 .site-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media (max-width:559px){.site-footer-grid>:first-child,.site-footer-grid>:last-child{grid-column:1/-1}}
+@media (max-width:599px){
+  .site-footer{padding:48px 20px 24px !important}
+  .site-footer-bottom{padding:18px 0 0 !important}
+}
+@media (max-width:1023px){
+  .site-footer-bottom{gap:10px 18px !important}
+  .site-footer-bottom>span[aria-hidden]{display:none}
+  .site-footer-bottom>span:first-child{flex-basis:100%}
+}
 @media (min-width:960px){.site-footer-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 @media print {
