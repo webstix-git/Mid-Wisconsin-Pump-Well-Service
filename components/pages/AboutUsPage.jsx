@@ -169,7 +169,7 @@ export default class AboutUsPage extends React.Component {
             <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>How we work</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>Service you can count on.</h2>
-              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '720px' }}>We pride ourselves on effective results and strive for 100 percent customer satisfaction on every job.</p>
+              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '720px' }}>We pride ourselves on effective results and strive for customer satisfaction on every job.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.valueCols, gap: '24px' }}>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">

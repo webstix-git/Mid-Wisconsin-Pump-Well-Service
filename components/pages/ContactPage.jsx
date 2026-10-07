@@ -163,7 +163,7 @@ export default class ContactPage extends React.Component {
             </div>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Get in touch</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Call, email, or stop by.</h2>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Reach us by phone or email.</h2>
               <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>To schedule a free estimate or learn more about our products, reach out any time. If you have no water, call now and we will get you back up and running.</p>
               <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #DCE9F6' }}>
                 <a href="tel:6082695178" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
