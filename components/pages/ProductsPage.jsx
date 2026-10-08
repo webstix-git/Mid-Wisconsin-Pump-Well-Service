@@ -110,7 +110,7 @@ export default class ProductsPage extends React.Component {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '24px', borderLeft: '1px solid #EDE7DE', minWidth: '0' }}>
                     <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.2' }}>Grundfos</span>
-                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>Well pumps</span>
+                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>Well pumps, drives and controls</span>
                   </div>
                 </div>
                 <div className="brand-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '24px 28px', background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '12px', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05)' }}>

@@ -150,7 +150,7 @@ export default class HomePage extends React.Component {
         { title: 'Farm operations', body: 'Consistent water for livestock and operations, with minimal downtime.', bg: '#FBF8F3', fg: '#000', bd: '#E7E1D8', sub: '#000' }
       ],
       brands: [
-        { name: 'Grundfos', what: 'Pump systems', logo: '/assets/0b8802f2-2e7c-448d-aabc-d88d57d62a03.png', h: '44px' },
+        { name: 'Grundfos', what: 'Pump systems, drives and controls', logo: '/assets/0b8802f2-2e7c-448d-aabc-d88d57d62a03.png', h: '44px' },
         { name: 'Pentek Intellidrive', what: 'Variable speed pump drives', logo: '/assets/08122287-e4c7-41f6-b32d-71c3fcb90973.svg', h: '52px' },
         { name: 'Yaskawa', what: 'Pump drives', logo: '/assets/41942d64-0d4e-4944-89f3-576f165eaae3.svg', h: '40px' },
         { name: 'Flexcon', what: 'Pressure tanks', logo: '/assets/dd435b75-22d4-453f-a91b-1062f092b4bf.svg', h: '60px' }

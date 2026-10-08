@@ -141,7 +141,7 @@ export default class AboutUsPage extends React.Component {
             <div style={{ padding: v.mwTextPad }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>The mobile workstation</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>A shop on wheels, built to our standards.</h2>
-              <p style={{ margin: '0 0 36px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Our pump truck is a mobile workstation, built with special additions and tools to get the job done right and safe. Every truck is stocked with common supplies, so most jobs are finished on the first visit.</p>
+              <p style={{ margin: '0 0 36px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Our pump truck is a mobile workstation, built with special additions and tools to get the job done right and safe. Every truck is stocked with common supplies.</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: v.statGap }}>
                 <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '10px', padding: v.statPad }}>
                   <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.statFs, lineHeight: '1', color: '#004580', whiteSpace: 'nowrap' }}>2</div>

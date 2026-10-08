@@ -199,10 +199,10 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Business hours</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>Monday to Friday, 8:00 am to 5:30 pm</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>Monday to Friday, 8:00 am to 5:00 pm</span>
                   </span>
                 </div>
-                <a href="mailto:randismidwispump@outlook.com" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
+                <div style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
                   <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="5" width="18" height="14" rx="2" />
@@ -211,9 +211,14 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Email</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>randismidwispump@outlook.com</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
+                      Billing and invoicing: <a href="mailto:randismidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">randismidwispump@outlook.com</a>
+                    </span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
+                      Technical and estimates: <a href="mailto:Jasonsmidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">Jasonsmidwispump@outlook.com</a>
+                    </span>
                   </span>
-                </a>
+                </div>
                 <a href="https://www.google.com/maps/search/?api=1&amp;query=17660+Icecap+Rd%2C+Sparta%2C+WI+54656" target="_blank" rel="noopener" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
                   <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -234,7 +239,7 @@ export default class ContactPage extends React.Component {
                     <path d="M2 10h20" />
                   </svg>
                 </span>
-                <p style={{ margin: '0', fontSize: '16px', lineHeight: '1.6', color: '#000' }}><strong>Want to pay your invoice online?</strong> Call our office and we will send a secure payment link directly to your email.</p>
+                <p style={{ margin: '0', fontSize: '16px', lineHeight: '1.6', color: '#000' }}><strong>Want to pay your invoice online?</strong> Call office or email: <a href="mailto:randismidwispump@outlook.com" style={{ color: '#C1272D', fontWeight: '600', overflowWrap: 'anywhere' }}>randismidwispump@outlook.com</a></p>
               </div>
             </div>
           </div>

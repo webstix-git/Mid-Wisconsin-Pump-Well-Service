@@ -164,7 +164,7 @@ export default class PumpInstallationPage extends React.Component {
             <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Pump repair</div>
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>Fast, Reliable Pump Repair</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>We diagnose the problem first, then repair or replace pumps, tanks, and parts as needed. We work on all makes and models, and our trucks are stocked for <span style={{ whiteSpace: 'nowrap' }}>first-visit fixes.</span></p>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>We diagnose the problem first, then repair or replace pumps, tanks, and parts as needed. We work on all makes and models.</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.cardCols, gap: '20px' }}>
               {v.problems.map((p, i) => (

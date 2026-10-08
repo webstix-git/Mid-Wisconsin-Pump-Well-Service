@@ -184,10 +184,6 @@ export default class WellPumpServicesPage extends React.Component {
                   </div>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '13px 0', borderBottom: '1px solid #E7E1D8', fontSize: '16px', fontWeight: '600' }}>
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C1272D', flex: 'none' }} />
-                    Buying or selling a home
-                  </div>
-                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '13px 0', borderBottom: '1px solid #E7E1D8', fontSize: '16px', fontWeight: '600' }}>
-                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C1272D', flex: 'none' }} />
                     Planning repairs or updates
                   </div>
                 </div>
@@ -301,7 +297,7 @@ export default class WellPumpServicesPage extends React.Component {
               <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 4</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>We get it done</div>
-                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Repair, replacement, or a new installation, with trucks stocked for first-visit fixes.</div>
+                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Repair, replacement, or a new installation.</div>
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '48px' }}>
