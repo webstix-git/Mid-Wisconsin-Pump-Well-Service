@@ -117,7 +117,7 @@ export default class PumpInstallationPage extends React.Component {
 
         {/* Hero */}
         <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
-          <img src="/assets/truck-side-installation-hero.jpg" alt="Mid-Wis Pump &amp; Well pump service truck with Grundfos branding" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 65%', display: 'block' }} />
+          <img src="/assets/pump-install-repair-hero.jpg" alt="Technician lowering a new submersible pump into a well casing beside the service rig" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'flex-start', padding: v.heroInPad }}>
@@ -292,7 +292,7 @@ export default class PumpInstallationPage extends React.Component {
 
         {/* Contact */}
         <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff' }}>
-          <img src="/assets/ff5e78a1-6524-42ed-96b5-091b46f7a226.jpg" alt="" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 42%', display: 'block' }} />
+          <img src="/assets/truck-lawn-cta-banner.jpg" alt="" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.28) 75%,rgba(0,0,0,0) 100%)' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: v.sp(92, 84) }}>
             <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>

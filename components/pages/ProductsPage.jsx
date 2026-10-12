@@ -49,7 +49,9 @@ export default class ProductsPage extends React.Component {
       heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       benCols: w < 480 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
+      heroImgPos: w >= 900 ? 'center 35%' : 'right center',
       prodImgH: w >= 1000 ? '560px' : w >= 600 ? '440px' : '360px',
+      tankImgH: w >= 1000 ? '420px' : w >= 600 ? '440px' : '360px',
       cardDir: w < 480 ? 'column' : 'row', cardGap: w < 480 ? '16px' : '20px', cardPad: w < 480 ? '24px 22px' : '30px 28px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -66,7 +68,7 @@ export default class ProductsPage extends React.Component {
 
         {/* Hero */}
         <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
-          <img src="/assets/crew-rig-products-hero.jpg" alt="Mid-Wisconsin technician preparing pump equipment beside the service rig" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 36%', display: 'block' }} />
+          <img src="/assets/products-hero-service-rig.jpg" alt="Mid-Wis Pump &amp; Well service rig on site while a technician tests a pump drive before installation" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: v.heroImgPos, display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'flex-start', padding: v.heroInPad }}>
@@ -149,23 +151,21 @@ export default class ProductsPage extends React.Component {
                     <span>→</span>
                   </a>
                 </div>
-              </div>
-              <div style={{ flex: '1 1 440px', position: 'relative', minHeight: v.prodImgH, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.12)' }}>
-                <img src="/assets/products-pressure-tank-constant-pressure.jpg" alt="Constant pressure system with a Flow-Thru stainless pressure tank, controller, and pressure gauge" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
-              </div>
-            </div>
-            <div style={{ marginTop: '56px' }}>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#000', marginBottom: '16px' }}>Brand we install</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,380px),1fr))', gap: '20px' }}>
-                <div className="brand-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '24px 28px', background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '12px', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05)' }}>
-                  <div style={{ flex: '0 0 132px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <img src="/assets/dd435b75-22d4-453f-a91b-1062f092b4bf.svg" alt="Flexcon logo" style={{ maxWidth: '100%', maxHeight: '50px', width: 'auto', height: 'auto', display: 'block', objectFit: 'contain' }} />
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '24px', borderLeft: '1px solid #EDE7DE', minWidth: '0' }}>
-                    <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.2' }}>Flexcon</span>
-                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>Pressure tanks</span>
+                <div style={{ marginTop: '36px' }}>
+                  <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#000', marginBottom: '16px' }}>Brand we install</div>
+                  <div className="brand-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', maxWidth: '460px', padding: '24px 28px', background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '12px', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05)' }}>
+                    <div style={{ flex: '0 0 132px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <img src="/assets/dd435b75-22d4-453f-a91b-1062f092b4bf.svg" alt="Flexcon logo" style={{ maxWidth: '100%', maxHeight: '50px', width: 'auto', height: 'auto', display: 'block', objectFit: 'contain' }} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '24px', borderLeft: '1px solid #EDE7DE', minWidth: '0' }}>
+                      <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.2' }}>Flexcon</span>
+                      <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>Pressure tanks</span>
+                    </div>
                   </div>
                 </div>
+              </div>
+              <div style={{ flex: '1 1 440px', position: 'relative', minHeight: v.tankImgH, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.12)' }}>
+                <img src="/assets/products-pressure-tank-constant-pressure.jpg" alt="Constant pressure system with a Flow-Thru stainless pressure tank, controller, and pressure gauge" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
               </div>
             </div>
           </div>
@@ -251,7 +251,7 @@ export default class ProductsPage extends React.Component {
 
         {/* Contact */}
         <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff' }}>
-          <img src="/assets/ff5e78a1-6524-42ed-96b5-091b46f7a226.jpg" alt="" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 42%', display: 'block' }} />
+          <img src="/assets/truck-lawn-cta-banner.jpg" alt="" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.28) 75%,rgba(0,0,0,0) 100%)' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: v.sp(92, 84) }}>
             <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
