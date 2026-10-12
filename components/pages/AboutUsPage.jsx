@@ -5,8 +5,6 @@ import SiteHeader from '@/components/SiteHeader';
 import viewportWidth from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
-
 export default class AboutUsPage extends React.Component {
   state = { w: 1280, menu: false, scrolled: false, showTop: false };
   componentDidMount() {
@@ -68,7 +66,8 @@ export default class AboutUsPage extends React.Component {
         mwImgLeft: w >= 900 ? '50%' : 'auto',
         mwImgMin: w >= 900 ? '0' : w < 600 ? '320px' : '420px',
         mwTextPad: w >= 900 ? '96px 56px 96px 24px' : w < 600 ? '56px 20px 56px' : '72px 24px 72px',
-        valueCols: `repeat(${w >= 1100 ? 4 : w >= 600 ? 2 : 1},minmax(0,1fr))`
+        valueCols: `repeat(${w >= 1100 ? 4 : w >= 600 ? 2 : 1},minmax(0,1fr))`,
+        valueImgH: w >= 1100 ? '270px' : '320px'
       }))()
     };
   }
@@ -173,8 +172,8 @@ export default class AboutUsPage extends React.Component {
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.valueCols, gap: '24px' }}>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
-                <div style={{ position: 'relative', height: '210px', background: '#E7E1D8' }}>
-                  <ImagePlaceholder compact />
+                <div style={{ position: 'relative', height: v.valueImgH, background: '#E7E1D8' }}>
+                  <img src="/assets/truck-excavator-installation-hero.jpg" alt="Mid-Wis Pump &amp; Well service truck from Sparta, WI working on a local customer's property" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center', display: 'block' }} />
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Locally owned &amp; operated</h3>
@@ -182,8 +181,8 @@ export default class AboutUsPage extends React.Component {
                 </div>
               </div>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
-                <div style={{ position: 'relative', height: '210px', background: '#E7E1D8' }}>
-                  <ImagePlaceholder compact />
+                <div style={{ position: 'relative', height: v.valueImgH, background: '#E7E1D8' }}>
+                  <img src="/assets/about-technician-new-water-line.jpg" alt="Mid-Wisconsin Pump &amp; Well technician laying a new water line in a trench" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 5%', display: 'block' }} />
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Superior customer service</h3>
@@ -191,8 +190,8 @@ export default class AboutUsPage extends React.Component {
                 </div>
               </div>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
-                <div style={{ position: 'relative', height: '210px', background: '#E7E1D8' }}>
-                  <ImagePlaceholder compact />
+                <div style={{ position: 'relative', height: v.valueImgH, background: '#E7E1D8' }}>
+                  <img src="/assets/about-technician-pitless-adapter.jpg" alt="Technician connecting a water line to the pitless adapter on a well casing" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 28%', display: 'block' }} />
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Licensed &amp; insured</h3>
@@ -200,8 +199,8 @@ export default class AboutUsPage extends React.Component {
                 </div>
               </div>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
-                <div style={{ position: 'relative', height: '210px', background: '#E7E1D8' }}>
-                  <ImagePlaceholder compact />
+                <div style={{ position: 'relative', height: v.valueImgH, background: '#E7E1D8' }}>
+                  <img src="/assets/about-pitless-adapter-part.jpg" alt="Close-up of a stainless steel pitless adapter well part" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 28%', display: 'block' }} />
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Honest recommendations</h3>

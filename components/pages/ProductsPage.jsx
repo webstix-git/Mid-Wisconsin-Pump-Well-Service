@@ -5,8 +5,6 @@ import SiteHeader from '@/components/SiteHeader';
 import viewportWidth from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
-
 export default class ProductsPage extends React.Component {
   state = { w: 1280, menu: false, scrolled: false, showTop: false };
   componentDidMount() {
@@ -51,6 +49,7 @@ export default class ProductsPage extends React.Component {
       heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       benCols: w < 480 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
+      prodImgH: w >= 1000 ? '560px' : w >= 600 ? '440px' : '360px',
       cardDir: w < 480 ? 'column' : 'row', cardGap: w < 480 ? '16px' : '20px', cardPad: w < 480 ? '24px 22px' : '30px 28px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -86,8 +85,8 @@ export default class ProductsPage extends React.Component {
         <section id="well-pumps" data-screen-label="Well pumps" style={{ background: '#fff', padding: v.sp(104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '48px 72px' }}>
-              <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '360px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.12)' }}>
-                <ImagePlaceholder />
+              <div style={{ flex: '1 1 440px', position: 'relative', minHeight: v.prodImgH, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.12)' }}>
+                <img src="/assets/products-well-pump-farm-system.jpg" alt="Farm well pump system with variable speed drive, disconnect switch, and stainless pressure tank" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 75%', display: 'block' }} />
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Moving water</div>
@@ -151,8 +150,8 @@ export default class ProductsPage extends React.Component {
                   </a>
                 </div>
               </div>
-              <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '360px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.12)' }}>
-                <ImagePlaceholder />
+              <div style={{ flex: '1 1 440px', position: 'relative', minHeight: v.prodImgH, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.12)' }}>
+                <img src="/assets/products-pressure-tank-constant-pressure.jpg" alt="Constant pressure system with a Flow-Thru stainless pressure tank, controller, and pressure gauge" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
               </div>
             </div>
             <div style={{ marginTop: '56px' }}>

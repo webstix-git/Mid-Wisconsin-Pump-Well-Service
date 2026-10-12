@@ -5,7 +5,6 @@ import SiteHeader from '@/components/SiteHeader';
 import viewportWidth from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
 
 export default class WellPumpServicesPage extends React.Component {
   state = { w: 1280, menu: false, scrolled: false, showTop: false };
@@ -92,7 +91,7 @@ export default class WellPumpServicesPage extends React.Component {
             </div>
             <div id="pump-installation" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '40px 72px', alignItems: 'stretch', scrollMarginTop: '110px' }}>
               <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '380px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
-                <ImagePlaceholder />
+                <img src="/assets/well-pump-installation.jpg" alt="Technician lowering a new submersible well pump into a residential well casing" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Installation</div>
@@ -129,7 +128,7 @@ export default class WellPumpServicesPage extends React.Component {
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div id="pump-repair" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row-reverse', gap: '40px 72px', alignItems: 'stretch', scrollMarginTop: '110px' }}>
               <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '380px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
-                <ImagePlaceholder />
+                <img src="/assets/well-pump-repair-water-line.jpg" alt="Excavated broken water line exposed in muddy ground, ready for repair" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Repair</div>
@@ -166,7 +165,7 @@ export default class WellPumpServicesPage extends React.Component {
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div id="video-inspection" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '40px 72px', alignItems: 'stretch', scrollMarginTop: '110px' }}>
               <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '380px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
-                <ImagePlaceholder />
+                <img src="/assets/well-diagnostics-community-well.jpg" alt="Community well casing with blue water lines branching to multiple homes" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Diagnostics</div>
@@ -199,7 +198,7 @@ export default class WellPumpServicesPage extends React.Component {
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div id="system-updates" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row-reverse', gap: '40px 72px', alignItems: 'stretch', scrollMarginTop: '110px' }}>
               <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '380px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
-                <ImagePlaceholder />
+                <img src="/assets/well-system-updates-testing.jpg" alt="Technician testing a pump drive and well system beside the service rig before final installation" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Updates</div>
@@ -238,7 +237,7 @@ export default class WellPumpServicesPage extends React.Component {
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '40px 72px', alignItems: 'stretch' }}>
               <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '380px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
-                <ImagePlaceholder />
+                <img src="/assets/well-emergency-night-service.jpg" alt="Mid-Wis Pump &amp; Well service truck with work lights on during a nighttime emergency call" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>24/7 emergency service</div>

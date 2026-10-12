@@ -5,8 +5,6 @@ import SiteHeader from '@/components/SiteHeader';
 import viewportWidth from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
-
 export default class PumpInstallationPage extends React.Component {
   state = { w: 1280, menu: false, scrolled: false, showTop: false };
   componentDidMount() {
@@ -55,7 +53,9 @@ export default class PumpInstallationPage extends React.Component {
       ...(() => ({
         cardCols: w >= 1100 ? 'repeat(4,minmax(0,1fr))' : w >= 620 ? 'repeat(2,minmax(0,1fr))' : '1fr',
         replCols: w >= 1100 ? 'minmax(0,1.55fr) minmax(0,1fr)' : 'minmax(0,1fr)',
-        replImgOrder: w >= 1100 ? '0' : '-1', replImgMin: w < 600 ? '320px' : '420px',
+        installImgMin: w >= 1000 ? '600px' : w >= 600 ? '480px' : '420px',
+        replImgOrder: w >= 1100 ? '0' : '-1',
+        replCollageCols: w >= 1100 || w < 600 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
         warrGrid: w < 480 ? 'minmax(0,1fr)' : '56px minmax(0,1fr)', warrGap: w < 480 ? '16px' : '20px',
         signCols: w >= 760 ? 'repeat(3,minmax(0,1fr))' : w >= 520 ? 'repeat(2,minmax(0,1fr))' : '1fr',
         mwCols: w >= 900 ? 'repeat(2,minmax(0,1fr))' : 'minmax(0,1fr)',
@@ -135,8 +135,8 @@ export default class PumpInstallationPage extends React.Component {
         {/* Pump installation */}
         <section id="installation" data-screen-label="Pump installation" style={{ padding: v.sp(104), background: '#fff', scrollMarginTop: '84px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '40px 72px', alignItems: 'stretch' }}>
-            <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '420px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
-              <ImagePlaceholder />
+            <div style={{ flex: '1 1 440px', position: 'relative', minHeight: v.installImgMin, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
+              <img src="/assets/installation-two-well-drives.jpg" alt="Two-well system with Grundfos variable speed drives and disconnects labeled West Well and East Well" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', display: 'block' }} />
             </div>
             <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Pump installation</div>
@@ -202,8 +202,15 @@ export default class PumpInstallationPage extends React.Component {
                 <span>→</span>
               </a>
             </div>
-            <div style={{ position: 'relative', order: v.replImgOrder, minHeight: v.replImgMin, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
-              <ImagePlaceholder />
+            <div style={{ order: v.replImgOrder, alignSelf: 'center', display: 'grid', gridTemplateColumns: v.replCollageCols, gap: '16px' }}>
+              {[
+                { src: '/assets/replacement-community-well-outdoor-drive.jpg', alt: 'Pump rig at a community well site with an outdoor drive mounted on the electrical board' },
+                { src: '/assets/well-system-updates-testing.jpg', alt: 'Technician testing the drive and pump system beside the service rig before final installation' }
+              ].map(img => (
+                <div key={img.src} style={{ position: 'relative', aspectRatio: '4 / 3', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
+                  <img src={img.src} alt={img.alt} style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -212,7 +219,7 @@ export default class PumpInstallationPage extends React.Component {
         <section id="systems" data-screen-label="Pressure tanks and controls" style={{ position: 'relative', overflow: 'hidden', background: 'rgb(246, 250, 254)', color: '#000', scrollMarginTop: '84px' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.mwCols }}>
             <div style={{ position: v.mwImgPos, top: '0', left: '0', bottom: '0', right: v.mwImgRight, minHeight: v.mwImgMin, background: '#E7E1D8' }}>
-              <ImagePlaceholder />
+              <img src="/assets/pressure-tank-constant-pressure-drive.jpg" alt="Residential constant pressure system with a Grundfos drive and Flow-Thru stainless pressure tank" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 45%', display: 'block' }} />
             </div>
             <div style={{ gridColumn: v.mwTextCol, padding: v.mwTextPad }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Pressure tanks &amp; controls</div>
