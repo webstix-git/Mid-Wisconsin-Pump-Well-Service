@@ -395,10 +395,9 @@ export default class HomePage extends React.Component {
               <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Serving Sparta and the Coulee Region.</h2>
               <p style={{ margin: '0 0 28px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>From our shop on Icecap Road in Sparta, we have provided lasting solutions to hundreds of water systems across Monroe County and the surrounding areas.</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '32px' }}>
-                <span style={{ background: 'rgb(246, 250, 254)', border: '1px solid #DCE9F6', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Sparta</span>
-                <span style={{ background: 'rgb(246, 250, 254)', border: '1px solid #DCE9F6', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Monroe County</span>
-                <span style={{ background: 'rgb(246, 250, 254)', border: '1px solid #DCE9F6', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Coulee Region</span>
-                <span style={{ background: 'rgb(246, 250, 254)', border: '1px solid #DCE9F6', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Western Wisconsin</span>
+                {['Sparta', 'Monroe County', 'La Crosse County', 'Jackson County', 'Juneau County', 'Vernon County', 'Trempealeau County', 'Adams County', 'Coulee Region', 'Western Wisconsin'].map(area => (
+                  <span key={area} style={{ background: 'rgb(246, 250, 254)', border: '1px solid #DCE9F6', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>{area}</span>
+                ))}
               </div>
               <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Contact us
