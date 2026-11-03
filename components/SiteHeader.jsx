@@ -34,12 +34,12 @@ export default function SiteHeader({ v, active, logoHref = '/' }) {
 
   return (
     <>
-    {/* Fixed, constant height — only bg/shadow change on scroll (no size morph / nav blink) */}
-    <header style={{ position: 'fixed', top: '0', left: '0', right: '0', zIndex: '40', background: v.hdrBg, boxShadow: v.hdrShadow, backdropFilter: v.hdrBlur, padding: v.hdrPad, transition: 'background .25s,box-shadow .25s' }}>
+    {/* Fixed so size changes on scroll don't shove page content; tall over the hero, compact when solid */}
+    <header style={{ position: 'fixed', top: '0', left: '0', right: '0', zIndex: '40', background: v.hdrBg, boxShadow: v.hdrShadow, backdropFilter: v.hdrBlur, padding: v.hdrPad, transition: 'background .3s,box-shadow .3s,padding .3s' }}>
       {/* Gutters live on <header>; this row is the same 1280px content width as page sections */}
-      <div className="hdr-row" style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', height: v.hdrH, display: 'flex', gap: v.hdrGap, alignItems: 'center', justifyContent: spread ? 'space-between' : 'flex-start' }}>
+      <div className="hdr-row" style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', height: v.hdrH, display: 'flex', gap: v.hdrGap, alignItems: 'center', justifyContent: spread ? 'space-between' : 'flex-start', transition: 'height .3s, gap .3s' }}>
         <a href={logoHref} className="hdr-logo" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: v.hdrFg, flex: 'none' }}>
-          <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well logo" width="195" height="144" style={{ height: v.logoH, width: 'auto', display: 'block', filter: v.logoFilter }} />
+          <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well logo" width="195" height="144" style={{ height: v.logoH, width: 'auto', display: 'block', filter: v.logoFilter, transition: 'height .3s' }} />
           <div style={{ display: v.logoTextDisplay || 'flex', flexDirection: 'column', lineHeight: '1.05' }}>
             <span className="hdr-title" style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.logoTitle }}>Mid-Wisconsin</span>
             <span className="hdr-sub" style={{ fontSize: v.logoSub, fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: v.hdrAccent, marginTop: '3px' }}>{noWidow('Pump & Well Service')}</span>

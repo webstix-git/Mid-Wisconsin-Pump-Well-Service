@@ -2,19 +2,14 @@ import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth'
 
 export { viewportWidth, initialViewportWidth };
 
-/**
- * Shared header metrics for the persistent layout header.
- * Height stays constant (Garth-style) — only background/shadow change on scroll,
- * so navigations never animate the bar taller/shorter.
- */
+/** Shared header metrics for the persistent layout header. */
 export function headerVals({ w, scrolled, menu, onHome = false }) {
   const wide = w >= 1220;
   const solid = scrolled;
+  // Current heroes use light overlays, so nav text stays dark even when the bar is transparent.
   const dark = true;
   const phone = w < 600;
   const compactHdr = w < 680;
-  const hdrH = phone ? '72px' : '84px';
-  const logoH = phone ? '44px' : '56px';
   return {
     navGap: onHome
       ? (w >= 1360 ? '32px' : '24px')
@@ -25,19 +20,21 @@ export function headerVals({ w, scrolled, menu, onHome = false }) {
     phoneIcon: compactHdr ? '36px' : '40px',
     phoneNumFs: '20px',
     phoneLabelFs: '11px',
-    hdrGap: compactHdr ? '8px' : onHome ? (w >= 1360 ? '16px' : '12px') : (w >= 1360 ? '40px' : '28px'),
+    hdrGap: solid
+      ? (compactHdr ? '8px' : onHome ? (w >= 1360 ? '16px' : '12px') : (w >= 1360 ? '40px' : '28px'))
+      : (compactHdr ? '12px' : onHome ? (w >= 1360 ? '48px' : '40px') : (w >= 1360 ? '40px' : '28px')),
     phoneGap: compactHdr ? '8px' : '12px',
     phoneTextDisplay: compactHdr ? 'none' : 'flex',
     logoTextDisplay: w < 360 ? 'none' : 'flex',
     hdrBg: solid ? 'rgba(255,255,255,.97)' : 'transparent',
     hdrShadow: solid ? '0 1px 0 #E7E1D8, 0 6px 20px rgba(0,69,128,.08)' : 'none',
     hdrBlur: solid ? 'blur(8px)' : 'none',
-    hdrH,
-    hdrPad: phone ? '8px 20px' : '8px 24px',
+    hdrH: solid ? (phone ? '72px' : '84px') : (phone ? '100px' : '150px'),
+    hdrPad: phone ? (solid ? '8px 20px' : '10px 20px') : (solid ? '8px 24px' : '10px 24px'),
     burgerSz: phone ? '42px' : '46px',
-    logoH,
-    logoTitle: phone ? '16px' : '17px',
-    logoSub: phone ? '9.5px' : '10px',
+    logoH: solid ? (phone ? '44px' : '56px') : (phone ? '48px' : '100px'),
+    logoTitle: solid ? (phone ? '16px' : '17px') : (phone ? '17px' : '21px'),
+    logoSub: solid ? (phone ? '9.5px' : '10px') : (phone ? '9.5px' : '11.5px'),
     logoFilter: dark ? 'none' : 'drop-shadow(0 0 1px rgba(255,255,255,.85)) drop-shadow(0 2px 8px rgba(0,69,128,.4))',
     hdrFg: dark ? '#000' : '#fff',
     hdrAccent: dark ? '#C1272D' : '#F6B3B5',
