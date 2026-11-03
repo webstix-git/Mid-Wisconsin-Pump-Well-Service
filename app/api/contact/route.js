@@ -1,6 +1,10 @@
 import { verifyTurnstileToken } from '@/lib/turnstile';
 
-const FORM_SUBMIT_URL = process.env.FORM_SUBMIT_URL || process.env.NEXT_PUBLIC_FORM_SUBMIT_URL || '';
+const DEFAULT_FORM_SUBMIT_URL =
+  'https://ywwxvriolxwuqcwjaluh.supabase.co/functions/v1/form-submit/241a321a-0774-4a56-9cbb-d7cadc386243';
+
+const FORM_SUBMIT_URL =
+  process.env.FORM_SUBMIT_URL || process.env.NEXT_PUBLIC_FORM_SUBMIT_URL || DEFAULT_FORM_SUBMIT_URL;
 
 export async function POST(request) {
   let body;
