@@ -1,16 +1,17 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import { textRight, textOverlay } from '@/components/heroTextOverlay';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
 
 export default class AiPolicyPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false, txtR: 0 };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false, txtR: 0 };
   h1Ref = React.createRef();
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "AI Policy | Mid-Wisconsin Pump & Well";
     this.measure = () => { const r = textRight(this.h1Ref.current); if (r !== this.state.txtR) this.setState({ txtR: r }); };
     this.onR = () => this.setState({ w: viewportWidth() }, this.measure);
@@ -51,7 +52,7 @@ export default class AiPolicyPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -64,10 +65,9 @@ export default class AiPolicyPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} />
 
         {/* Banner */}
-        <section id="top" data-screen-label="Page banner" style={{ position: 'relative', overflow: 'hidden', background: '#fff', color: '#000', height: '400px' }}>
+        <section id="top" data-screen-label="Page banner" style={{ position: 'relative', overflow: 'hidden', background: '#fff', color: '#000', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/ea5835eb-eaa4-480f-aef2-fd1853e74826.jpg" alt="Mid-Wisconsin pump truck on a job site" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
@@ -75,8 +75,8 @@ export default class AiPolicyPage extends React.Component {
             <h1 ref={this.h1Ref} style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>AI Policy</h1>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: '#FBF8F3' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: '#FBF8F3', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
             <span style={{ color: '#000' }}>AI Policy</span>
@@ -87,22 +87,22 @@ export default class AiPolicyPage extends React.Component {
         <section data-screen-label="Content" style={{ padding: v.sp(56, 104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ maxWidth: '860px' }}>
-              <p style={{ margin: '0 0 40px', fontSize: '15px', fontWeight: '600', color: '#000', opacity: '.7' }}>Last updated: September 30, 2026</p>
+              <p style={{ margin: '0 0 40px', fontSize: '15px', fontWeight: '600', color: '#000', opacity: '.7' }}>{noWidow('Last updated: September 30, 2026')}</p>
               <div style={{ marginBottom: '44px' }}>
-                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Our use of AI</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Mid-Wisconsin Pump &amp; Well Service may use artificial intelligence tools to help draft website copy, organize service information, and support design. AI assists our team; it does not replace our technicians, on-site diagnosis, or the judgment that comes from decades of well and pump work.</p>
+                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>{noWidow('Our use of AI')}</h2>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('Mid-Wisconsin Pump & Well Service may use artificial intelligence tools to help draft website copy, organize service information, and support design. AI assists our team; it does not replace our technicians, on-site diagnosis, or the judgment that comes from decades of well and pump work.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Customer data</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>We do not use AI systems to make automated decisions about individual customers that produce legal or similarly significant effects. We do not upload customer payment details or other sensitive personal information to public AI tools.</p>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('We do not use AI systems to make automated decisions about individual customers that produce legal or similarly significant effects. We do not upload customer payment details or other sensitive personal information to public AI tools.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Accuracy</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Service descriptions, hours, warranty terms, and contact details on this site are maintained by our staff, and recommendations for your water system always come from an inspection by our team. If anything looks incorrect, please call 608-269-5178 so we can fix it.</p>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('Service descriptions, hours, warranty terms, and contact details on this site are maintained by our staff, and recommendations for your water system always come from an inspection by our team. If anything looks incorrect, please call 608-269-5178 so we can fix it.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Transparency</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>When AI-assisted content is material to how we communicate online, we keep it consistent with how we work: clear communication, honest recommendations, and never charging for something you do not need.</p>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('When AI-assisted content is material to how we communicate online, we keep it consistent with how we work: clear communication, honest recommendations, and never charging for something you do not need.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Contact</h2>

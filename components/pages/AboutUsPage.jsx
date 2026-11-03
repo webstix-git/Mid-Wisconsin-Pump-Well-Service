@@ -1,13 +1,15 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
+
 export default class AboutUsPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false };
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "About Us | Mid-Wisconsin Pump & Well";
     this.onR = () => this.setState({ w: viewportWidth() });
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
@@ -46,7 +48,7 @@ export default class AboutUsPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       statGap: w < 480 ? '8px' : '12px', statPad: w < 480 ? '14px 12px' : '18px', statFs: w < 480 ? '28px' : '36px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
@@ -77,10 +79,9 @@ export default class AboutUsPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} active="About Us" />
 
         {/* Hero */}
-        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
+        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/jason-truck-about-hero.jpg" alt="Mid-Wisconsin Pump &amp; Well technician standing beside a pump service truck" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
@@ -88,8 +89,8 @@ export default class AboutUsPage extends React.Component {
             <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>About Us</h1>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: '#fff' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: '#fff', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
             <span style={{ color: '#000' }}>About Us</span>
@@ -101,8 +102,8 @@ export default class AboutUsPage extends React.Component {
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Our story</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>From a garage shop to a family known name.</h2>
-              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '720px' }}>Two generations, one shop in Sparta, and the same promise since day one: <span style={{ whiteSpace: v.storyKeep }}>show up quickly, explain things clearly, and do the job right.</span></p>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>{noWidow('From a garage shop to a family known name.')}</h2>
+              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '720px' }}>{noWidow('Two generations, one shop in Sparta, and the same promise since day one:')} <span style={{ whiteSpace: v.storyKeep }}>{noWidow('show up quickly, explain things clearly, and do the job right.')}</span></p>
             </div>
             <div style={{ position: 'relative' }}>
               <div aria-hidden="true" style={{ position: 'absolute', top: '0', bottom: '0', left: v.tl.lineLeft, width: '2px', marginLeft: '-1px', background: '#E4DACC' }} />
@@ -111,8 +112,8 @@ export default class AboutUsPage extends React.Component {
                 <div style={{ gridColumn: v.tl.thenText, gridRow: '1 / 2' }}>
                   <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Then</div>
                   <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '56px', lineHeight: '1', color: '#004580', margin: '12px 0 18px' }}>1977</div>
-                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.2', margin: '0 0 10px' }}>Mike opens for business</h3>
-                  <p style={{ margin: '0', fontSize: '17px', lineHeight: '1.6', color: '#000' }}>Mike Schaitel started Mid-Wisconsin Pump &amp; Well in rural Sparta, first working out of his home and then building a garage shop next door.</p>
+                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.2', margin: '0 0 10px' }}>{noWidow('Mike opens for business')}</h3>
+                  <p style={{ margin: '0', fontSize: '17px', lineHeight: '1.6', color: '#000' }}>{noWidow('Mike Schaitel started Mid-Wisconsin Pump & Well in rural Sparta, first working out of his home and then building a garage shop next door.')}</p>
                 </div>
                 <div style={{ gridColumn: v.tl.thenImg, gridRow: v.tl.imgRow, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.16)' }}>
                   <img src="/assets/mike-truck-1977-story.jpg" alt="Founder Mike Schaitel with an early Mid-Wis Pump &amp; Well service truck" width="1024" height="576" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block' }} />
@@ -123,8 +124,8 @@ export default class AboutUsPage extends React.Component {
                 <div style={{ gridColumn: v.tl.nowText, gridRow: '1 / 2' }}>
                   <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Now</div>
                   <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '56px', lineHeight: '1', color: '#004580', margin: '12px 0 18px' }}>2026</div>
-                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.2', margin: '0 0 10px' }}>Jason carries it forward</h3>
-                  <p style={{ margin: '0', fontSize: '17px', lineHeight: '1.6', color: '#000' }}>Jason took over the business in 2003 and has grown it into a family known name. Today our crew runs two pump trucks and a service van from the same Sparta shop Mike built.</p>
+                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.2', margin: '0 0 10px' }}>{noWidow('Jason carries it forward')}</h3>
+                  <p style={{ margin: '0', fontSize: '17px', lineHeight: '1.6', color: '#000' }}>{noWidow('Jason took over the business in 2003 and has grown it into a family known name. Today our crew runs two pump trucks and a service van from the same Sparta shop Mike built.')}</p>
                 </div>
                 <div style={{ gridColumn: v.tl.nowImg, gridRow: v.tl.imgRow, borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.16)' }}>
                   <img src="/assets/eacc275d-c942-5ac9-a92a-e0d808618e4e.jpg" alt="Today's Mid-Wisconsin Pump &amp; Well pump service rig" width="932" height="456" loading="lazy" decoding="async" style={{ width: '100%', height: 'auto', display: 'block' }} />
@@ -138,21 +139,21 @@ export default class AboutUsPage extends React.Component {
         <section id="workstation" data-screen-label="Mobile workstation" style={{ position: 'relative', overflow: 'hidden', background: '#FBF8F3', color: '#000' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.mwCols }}>
             <div style={{ padding: v.mwTextPad }}>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>The mobile workstation</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>A shop on wheels, built to our standards.</h2>
-              <p style={{ margin: '0 0 36px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Our pump truck is a mobile workstation, built with special additions and tools to get the job done right and safe. Every truck is stocked with common supplies.</p>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>{noWidow('The mobile workstation')}</div>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>{noWidow('A shop on wheels, built to our standards.')}</h2>
+              <p style={{ margin: '0 0 36px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('Our pump truck is a mobile workstation, built with special additions and tools to get the job done right and safe. Every truck is stocked with common supplies.')}</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,minmax(0,1fr))', gap: v.statGap }}>
                 <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '10px', padding: v.statPad }}>
                   <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.statFs, lineHeight: '1', color: '#004580', whiteSpace: 'nowrap' }}>2</div>
-                  <div style={{ fontSize: '13.5px', color: '#000', marginTop: '6px' }}>Service pump trucks</div>
+                  <div style={{ fontSize: '13.5px', color: '#000', marginTop: '6px' }}>{noWidow('Service pump trucks')}</div>
                 </div>
                 <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '10px', padding: v.statPad }}>
                   <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.statFs, lineHeight: '1', color: '#004580', whiteSpace: 'nowrap' }}>1</div>
-                  <div style={{ fontSize: '13.5px', color: '#000', marginTop: '6px' }}>Service utility van</div>
+                  <div style={{ fontSize: '13.5px', color: '#000', marginTop: '6px' }}>{noWidow('Service utility van')}</div>
                 </div>
                 <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '10px', padding: v.statPad }}>
                   <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.statFs, lineHeight: '1', color: '#004580', whiteSpace: 'nowrap' }}>24/7</div>
-                  <div style={{ fontSize: '13.5px', color: '#000', marginTop: '6px' }}>Ready to roll</div>
+                  <div style={{ fontSize: '13.5px', color: '#000', marginTop: '6px' }}>{noWidow('Ready to roll')}</div>
                 </div>
               </div>
             </div>
@@ -166,9 +167,9 @@ export default class AboutUsPage extends React.Component {
         <section id="values" data-screen-label="Values" style={{ background: '#fff', padding: v.sp(104, 96) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ textAlign: 'left', margin: '0 0 56px' }}>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>How we work</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>Service you can count on.</h2>
-              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '720px' }}>We pride ourselves on effective results and strive for customer satisfaction on every job.</p>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>{noWidow('How we work')}</div>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', textWrap: 'balance' }}>{noWidow('Service you can count on.')}</h2>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000', whiteSpace: v.wide ? 'nowrap' : 'normal' }}>{'We pride ourselves on effective results and strive for customer satisfaction on every job.'}</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.valueCols, gap: '24px' }}>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
@@ -176,8 +177,8 @@ export default class AboutUsPage extends React.Component {
                   <img src="/assets/truck-excavator-installation-hero.jpg" alt="Mid-Wis Pump &amp; Well service truck from Sparta, WI working on a local customer's property" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'left center', display: 'block' }} />
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
-                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Locally owned &amp; operated</h3>
-                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>We care about the people of western Wisconsin. That means punctual service, timely repairs, and quality products at fair prices.</p>
+                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>{noWidow('Locally owned & operated')}</h3>
+                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('We care about the people of western Wisconsin. That means punctual service, timely repairs, and quality products at fair prices.')}</p>
                 </div>
               </div>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
@@ -185,8 +186,8 @@ export default class AboutUsPage extends React.Component {
                   <img src="/assets/about-technician-new-water-line.jpg" alt="Mid-Wisconsin Pump &amp; Well technician laying a new water line in a trench" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 5%', display: 'block' }} />
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
-                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Superior customer service</h3>
-                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>Clear communication at every step. We explain the issue and your options so you can make an informed decision that fits your budget.</p>
+                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>{noWidow('Superior customer service')}</h3>
+                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('Clear communication at every step. We explain the issue and your options so you can make an informed decision that fits your budget.')}</p>
                 </div>
               </div>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
@@ -194,8 +195,8 @@ export default class AboutUsPage extends React.Component {
                   <img src="/assets/about-technician-pitless-adapter.jpg" alt="Technician connecting a water line to the pitless adapter on a well casing" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 28%', display: 'block' }} />
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
-                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Licensed &amp; insured</h3>
-                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>Our experienced technicians service all makes and models of well pumps and pressure tanks, with solutions we guarantee.</p>
+                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>{noWidow('Licensed & insured')}</h3>
+                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('Our experienced technicians service all makes and models of well pumps and pressure tanks, with solutions we guarantee.')}</p>
                 </div>
               </div>
               <div style={{ background: '#fff', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-240192">
@@ -204,7 +205,7 @@ export default class AboutUsPage extends React.Component {
                 </div>
                 <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '10px', flex: '1' }}>
                   <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', margin: '0' }}>Honest recommendations</h3>
-                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>We will never charge you for something you do not need. If a repair makes more sense than a replacement, we will tell you.</p>
+                  <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('We will never charge you for something you do not need. If a repair makes more sense than a replacement, we will tell you.')}</p>
                 </div>
               </div>
             </div>
@@ -215,9 +216,9 @@ export default class AboutUsPage extends React.Component {
         <section id="service-area" data-screen-label="Service area" style={{ background: '#FBF8F3', padding: v.sp(104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: v.areaCols, gap: '48px 64px', alignItems: 'center' }}>
             <div>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Where we work</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Serving Sparta and the Coulee Region.</h2>
-              <p style={{ margin: '0 0 28px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>From our shop on Icecap Road in Sparta, we have provided lasting solutions to hundreds of water systems across Monroe County and the surrounding areas.</p>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>{noWidow('Where we work')}</div>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>{noWidow('Serving Sparta and the Coulee Region.')}</h2>
+              <p style={{ margin: '0 0 28px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('From our shop on Icecap Road in Sparta, we have provided lasting solutions to hundreds of water systems across Monroe County and the surrounding areas.')}</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '32px' }}>
                 <span style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Sparta</span>
                 <span style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '999px', padding: '9px 16px', fontSize: '15px', fontWeight: '600' }}>Monroe County</span>
@@ -226,7 +227,7 @@ export default class AboutUsPage extends React.Component {
               </div>
               <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Contact us
-                <span>→</span>
+                <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
               </a>
             </div>
             <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #EDE7DE', boxShadow: '0 18px 40px rgba(0,69,128,.12)', background: '#E7E1D8', height: '400px' }}>
@@ -236,12 +237,12 @@ export default class AboutUsPage extends React.Component {
         </section>
 
         {/* Contact */}
-        <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff' }}>
+        <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff', padding: v.sp(92, 84) }}>
           <img src="/assets/truck-lawn-cta-banner.jpg" alt="Mid-Wisconsin Pump & Well service truck on a residential lawn" loading="lazy" decoding="async" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.28) 75%,rgba(0,0,0,0) 100%)' }} />
-          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: v.sp(92, 84) }}>
-            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
-            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.</p>
+          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>{noWidow("Let's talk about your water.")}</h2>
+            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>{noWidow("Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.")}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
               <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '30px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
               <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '30px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>

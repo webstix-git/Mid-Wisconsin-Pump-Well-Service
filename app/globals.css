@@ -1,4 +1,19 @@
-html,body{height:100%;margin:0}
+html{
+  height:100%;
+  margin:0;
+  scrollbar-gutter:stable;
+  background:#fff;
+}
+body{height:100%;margin:0;background:#fff}
+
+/* Disable default view-transition crossfades — they flash white between routes */
+::view-transition-old(root),
+::view-transition-new(root){
+  animation:none !important;
+}
+::view-transition-group(root){
+  animation:none !important;
+}
 
 /* Capitalize labels on pill CTAs and form/submit buttons site-wide */
 a.h-d10c8f,
@@ -8,6 +23,25 @@ a.h-2eec3d,
 button.h-bd9fe2,
 .call-bar a.h-6bbf96{
   text-transform:capitalize;
+}
+
+/* Larger arrows in CTA buttons, centered on the label midline */
+.btn-arrow{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  line-height:0;
+  font-size:1.35em;
+}
+.btn-arrow svg{
+  display:block;
+  width:1em;
+  height:1em;
+}
+
+h1, h2, h3, h4, p, li, blockquote, figcaption, td, th, label, .no-widow {
+  text-wrap: pretty;
 }
 
 /* Pages are laid out from the measured window width, so keep the server-rendered

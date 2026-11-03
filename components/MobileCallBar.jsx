@@ -1,9 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function MobileCallBar() {
   const [show, setShow] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setShow(false);
+  }, [pathname]);
 
   useEffect(() => {
     let last = window.scrollY;

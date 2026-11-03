@@ -1,17 +1,18 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
 import TurnstileWidget from '@/components/TurnstileWidget';
+import { noWidow } from '@/lib/typography';
 
 const REQUIRED = ["fullName","phone","email","message"];
 
 export default class ContactPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false, err: '', errs: {}, turnstileToken: '', submitting: false };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false, err: '', errs: {}, turnstileToken: '', submitting: false };
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "Contact Us | Mid-Wisconsin Pump & Well";
     this.onR = () => this.setState({ w: viewportWidth() });
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
@@ -50,7 +51,7 @@ export default class ContactPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -125,10 +126,9 @@ export default class ContactPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} active="Contact" />
 
         {/* Hero */}
-        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
+        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/truck-shop-contact-hero.jpg" alt="Mid-Wis Pump & Well service truck in the shop" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
@@ -136,8 +136,8 @@ export default class ContactPage extends React.Component {
             <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Contact</h1>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: 'rgb(246, 250, 254)' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: 'rgb(246, 250, 254)', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
             <span style={{ color: '#000' }}>Contact</span>
@@ -148,12 +148,12 @@ export default class ContactPage extends React.Component {
         <section id="estimate" data-screen-label="Contact form" style={{ background: 'rgb(246, 250, 254)', padding: v.sp(104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,440px),1fr))', gap: '48px 64px', alignItems: 'start' }}>
             <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '16px', padding: '36px 32px', boxShadow: '0 2px 6px rgba(0,0,0,.04),0 18px 44px rgba(0,69,128,.1)' }}>
-                  <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 8px' }}>Request a free estimate</h2>
-                  <p style={{ margin: '0 0 16px', fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Tell us what is going on and we will follow up with options.</p>
+                  <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 8px' }}>{noWidow('Request a free estimate')}</h2>
+                  <p style={{ margin: '0 0 16px', fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{noWidow('Tell us what is going on and we will follow up with options.')}</p>
                   <div role="note" style={{ margin: '0 0 16px', padding: '14px 16px', borderRadius: '10px', background: '#FFF6D5', border: '1px solid #F1DE94' }}>
-                    <p style={{ margin: '0', fontSize: '15.5px', lineHeight: '1.55', color: '#000' }}><strong>Do not use this form if you have an emergency.</strong> It might take up to 72 hours for us to reply to your inquiry. If you have an emergency, call <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '700', whiteSpace: 'nowrap', textDecoration: 'underline' }}>608-269-5178</a>.</p>
+                    <p style={{ margin: '0', fontSize: '15.5px', lineHeight: '1.55', color: '#000' }}><strong>{noWidow('Do not use this form if you have an emergency.')}</strong> {noWidow('It might take up to 72 hours for us to reply to your inquiry. If you have an emergency, call')} <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '700', whiteSpace: 'nowrap', textDecoration: 'underline' }}>608-269-5178</a>.</p>
                   </div>
-                  <p style={{ margin: '0 0 24px', fontSize: '14px', lineHeight: '1.5', color: '#000' }}>Fields marked with an asterisk (<span style={{ color: '#C1272D' }}>*</span>) are required.</p>
+                  <p style={{ margin: '0 0 24px', fontSize: '14px', lineHeight: '1.5', color: '#000' }}>{noWidow('Fields marked with an asterisk (')}<span style={{ color: '#C1272D' }}>*</span>{noWidow(') are required.')}</p>
                   <form onSubmit={v.submit} noValidate={true} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
                     <label style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', fontWeight: '700', color: '#000' }}>
                       Name *
@@ -199,9 +199,9 @@ export default class ContactPage extends React.Component {
                   </form>
             </div>
             <div>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Get in touch</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Reach us by phone or email.</h2>
-              <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>To schedule a free estimate or learn more about our products, reach out any time. If you have no water, call now and we will get you back up and running.</p>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>{noWidow('Get in touch')}</div>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>{noWidow('Reach us by phone or email.')}</h2>
+              <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('To schedule a free estimate or learn more about our products, reach out any time. If you have no water, call now and we will get you back up and running.')}</p>
               <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #DCE9F6' }}>
                 <a href="tel:6082695178" style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000', transition: 'color .2s' }} className="h-6bd792">
                   <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
@@ -223,8 +223,8 @@ export default class ContactPage extends React.Component {
                     </svg>
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
-                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>24/7 emergency service</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>Available after hours, weekends, and holidays</span>
+                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>{noWidow('24/7 emergency service')}</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>{noWidow('Available after hours, weekends, and holidays')}</span>
                   </span>
                 </a>
                 <div style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6' }}>
@@ -236,7 +236,7 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Business hours</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>Monday to Friday, 8:00 am to 5:00 pm</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>{noWidow('Monday to Friday, 8:00 am to 5:00 pm')}</span>
                   </span>
                 </div>
                 <div style={{ display: 'flex', gap: '18px', alignItems: 'flex-start', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
@@ -249,11 +249,11 @@ export default class ContactPage extends React.Component {
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Email</span>
                     <span style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
-                      <span>Billing and invoicing:</span>
+                      <span>{noWidow('Billing and invoicing:')}</span>
                       <a href="mailto:randismidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">randismidwispump@outlook.com</a>
                     </span>
                     <span style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
-                      <span>Technical and estimates:</span>
+                      <span>{noWidow('Technical and estimates:')}</span>
                       <a href="mailto:Jasonsmidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">Jasonsmidwispump@outlook.com</a>
                     </span>
                   </span>
@@ -267,7 +267,7 @@ export default class ContactPage extends React.Component {
                   </span>
                   <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Shop address</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>17660 Icecap Rd.<br />Sparta, WI 54656</span>
+                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>{noWidow('17660 Icecap Rd.')}<br />{noWidow('Sparta, WI 54656')}</span>
                   </span>
                 </a>
               </div>
@@ -278,7 +278,7 @@ export default class ContactPage extends React.Component {
                     <path d="M2 10h20" />
                   </svg>
                 </span>
-                <p style={{ margin: '0', fontSize: '16px', lineHeight: '1.6', color: '#000' }}><strong>Want to pay your invoice online?</strong> Call office or email: <a href="mailto:randismidwispump@outlook.com" style={{ color: '#C1272D', fontWeight: '600', overflowWrap: 'anywhere' }}>randismidwispump@outlook.com</a></p>
+                <p style={{ margin: '0', fontSize: '16px', lineHeight: '1.6', color: '#000' }}><strong>{noWidow('Want to pay your invoice online?')}</strong> Call office or email: <a href="mailto:randismidwispump@outlook.com" style={{ color: '#C1272D', fontWeight: '600', overflowWrap: 'anywhere' }}>randismidwispump@outlook.com</a></p>
               </div>
             </div>
           </div>

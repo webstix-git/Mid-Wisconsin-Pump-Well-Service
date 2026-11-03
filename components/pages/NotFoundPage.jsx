@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
 
 export default class NotFoundPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false };
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = 'Page Not Found | Mid-Wisconsin Pump & Well';
     this.onR = () => this.setState({ w: viewportWidth() });
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
@@ -48,7 +49,7 @@ export default class NotFoundPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
@@ -63,22 +64,21 @@ export default class NotFoundPage extends React.Component {
     const nestedLi = { padding: '4px 0', fontSize: '17px', lineHeight: '1.5' };
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <SiteHeader v={v} />
 
-        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', minHeight: '400px' }}>
+        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', minHeight: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/truck-shop-contact-hero.jpg" alt="Mid-Wis Pump & Well service truck in the shop" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: v.heroInPad, paddingBottom: v.gut === '20px' ? '40px' : '56px' }}>
-            <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Page Not Found</h1>
-            <p style={{ margin: '16px 0 0', fontSize: '18px', lineHeight: '1.55', color: '#000', maxWidth: '600px', textWrap: 'pretty' }}>The page you requested is unavailable or may have moved. Browse the site pages below to continue.</p>
+            <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>{noWidow('Page Not Found')}</h1>
+            <p style={{ margin: '16px 0 0', fontSize: '18px', lineHeight: '1.55', color: '#000', maxWidth: '600px', textWrap: 'pretty' }}>{noWidow('The page you requested is unavailable or may have moved. Browse the site pages below to continue.')}</p>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: '#fff' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: '#fff', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
-            <span style={{ color: '#000' }}>Page Not Found</span>
+            <span style={{ color: '#000' }}>{noWidow('Page Not Found')}</span>
           </nav>
         </div>
 
@@ -119,7 +119,7 @@ export default class NotFoundPage extends React.Component {
             </div>
 
             <div style={{ marginTop: '56px' }}>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.h2Fs, lineHeight: '1.05', margin: '0', textWrap: 'balance' }}>On the Home Page</h2>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.h2Fs, lineHeight: '1.05', margin: '0', textWrap: 'balance' }}>{noWidow('On the Home Page')}</h2>
               <ul style={{ margin: '24px 0 0', paddingLeft: '22px', listStyle: 'disc', color: '#000' }}>
                 <li style={li}><a href="/#services" style={link} className="h-a6c3ef">Services</a></li>
                 <li style={li}><a href="/#products" style={link} className="h-a6c3ef">Products</a></li>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { noWidow } from '@/lib/typography';
 
 const NAV = [
   ['Home', '/'],
@@ -13,6 +14,7 @@ const NAV = [
 
 export default function SiteHeader({ v, active, logoHref = '/' }) {
   const open = !!v.menuOpen;
+  const spread = v.hdrBg !== 'transparent';
   const burgerRef = useRef(null), closeRef = useRef(null), wasOpen = useRef(false);
 
   useEffect(() => {
@@ -32,23 +34,25 @@ export default function SiteHeader({ v, active, logoHref = '/' }) {
 
   return (
     <>
-    <header style={{ position: 'sticky', top: '0', zIndex: '40', marginBottom: v.hdrShift, background: v.hdrBg, boxShadow: v.hdrShadow, backdropFilter: v.hdrBlur, transition: 'background .3s,box-shadow .3s,margin-bottom .3s' }}>
-      <div className="hdr-row" style={{ maxWidth: '1280px', margin: '0 auto', padding: v.hdrPad, height: v.hdrH, display: 'flex', gap: v.hdrGap, alignItems: 'center', justifyContent: 'space-between', transition: 'height .3s' }}>
+    {/* Fixed, constant height — only bg/shadow change on scroll (no size morph / nav blink) */}
+    <header style={{ position: 'fixed', top: '0', left: '0', right: '0', zIndex: '40', background: v.hdrBg, boxShadow: v.hdrShadow, backdropFilter: v.hdrBlur, padding: v.hdrPad, transition: 'background .25s,box-shadow .25s' }}>
+      {/* Gutters live on <header>; this row is the same 1280px content width as page sections */}
+      <div className="hdr-row" style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', height: v.hdrH, display: 'flex', gap: v.hdrGap, alignItems: 'center', justifyContent: spread ? 'space-between' : 'flex-start' }}>
         <a href={logoHref} className="hdr-logo" style={{ display: 'flex', alignItems: 'center', gap: '12px', color: v.hdrFg, flex: 'none' }}>
-          <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well logo" width="195" height="144" style={{ height: v.logoH, width: 'auto', display: 'block', filter: v.logoFilter, transition: 'height .3s' }} />
+          <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well logo" width="195" height="144" style={{ height: v.logoH, width: 'auto', display: 'block', filter: v.logoFilter }} />
           <div style={{ display: v.logoTextDisplay || 'flex', flexDirection: 'column', lineHeight: '1.05' }}>
             <span className="hdr-title" style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.logoTitle }}>Mid-Wisconsin</span>
-            <span className="hdr-sub" style={{ fontSize: v.logoSub, fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: v.hdrAccent, marginTop: '3px' }}>Pump &amp; Well Service</span>
+            <span className="hdr-sub" style={{ fontSize: v.logoSub, fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: v.hdrAccent, marginTop: '3px' }}>{noWidow('Pump & Well Service')}</span>
           </div>
         </a>
         {v.wide && (
-          <nav style={{ display: 'flex', gap: v.navGap, fontSize: v.navFs, fontWeight: '600', whiteSpace: 'nowrap' }}>
+          <nav style={{ display: 'flex', gap: v.navGap, fontSize: v.navFs, fontWeight: '600', whiteSpace: 'nowrap', flex: 'none' }}>
             {NAV.map(([label, href]) => label === active
               ? <a key={href} href={href} aria-current="page" style={{ color: v.hdrAccent, fontSize: '16px' }}>{label}</a>
               : <a key={href} href={href} style={{ color: v.hdrFg, transition: 'color .3s', fontSize: '16px' }} className="h-6bd792">{label}</a>)}
           </nav>
         )}
-        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flex: 'none' }}>
+        <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flex: 'none', marginLeft: spread ? undefined : 'auto' }}>
           <a href="tel:6082695178" aria-label="24/7 emergency line, call 608-269-5178" style={{ display: 'flex', alignItems: 'center', gap: v.phoneGap || '12px', background: '#C1272D', color: '#fff', padding: v.phonePad, borderRadius: '30px', boxShadow: '0 6px 18px rgba(193,39,45,.3)' }} className="h-6bbf96">
             <span style={{ width: v.phoneIcon, height: v.phoneIcon, display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -80,7 +84,7 @@ export default function SiteHeader({ v, active, logoHref = '/' }) {
               <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump & Well" width="195" height="144" style={{ height: '44px', width: 'auto', display: 'block' }} />
               <span style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.05' }}>
                 <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '16px' }}>Mid-Wisconsin</span>
-                <span style={{ fontSize: '9.5px', fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', marginTop: '3px' }}>Pump &amp; Well Service</span>
+                <span style={{ fontSize: '9.5px', fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', marginTop: '3px' }}>{noWidow('Pump & Well Service')}</span>
               </span>
             </a>
             <button ref={closeRef} type="button" onClick={v.closeMenu} aria-label="Close menu" style={{ width: '42px', height: '42px', flex: 'none', border: '1px solid #D9D2C7', background: '#fff', borderRadius: '6px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000' }}>

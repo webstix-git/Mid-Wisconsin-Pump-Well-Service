@@ -1,3 +1,5 @@
+import { noWidow } from '@/lib/typography';
+
 export default function SiteFooter() {
   return (
     <footer className="site-footer" style={{ background: '#fff', color: '#000', padding: '64px 24px 28px' }}>
@@ -6,7 +8,7 @@ export default function SiteFooter() {
           <div>
             <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump &amp; Well" width="195" height="144" style={{ height: '125px', width: 'auto', display: 'block', marginBottom: '16px' }} />
             <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '26px', lineHeight: '1.05', color: '#000', letterSpacing: '.01em', marginBottom: '14px' }}>Mid-Wisconsin<br />Pump &amp; Well</div>
-            <p style={{ margin: '0 0 22px', fontSize: '18px', lineHeight: '1.55', maxWidth: '240px' }}>Locally owned since 1977. Serving Western Wisconsin.</p>
+            <p style={{ margin: '0 0 22px', fontSize: '18px', lineHeight: '1.55', maxWidth: '240px' }}>{noWidow('Locally owned since 1977. Serving Western Wisconsin.')}</p>
             <div style={{ display: 'flex', gap: '10px' }}>
               <a href="https://www.facebook.com/midwispump/" aria-label="Facebook" style={{ width: '36px', height: '36px', borderRadius: '4px', border: '1.5px solid #000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#000' }} className="h-78bced">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -65,7 +67,7 @@ export default function SiteFooter() {
         </div>
         <div className="site-footer-bottom" style={{ position: 'relative', borderTop: '1px solid #E7E1D8', padding: '18px 0 0', display: 'flex', flexWrap: 'wrap', gap: '12px 24px', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', color: '#000' }}>
           <div className="site-footer-bottom-links" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px 12px', alignItems: 'center', justifyContent: 'center', textAlign: 'center', flex: '1 1 auto' }}>
-            <span>© 2026 Mid-Wisconsin Pump &amp; Well Service, LLC. All rights reserved.</span>
+            <span>{noWidow('© 2026 Mid-Wisconsin Pump & Well Service, LLC. All rights reserved.')}</span>
             <span aria-hidden="true" style={{ color: '#B9B2A7' }}>|</span>
             <a href="/site-map" style={{ color: '#000', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-6bd792">Site Map</a>
             <span aria-hidden="true" style={{ color: '#B9B2A7' }}>|</span>
@@ -77,7 +79,7 @@ export default function SiteFooter() {
           </div>
           <a className="site-footer-designed" href="https://webstix.com/" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: '#000', flex: 'none', marginLeft: 'auto' }}>
             <span>Designed by</span>
-            <img src="/assets/webstix-logo.png" alt="Webstix" width="90" height="24" style={{ height: '22px', width: 'auto', display: 'block' }} />
+            <img src="/assets/webstix-logo.png" alt="Webstix" width="90" height="24" style={{ height: '15px', width: 'auto', display: 'block' }} />
           </a>
         </div>
       </div>

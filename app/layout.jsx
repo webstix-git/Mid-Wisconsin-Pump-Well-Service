@@ -1,5 +1,7 @@
 import './globals.css';
 import HydrationGate from '@/components/HydrationGate';
+import SiteShell from '@/components/SiteShell';
+import ClientNav from '@/components/ClientNav';
 import MobileCallBar from '@/components/MobileCallBar';
 import JsonLd from '@/components/JsonLd';
 import { SITE_NAME, SITE_URL, ORGANIZATION, organizationJsonLd, websiteJsonLd } from '@/lib/site';
@@ -65,8 +67,9 @@ export default function RootLayout({ children }) {
         <JsonLd data={organizationJsonLd()} />
         <JsonLd data={websiteJsonLd()} />
       </head>
-      <body>
-        {children}
+      <body style={{ background: '#fff' }}>
+        <ClientNav />
+        <SiteShell>{children}</SiteShell>
         <MobileCallBar />
         <HydrationGate />
       </body>

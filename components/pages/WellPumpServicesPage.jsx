@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
 
 export default class WellPumpServicesPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false };
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "Well Pump Services | Mid-Wisconsin Pump & Well";
     this.onR = () => this.setState({ w: viewportWidth() });
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
@@ -47,7 +48,7 @@ export default class WellPumpServicesPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -62,22 +63,21 @@ export default class WellPumpServicesPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} active="Well Pump Services" />
 
         {/* Hero */}
-        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
+        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/truck-crew-well-services-hero.jpg" alt="Mid-Wis Pump &amp; Well service truck and technician at a customer's home" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 48%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'flex-start', padding: v.heroInPad }}>
-            <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Well Pump Services</h1>
+            <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>{noWidow('Well Pump Services')}</h1>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: '#fff' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: '#fff', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
-            <span style={{ color: '#000' }}>Well Pump Services</span>
+            <span style={{ color: '#000' }}>{noWidow('Well Pump Services')}</span>
           </nav>
         </div>
 
@@ -85,9 +85,9 @@ export default class WellPumpServicesPage extends React.Component {
         <section id="services" data-screen-label="Pump Installation" style={{ padding: v.sp(104, 96), background: '#fff' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ textAlign: 'left', margin: '0 0 64px' }}>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>What we do</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>Keeping your well and pump working reliably.</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>Installation, repair, diagnostics, and updates for residential and agricultural well systems, with experience on all makes and models.</p>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>{noWidow('What we do')}</div>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.02', margin: '0 0 16px', textWrap: 'balance' }}>{noWidow('Keeping your well and pump working reliably.')}</h2>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.6', color: '#000', maxWidth: '680px' }}>{noWidow('Installation, repair, diagnostics, and updates for residential and agricultural well systems, with experience on all makes and models.')}</p>
             </div>
             <div id="pump-installation" style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'row', gap: '40px 72px', alignItems: 'stretch', scrollMarginTop: '110px' }}>
               <div style={{ flex: '1 1 440px', position: 'relative', minHeight: '380px', borderRadius: '16px', overflow: 'hidden', background: '#E7E1D8', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.08)' }}>
@@ -96,8 +96,8 @@ export default class WellPumpServicesPage extends React.Component {
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Installation</div>
                 <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>Pump Installation</h3>
-                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>Complete new well pump and water system installations, sized to your property and water needs.</p>
-                <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>New installations for</div>
+                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('Complete new well pump and water system installations, sized to your property and water needs.')}</p>
+                <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>{noWidow('New installations for')}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #E7E1D8' }}>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '13px 0', borderBottom: '1px solid #E7E1D8', fontSize: '16px', fontWeight: '600' }}>
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C1272D', flex: 'none' }} />
@@ -118,7 +118,7 @@ export default class WellPumpServicesPage extends React.Component {
                 </div>
                 <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
-                  <span>→</span>
+                  <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                 </a>
               </div>
             </div>
@@ -132,9 +132,9 @@ export default class WellPumpServicesPage extends React.Component {
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Repair</div>
-                <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>Repair &amp; Replacement</h3>
-                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>We diagnose well system problems, then repair or replace pumps, tanks, and parts as needed.</p>
-                <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>Problems we fix</div>
+                <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>{noWidow('Repair & Replacement')}</h3>
+                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('We diagnose well system problems, then repair or replace pumps, tanks, and parts as needed.')}</p>
+                <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>{noWidow('Problems we fix')}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #E7E1D8' }}>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '13px 0', borderBottom: '1px solid #E7E1D8', fontSize: '16px', fontWeight: '600' }}>
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C1272D', flex: 'none' }} />
@@ -155,7 +155,7 @@ export default class WellPumpServicesPage extends React.Component {
                 </div>
                 <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
-                  <span>→</span>
+                  <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                 </a>
               </div>
             </div>
@@ -169,8 +169,8 @@ export default class WellPumpServicesPage extends React.Component {
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Diagnostics</div>
-                <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>Video Well Diagnostics</h3>
-                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>A video camera gives us a real-time view inside your well, so we can diagnose problems accurately and determine the right next steps.</p>
+                <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>{noWidow('Video Well Diagnostics')}</h3>
+                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('A video camera gives us a real-time view inside your well, so we can diagnose problems accurately and determine the right next steps.')}</p>
                 <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>Helpful for</div>
                 <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #E7E1D8' }}>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '13px 0', borderBottom: '1px solid #E7E1D8', fontSize: '16px', fontWeight: '600' }}>
@@ -188,7 +188,7 @@ export default class WellPumpServicesPage extends React.Component {
                 </div>
                 <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
-                  <span>→</span>
+                  <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                 </a>
               </div>
             </div>
@@ -203,8 +203,8 @@ export default class WellPumpServicesPage extends React.Component {
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>Updates</div>
                 <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>System Updates</h3>
-                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>Update an outdated well and pump system when you are buying or selling a home, or when you notice changes in water pressure.</p>
-                <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>Good time to update</div>
+                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('Update an outdated well and pump system when you are buying or selling a home, or when you notice changes in water pressure.')}</p>
+                <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>{noWidow('Good time to update')}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #E7E1D8' }}>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center', padding: '13px 0', borderBottom: '1px solid #E7E1D8', fontSize: '16px', fontWeight: '600' }}>
                     <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#C1272D', flex: 'none' }} />
@@ -225,7 +225,7 @@ export default class WellPumpServicesPage extends React.Component {
                 </div>
                 <a href="/contact" style={{ alignSelf: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: '10px', marginTop: '14px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Contact us
-                  <span>→</span>
+                  <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                 </a>
               </div>
             </div>
@@ -240,9 +240,9 @@ export default class WellPumpServicesPage extends React.Component {
                 <img src="/assets/well-emergency-night-service.jpg" alt="Mid-Wis Pump &amp; Well service truck with work lights on during a nighttime emergency call" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block' }} />
               </div>
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '14px' }}>
-                <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>24/7 emergency service</div>
-                <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>No Water? Call Us 24/7.</h3>
-                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>Losing water at home or on the farm cannot wait. Call any time, including nights, weekends, and holidays, and we will get you back up and running.</p>
+                <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D' }}>{noWidow('24/7 emergency service')}</div>
+                <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '32px', lineHeight: '1.05', margin: '0' }}>{noWidow('No Water? Call Us 24/7.')}</h3>
+                <p style={{ margin: '0 0 8px', fontSize: '18px', lineHeight: '1.6', color: '#000' }}>{noWidow('Losing water at home or on the farm cannot wait. Call any time, including nights, weekends, and holidays, and we will get you back up and running.')}</p>
                 <div style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#000' }}>Call right away if you have</div>
                 <div style={{ display: 'flex', flexDirection: 'column', borderTop: '1px solid #E7E1D8' }}>
                   {['No water at the tap', 'Pump will not turn on', 'Pump runs nonstop', 'Leaking or broken water lines'].map(t => (
@@ -261,7 +261,7 @@ export default class WellPumpServicesPage extends React.Component {
                   </a>
                   <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                     Contact us
-                    <span>→</span>
+                    <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                   </a>
                 </div>
               </div>
@@ -273,48 +273,48 @@ export default class WellPumpServicesPage extends React.Component {
         <section id="process" data-screen-label="Service process" style={{ padding: v.sp(104), background: '#FBF8F3', color: '#000' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ margin: '0 0 56px' }}>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>How a service call works</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', color: '#000', textWrap: 'balance' }}>Clear answers from the first call to the final fix.</h2>
-              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '680px' }}>We keep you in the loop at every step, and we will never charge you for something you do not need.</p>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>{noWidow('How a service call works')}</div>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 16px', color: '#000', textWrap: 'balance' }}>{noWidow('Clear answers from the first call to the final fix.')}</h2>
+              <p style={{ margin: '0', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '680px' }}>{noWidow('We keep you in the loop at every step, and we will never charge you for something you do not need.')}</p>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: v.stepCols, gap: '20px' }}>
               <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 1</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>Call us</div>
-                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Tell us what is going on with your water. Estimates are free, and no water calls are answered 24/7.</div>
+                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{noWidow('Tell us what is going on with your water. Estimates are free, and no water calls are answered 24/7.')}</div>
               </div>
               <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 2</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>We diagnose</div>
-                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>We test your pump and well system on site, using video well diagnostics when we need a closer look.</div>
+                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{noWidow('We test your pump and well system on site, using video well diagnostics when we need a closer look.')}</div>
               </div>
               <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 3</div>
                 <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>You choose</div>
-                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>We explain what we found and your options, so you can make an informed decision that fits your budget.</div>
+                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{noWidow('We explain what we found and your options, so you can make an informed decision that fits your budget.')}</div>
               </div>
               <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '14px', padding: '28px 24px 30px', boxShadow: '0 1px 2px rgba(0,69,128,.04),0 8px 24px rgba(0,69,128,.05)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Step 4</div>
-                <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>We get it done</div>
-                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Repair, replacement, or a new installation.</div>
+                <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '22px', lineHeight: '1.2', marginBottom: '10px', color: '#000' }}>{noWidow('We get it done')}</div>
+                <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{noWidow('Repair, replacement, or a new installation.')}</div>
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '48px' }}>
               <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                 Contact us
-                <span>→</span>
+                <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
               </a>
             </div>
           </div>
         </section>
 
         {/* Contact */}
-        <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff' }}>
+        <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff', padding: v.sp(92, 84) }}>
           <img src="/assets/truck-lawn-cta-banner.jpg" alt="Mid-Wisconsin Pump & Well service truck on a residential lawn" loading="lazy" decoding="async" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.28) 75%,rgba(0,0,0,0) 100%)' }} />
-          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: v.sp(92, 84) }}>
-            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
-            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.</p>
+          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>{noWidow("Let's talk about your water.")}</h2>
+            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>{noWidow("Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.")}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
               <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '30px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
               <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '30px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>

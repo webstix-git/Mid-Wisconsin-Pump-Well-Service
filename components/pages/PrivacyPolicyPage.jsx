@@ -1,16 +1,17 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import { textRight, textOverlay } from '@/components/heroTextOverlay';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
 
 export default class PrivacyPolicyPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false, txtR: 0 };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false, txtR: 0 };
   h1Ref = React.createRef();
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "Privacy Policy | Mid-Wisconsin Pump & Well";
     this.measure = () => { const r = textRight(this.h1Ref.current); if (r !== this.state.txtR) this.setState({ txtR: r }); };
     this.onR = () => this.setState({ w: viewportWidth() }, this.measure);
@@ -51,7 +52,7 @@ export default class PrivacyPolicyPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -64,22 +65,21 @@ export default class PrivacyPolicyPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} />
 
         {/* Banner */}
-        <section id="top" data-screen-label="Page banner" style={{ position: 'relative', overflow: 'hidden', background: '#fff', color: '#000', height: '400px' }}>
+        <section id="top" data-screen-label="Page banner" style={{ position: 'relative', overflow: 'hidden', background: '#fff', color: '#000', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/ea5835eb-eaa4-480f-aef2-fd1853e74826.jpg" alt="Mid-Wisconsin pump truck on a job site" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'flex-start', padding: v.heroInPad }}>
-            <h1 ref={this.h1Ref} style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Privacy Policy</h1>
+            <h1 ref={this.h1Ref} style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>{noWidow('Privacy Policy')}</h1>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: '#FBF8F3' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: '#FBF8F3', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
-            <span style={{ color: '#000' }}>Privacy Policy</span>
+            <span style={{ color: '#000' }}>{noWidow('Privacy Policy')}</span>
           </nav>
         </div>
 
@@ -87,34 +87,34 @@ export default class PrivacyPolicyPage extends React.Component {
         <section data-screen-label="Content" style={{ padding: v.sp(56, 104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ maxWidth: '860px' }}>
-              <p style={{ margin: '0 0 40px', fontSize: '15px', fontWeight: '600', color: '#000', opacity: '.7' }}>Last updated: September 30, 2026</p>
+              <p style={{ margin: '0 0 40px', fontSize: '15px', fontWeight: '600', color: '#000', opacity: '.7' }}>{noWidow('Last updated: September 30, 2026')}</p>
               <div style={{ marginBottom: '44px' }}>
-                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Who we are</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Mid-Wisconsin Pump &amp; Well Service, LLC ("we", "us") operates this website for our well pump and water system business at 17660 Icecap Rd., Sparta, WI 54656.</p>
+                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>{noWidow('Who we are')}</h2>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('Mid-Wisconsin Pump & Well Service, LLC ("we", "us") operates this website for our well pump and water system business at 17660 Icecap Rd., Sparta, WI 54656.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
-                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Information we collect</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>We may collect contact details you choose to share when you request a free estimate, call us at 608-269-5178, or email randismidwispump@outlook.com. This can include your name, phone number, email address, property address, and details about your water system. We do not sell personal information.</p>
+                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>{noWidow('Information we collect')}</h2>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('We may collect contact details you choose to share when you request a free estimate, call us at 608-269-5178, or email randismidwispump@outlook.com. This can include your name, phone number, email address, property address, and details about your water system. We do not sell personal information.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
-                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>How we use information</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>We use your information to respond to questions, schedule service and inspections, prepare estimates, and send invoices or payment links you ask for. Website analytics, if enabled by our hosting provider, may collect anonymous usage data.</p>
+                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>{noWidow('How we use information')}</h2>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('We use your information to respond to questions, schedule service and inspections, prepare estimates, and send invoices or payment links you ask for. Website analytics, if enabled by our hosting provider, may collect anonymous usage data.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Payments</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>We do not collect payment card details on this website. When you ask to pay an invoice online, we email you a secure link from our payment provider, and that payment is governed by the provider's own terms and privacy policy.</p>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow("We do not collect payment card details on this website. When you ask to pay an invoice online, we email you a secure link from our payment provider, and that payment is governed by the provider's own terms and privacy policy.")}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Cookies</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Our site may use essential cookies required for basic function. You can control cookies through your browser settings.</p>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('Our site may use essential cookies required for basic function. You can control cookies through your browser settings.')}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Third parties</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Links to Facebook, Yelp, and Google Maps are governed by those services' own privacy policies.</p>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow("Links to Facebook, Yelp, and Google Maps are governed by those services' own privacy policies.")}</p>
               </div>
               <div style={{ marginBottom: '44px' }}>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 14px', textWrap: 'balance' }}>Contact</h2>
-                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Questions about privacy: <a href="mailto:randismidwispump@outlook.com" style={{ color: '#C1272D', fontWeight: '600' }}>randismidwispump@outlook.com</a> or <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '600' }}>608-269-5178</a>.</p>
+                <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('Questions about privacy:')} <a href="mailto:randismidwispump@outlook.com" style={{ color: '#C1272D', fontWeight: '600' }}>randismidwispump@outlook.com</a> or <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '600' }}>608-269-5178</a>.</p>
               </div>
               <a href="/" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">Back to home</a>
             </div>

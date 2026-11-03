@@ -1,16 +1,17 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import { textRight, textOverlay } from '@/components/heroTextOverlay';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
 
 export default class AiReadinessServiceIndexPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false, txtR: 0 };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false, txtR: 0 };
   h1Ref = React.createRef();
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "AI Readiness Service Index | Mid-Wisconsin Pump & Well";
     this.measure = () => { const r = textRight(this.h1Ref.current); if (r !== this.state.txtR) this.setState({ txtR: r }); };
     this.onR = () => this.setState({ w: viewportWidth() }, this.measure);
@@ -51,7 +52,7 @@ export default class AiReadinessServiceIndexPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
@@ -64,31 +65,30 @@ export default class AiReadinessServiceIndexPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} />
 
         {/* Banner */}
-        <section id="top" data-screen-label="Page banner" style={{ position: 'relative', overflow: 'hidden', background: '#fff', color: '#000', height: '400px' }}>
+        <section id="top" data-screen-label="Page banner" style={{ position: 'relative', overflow: 'hidden', background: '#fff', color: '#000', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/ea5835eb-eaa4-480f-aef2-fd1853e74826.jpg" alt="Mid-Wisconsin pump truck on a job site" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '70% 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', height: '100%', margin: '0 auto', display: 'flex', alignItems: 'flex-start', padding: v.heroInPad }}>
-            <h1 ref={this.h1Ref} style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>AI Readiness Service Index</h1>
+            <h1 ref={this.h1Ref} style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>{noWidow('AI Readiness Service Index')}</h1>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: '#FBF8F3' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: '#FBF8F3', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
-            <span style={{ color: '#000' }}>AI Readiness Service Index</span>
+            <span style={{ color: '#000' }}>{noWidow('AI Readiness Service Index')}</span>
           </nav>
         </div>
 
         {/* Content */}
         <section data-screen-label="Content" style={{ padding: v.sp(56, 104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <p style={{ margin: '0 0 40px', fontSize: '15px', fontWeight: '600', color: '#000', opacity: '.7' }}>Last updated: September 30, 2026</p>
-            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '860px' }}>This index summarizes how Mid-Wisconsin Pump &amp; Well Service approaches responsible use of digital and AI-assisted services on our public website.</p>
-            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.15', margin: '0 0 20px', textWrap: 'balance' }}>Service readiness overview</h2>
+            <p style={{ margin: '0 0 40px', fontSize: '15px', fontWeight: '600', color: '#000', opacity: '.7' }}>{noWidow('Last updated: September 30, 2026')}</p>
+            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '860px' }}>{noWidow('This index summarizes how Mid-Wisconsin Pump & Well Service approaches responsible use of digital and AI-assisted services on our public website.')}</p>
+            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.15', margin: '0 0 20px', textWrap: 'balance' }}>{noWidow('Service readiness overview')}</h2>
             <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #DCE9F6', boxShadow: '0 8px 24px rgba(0,69,128,.06)', background: '#fff' }}>
               <table className="ai-table" style={{ width: '100%', minWidth: '640px', borderCollapse: 'collapse', fontSize: '16px' }}>
                 <thead>
@@ -100,58 +100,58 @@ export default class AiReadinessServiceIndexPage extends React.Component {
                 </thead>
                 <tbody>
                   <tr style={{ background: '#fff', borderTop: '1px solid #DCE9F6' }}>
-                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>Website content drafting</td>
+                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>{noWidow('Website content drafting')}</td>
                     <td style={{ padding: '16px 20px' }}>
                       <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: '#E8F1FA', color: '#004580', fontSize: '13px', fontWeight: '700', padding: '5px 12px', borderRadius: '999px' }}>Assisted</span>
                     </td>
-                    <td style={{ padding: '16px 20px' }}>Human-reviewed before publishing</td>
+                    <td style={{ padding: '16px 20px' }}>{noWidow('Human-reviewed before publishing')}</td>
                   </tr>
                   <tr style={{ background: '#F6FAFE', borderTop: '1px solid #DCE9F6' }}>
-                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>Service, warranty &amp; pricing information</td>
+                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>{noWidow('Service, warranty & pricing information')}</td>
                     <td style={{ padding: '16px 20px' }}>
                       <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: '#E7F4EA', color: '#1E6B34', fontSize: '13px', fontWeight: '700', padding: '5px 12px', borderRadius: '999px' }}>Human-owned</span>
                     </td>
-                    <td style={{ padding: '16px 20px' }}>Maintained by our staff</td>
+                    <td style={{ padding: '16px 20px' }}>{noWidow('Maintained by our staff')}</td>
                   </tr>
                   <tr style={{ background: '#fff', borderTop: '1px solid #DCE9F6' }}>
-                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>Water system diagnosis &amp; recommendations</td>
+                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>{noWidow('Water system diagnosis & recommendations')}</td>
                     <td style={{ padding: '16px 20px' }}>
                       <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: '#E7F4EA', color: '#1E6B34', fontSize: '13px', fontWeight: '700', padding: '5px 12px', borderRadius: '999px' }}>Human-owned</span>
                     </td>
-                    <td style={{ padding: '16px 20px' }}>Made on site by our technicians</td>
+                    <td style={{ padding: '16px 20px' }}>{noWidow('Made on site by our technicians')}</td>
                   </tr>
                   <tr style={{ background: '#F6FAFE', borderTop: '1px solid #DCE9F6' }}>
-                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>Customer personal data in AI tools</td>
+                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>{noWidow('Customer personal data in AI tools')}</td>
                     <td style={{ padding: '16px 20px' }}>
                       <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: '#FBECEC', color: '#A51F25', fontSize: '13px', fontWeight: '700', padding: '5px 12px', borderRadius: '999px' }}>Not used</span>
                     </td>
-                    <td style={{ padding: '16px 20px' }}>No payment or sensitive customer data</td>
+                    <td style={{ padding: '16px 20px' }}>{noWidow('No payment or sensitive customer data')}</td>
                   </tr>
                   <tr style={{ background: '#fff', borderTop: '1px solid #DCE9F6' }}>
-                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>Automated decisions about customers</td>
+                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>{noWidow('Automated decisions about customers')}</td>
                     <td style={{ padding: '16px 20px' }}>
                       <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: '#FBECEC', color: '#A51F25', fontSize: '13px', fontWeight: '700', padding: '5px 12px', borderRadius: '999px' }}>Not used</span>
                     </td>
-                    <td style={{ padding: '16px 20px' }}>No AI credit, hiring, or eligibility decisions</td>
+                    <td style={{ padding: '16px 20px' }}>{noWidow('No AI credit, hiring, or eligibility decisions')}</td>
                   </tr>
                   <tr style={{ background: '#F6FAFE', borderTop: '1px solid #DCE9F6' }}>
                     <td style={{ padding: '16px 20px', fontWeight: '700' }}>Third-party platforms</td>
                     <td style={{ padding: '16px 20px' }}>
                       <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: '#F0EBE3', color: '#000', fontSize: '13px', fontWeight: '700', padding: '5px 12px', borderRadius: '999px' }}>Linked</span>
                     </td>
-                    <td style={{ padding: '16px 20px' }}>Facebook, Yelp, and Google Maps under their own policies</td>
+                    <td style={{ padding: '16px 20px' }}>{noWidow('Facebook, Yelp, and Google Maps under their own policies')}</td>
                   </tr>
                   <tr style={{ background: '#fff', borderTop: '1px solid #DCE9F6' }}>
-                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>Accessibility &amp; clarity</td>
+                    <td style={{ padding: '16px 20px', fontWeight: '700' }}>{noWidow('Accessibility & clarity')}</td>
                     <td style={{ padding: '16px 20px' }}>
                       <span style={{ display: 'inline-block', whiteSpace: 'nowrap', background: '#FFF4DC', color: '#7A5300', fontSize: '13px', fontWeight: '700', padding: '5px 12px', borderRadius: '999px' }}>Ongoing</span>
                     </td>
-                    <td style={{ padding: '16px 20px' }}>We welcome feedback to improve the site</td>
+                    <td style={{ padding: '16px 20px' }}>{noWidow('We welcome feedback to improve the site')}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
-            <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', marginTop: '32px', maxWidth: '860px' }}>For questions about this index, contact <a href="mailto:randismidwispump@outlook.com" style={{ color: '#C1272D', fontWeight: '600' }}>randismidwispump@outlook.com</a> or call <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '600' }}>608-269-5178</a>.</p>
+            <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', marginTop: '32px', maxWidth: '860px' }}>{noWidow('For questions about this index, contact')} <a href="mailto:randismidwispump@outlook.com" style={{ color: '#C1272D', fontWeight: '600' }}>randismidwispump@outlook.com</a> or call <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '600' }}>608-269-5178</a>.</p>
             <div style={{ marginTop: '44px' }}>
               <a href="/" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">Back to home</a>
             </div>

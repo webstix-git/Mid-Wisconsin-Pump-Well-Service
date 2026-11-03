@@ -1,13 +1,14 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
 export default class ProductsPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false };
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "Products | Mid-Wisconsin Pump & Well";
     this.onR = () => this.setState({ w: viewportWidth() });
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
@@ -46,7 +47,7 @@ export default class ProductsPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       benCols: w < 480 ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
       heroImgPos: w >= 900 ? 'center 35%' : 'right center',
@@ -64,10 +65,9 @@ export default class ProductsPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} active="Products" />
 
         {/* Hero */}
-        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
+        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/products-hero-service-rig.jpg" alt="Mid-Wis Pump &amp; Well service rig on site while a technician tests a pump drive before installation" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: v.heroImgPos, display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
@@ -75,8 +75,8 @@ export default class ProductsPage extends React.Component {
             <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1Fs, lineHeight: '1.06', letterSpacing: '-.02em', margin: '0', color: '#000', maxWidth: v.heroTextMax, textWrap: 'balance' }}>Products</h1>
           </div>
         </section>
-        <div data-crumb-bar="" style={{ background: '#fff' }}>
-          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: `28px ${v.gut} 0`, display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
+        <div data-crumb-bar="" style={{ background: '#fff', padding: `0 ${v.gut}` }}>
+          <nav aria-label="Breadcrumb" style={{ maxWidth: '1280px', margin: '0 auto', padding: '28px 0 0', display: 'flex', flexWrap: 'wrap', gap: '10px', fontSize: '15px', fontWeight: '600' }}>
             <a href="/" style={{ color: '#C1272D' }} className="h-702a41">Home</a>
             <span aria-hidden="true" style={{ color: '#8A8378' }}>/</span>
             <span style={{ color: '#000' }}>Products</span>
@@ -93,17 +93,17 @@ export default class ProductsPage extends React.Component {
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Moving water</div>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Well Pumps</h2>
-                <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>Your well pump lifts water from the well and sends it to the pressure tank, so it is ready at every tap in your home, barn, or business. Paired with a variable speed drive, it delivers constant pressure with less wear on the motor.</p>
+                <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('Your well pump lifts water from the well and sends it to the pressure tank, so it is ready at every tap in your home, barn, or business. Paired with a variable speed drive, it delivers constant pressure with less wear on the motor.')}</p>
                 <div>
                   <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                     Get a free pump estimate
-                    <span>→</span>
+                    <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                   </a>
                 </div>
               </div>
             </div>
             <div style={{ marginTop: '56px' }}>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#000', marginBottom: '16px' }}>Brands we install</div>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#000', marginBottom: '16px' }}>{noWidow('Brands we install')}</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(min(100%,380px),1fr))', gap: '20px' }}>
                 <div className="brand-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '24px 28px', background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '12px', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05)' }}>
                   <div style={{ flex: '0 0 132px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -111,7 +111,7 @@ export default class ProductsPage extends React.Component {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '24px', borderLeft: '1px solid #EDE7DE', minWidth: '0' }}>
                     <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.2' }}>Grundfos</span>
-                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>Well pumps, drives and controls</span>
+                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>{noWidow('Well pumps, drives and controls')}</span>
                   </div>
                 </div>
                 <div className="brand-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '24px 28px', background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '12px', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05)' }}>
@@ -120,7 +120,7 @@ export default class ProductsPage extends React.Component {
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', paddingLeft: '24px', borderLeft: '1px solid #EDE7DE', minWidth: '0' }}>
                     <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.2' }}>Pentek Intellidrive</span>
-                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>Variable speed drives</span>
+                    <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', lineHeight: '1.4' }}>{noWidow('Variable speed drives')}</span>
                   </div>
                 </div>
                 <div className="brand-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', padding: '24px 28px', background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '12px', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05)' }}>
@@ -144,15 +144,15 @@ export default class ProductsPage extends React.Component {
               <div style={{ flex: '1 1 440px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Steady pressure</div>
                 <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Pressure Tanks</h2>
-                <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>A pressure tank stores water under pressure to keep a steady flow at every tap. It holds pressure within a set range so the pump does not start every time you open a faucet, which helps your whole system last longer.</p>
+                <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('A pressure tank stores water under pressure to keep a steady flow at every tap. It holds pressure within a set range so the pump does not start every time you open a faucet, which helps your whole system last longer.')}</p>
                 <div>
                   <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                     Get a free tank estimate
-                    <span>→</span>
+                    <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                   </a>
                 </div>
                 <div style={{ marginTop: '36px' }}>
-                  <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#000', marginBottom: '16px' }}>Brand we install</div>
+                  <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#000', marginBottom: '16px' }}>{noWidow('Brand we install')}</div>
                   <div className="brand-card" style={{ display: 'flex', alignItems: 'center', gap: '24px', maxWidth: '460px', padding: '24px 28px', background: '#fff', border: '1px solid #EDE7DE', borderTop: '3px solid #C1272D', borderRadius: '12px', boxShadow: '0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05)' }}>
                     <div style={{ flex: '0 0 132px', height: '64px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <img src="/assets/dd435b75-22d4-453f-a91b-1062f092b4bf.svg" alt="Flexcon logo" style={{ maxWidth: '100%', maxHeight: '50px', width: 'auto', height: 'auto', display: 'block', objectFit: 'contain' }} />
@@ -178,34 +178,34 @@ export default class ProductsPage extends React.Component {
               <div style={{ borderRadius: '16px', overflow: 'hidden', aspectRatio: '1/1', background: '#E7E1D8', boxShadow: '0 18px 40px rgba(0,69,128,.14)' }}>
                 <img src="/assets/ccad4d0b-0356-50f7-a6af-38b0ef586102.jpg" alt="Basement pressure tank before and after an upgrade" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
               </div>
-              <figcaption style={{ marginTop: '14px', fontSize: '14px', fontWeight: '600', color: '#000' }}>An outdated pressure tank, replaced with a new tank, filter, and controls.</figcaption>
+              <figcaption style={{ marginTop: '14px', fontSize: '14px', fontWeight: '600', color: '#000' }}>{noWidow('An outdated pressure tank, replaced with a new tank, filter, and controls.')}</figcaption>
             </figure>
             <div>
-              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Upgrade your system</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Enjoy the benefits of a premium water system.</h2>
-              <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>From saving money on energy bills to enjoying consistent water pressure, there are plenty of perks to upgrading your well pump and pressure tank. We provide quick, professional installation, so you feel <span style={{ whiteSpace: 'nowrap' }}>the difference right away.</span></p>
+              <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>{noWidow('Upgrade your system')}</div>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>{noWidow('Enjoy the benefits of a premium water system.')}</h2>
+              <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('From saving money on energy bills to enjoying consistent water pressure, there are plenty of perks to upgrading your well pump and pressure tank. We provide quick, professional installation, so you feel')} <span style={{ whiteSpace: 'nowrap' }}>{noWidow('the difference right away.')}</span></p>
               <div style={{ display: 'grid', gridTemplateColumns: v.benCols, gap: '1px', background: '#DCE9F6', borderRadius: '14px', overflow: 'hidden', border: '1px solid #DCE9F6' }}>
                 <div style={{ background: '#fff', padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.15' }}>Steady pressure</span>
-                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>No more drops when the shower and washer run together.</span>
+                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>{noWidow('No more drops when the shower and washer run together.')}</span>
                 </div>
                 <div style={{ background: '#fff', padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.15' }}>Lower energy use</span>
-                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>Variable speed pumps only run as fast as they need to.</span>
+                  <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.15' }}>{noWidow('Lower energy use')}</span>
+                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>{noWidow('Variable speed pumps only run as fast as they need to.')}</span>
                 </div>
                 <div style={{ background: '#fff', padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.15' }}>Quiet operation</span>
-                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>Soft starts and smooth running you will barely hear.</span>
+                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>{noWidow('Soft starts and smooth running you will barely hear.')}</span>
                 </div>
                 <div style={{ background: '#fff', padding: '24px 22px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.15' }}>Built to last</span>
-                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>Less wear on the pump and motor means more years of service.</span>
+                  <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '20px', lineHeight: '1.15' }}>{noWidow('Built to last')}</span>
+                  <span style={{ fontSize: '15px', lineHeight: '1.55', color: '#000' }}>{noWidow('Less wear on the pump and motor means more years of service.')}</span>
                 </div>
               </div>
               <div style={{ marginTop: '32px' }}>
                 <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">
                   Plan your upgrade
-                  <span>→</span>
+                  <span className="btn-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.15" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg></span>
                 </a>
               </div>
             </div>
@@ -217,8 +217,8 @@ export default class ProductsPage extends React.Component {
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,440px),1fr))', gap: '48px 72px', alignItems: 'center' }}>
             <div>
               <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '.16em', textTransform: 'uppercase', color: '#C1272D', marginBottom: '14px' }}>Our guarantee</div>
-              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Warranties You Can Rely On</h2>
-              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>With our guaranteed service, you won’t have a thing to worry about after we install or repair your well pump. We’re committed to giving our customers service they can depend on, and we stand behind the quality of our products, which is why we uphold the manufacturer’s warranty for the product that we sell. For all other parts we installed, we honor a personal one-year warranty for that part and labor for repair.</p>
+              <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>{noWidow('Warranties You Can Rely On')}</h2>
+              <p style={{ margin: '0 0 0px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty' }}>{noWidow('With our guaranteed service, you won’t have a thing to worry about after we install or repair your well pump. We’re committed to giving our customers service they can depend on, and we stand behind the quality of our products, which is why we uphold the manufacturer’s warranty for the product that we sell. For all other parts we installed, we honor a personal one-year warranty for that part and labor for repair.')}</p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div style={{ display: 'flex', flexDirection: v.cardDir, gap: v.cardGap, alignItems: 'flex-start', background: '#F6FAFE', border: '1px solid #DCE9F6', borderRadius: '14px', padding: v.cardPad }}>
@@ -231,7 +231,7 @@ export default class ProductsPage extends React.Component {
                 </span>
                 <div>
                   <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', marginBottom: '10px' }}>Manufacturer warranty</div>
-                  <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>We uphold the manufacturer’s warranty on the products we sell.</div>
+                  <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{noWidow('We uphold the manufacturer’s warranty on the products we sell.')}</div>
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: v.cardDir, gap: v.cardGap, alignItems: 'flex-start', background: '#F6FAFE', border: '1px solid #DCE9F6', borderRadius: '14px', padding: v.cardPad }}>
@@ -241,8 +241,8 @@ export default class ProductsPage extends React.Component {
                   </svg>
                 </span>
                 <div>
-                  <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', marginBottom: '10px' }}>One-year parts &amp; labor</div>
-                  <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>A personal one-year warranty on all other parts we install, including the labor for repair.</div>
+                  <div style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '23px', lineHeight: '1.15', marginBottom: '10px' }}>{noWidow('One-year parts & labor')}</div>
+                  <div style={{ fontSize: '16px', lineHeight: '1.6', color: '#000' }}>{noWidow('A personal one-year warranty on all other parts we install, including the labor for repair.')}</div>
                 </div>
               </div>
             </div>
@@ -250,12 +250,12 @@ export default class ProductsPage extends React.Component {
         </section>
 
         {/* Contact */}
-        <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff' }}>
+        <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff', padding: v.sp(92, 84) }}>
           <img src="/assets/truck-lawn-cta-banner.jpg" alt="Mid-Wisconsin Pump & Well service truck on a residential lawn" loading="lazy" decoding="async" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: 'linear-gradient(90deg,rgba(0,0,0,.95) 0%,rgba(0,0,0,.85) 25%,rgba(0,0,0,.6) 50%,rgba(0,0,0,.28) 75%,rgba(0,0,0,0) 100%)' }} />
-          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: v.sp(92, 84) }}>
-            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>
-            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.</p>
+          <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto' }}>
+            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>{noWidow("Let's talk about your water.")}</h2>
+            <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.55', maxWidth: '520px' }}>{noWidow("Tell us what's going on. We'll follow up with options and a free estimate. If you have no water, call now.")}</p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
               <a href="tel:6082695178" style={{ display: 'inline-flex', alignItems: 'center', background: '#C1272D', color: '#fff', padding: '14px 22px', borderRadius: '30px', fontWeight: '700', fontSize: '16px', border: '1.5px solid #C1272D' }} className="h-6bbf96">Call 608-269-5178</a>
               <a href="mailto:randismidwispump@outlook.com" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#fff', padding: '14px 22px', borderRadius: '30px', border: '1.5px solid rgba(255,255,255,.9)', fontWeight: '700', fontSize: '16px' }} className="h-729218">Email Us</a>

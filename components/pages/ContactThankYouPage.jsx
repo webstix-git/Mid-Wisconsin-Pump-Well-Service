@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
-import SiteHeader from '@/components/SiteHeader';
-import viewportWidth from '@/components/viewportWidth';
+import viewportWidth, { initialViewportWidth } from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import { noWidow } from '@/lib/typography';
 
 export default class ContactThankYouPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false };
+  state = { w: initialViewportWidth(), menu: false, scrolled: false, showTop: false };
   componentDidMount() {
+    window.scrollTo(0, 0);
     document.title = "Contact – Thank You | Mid-Wisconsin Pump & Well";
     this.onR = () => this.setState({ w: viewportWidth() });
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
@@ -66,7 +67,7 @@ export default class ContactThankYouPage extends React.Component {
       topOpacity: this.state.showTop ? '1' : '0',
       topVis: this.state.showTop ? 'visible' : 'hidden',
       topShift: this.state.showTop ? '0' : '12px',
-      heroInPad: w < 600 ? '156px 20px 0' : '206px 24px 0',
+      heroInPad: w < 600 ? '156px 0 0' : '206px 0 0',
       gut: w < 600 ? '20px' : '24px', burgerSz: w < 600 ? '42px' : '46px',
       sp: (t, b = t) => { const k = w < 600 ? .62 : w < 900 ? .8 : 1, x = w < 600 ? 20 : 24; return `${Math.round(t * k)}px ${x}px ${Math.round(b * k)}px`; },
       toTop: e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
@@ -78,10 +79,9 @@ export default class ContactThankYouPage extends React.Component {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         {/* Header */}
-        <SiteHeader v={v} active="Contact" />
 
         {/* Hero */}
-        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px' }}>
+        <section id="top" data-screen-label="Page hero" style={{ position: 'relative', overflow: 'hidden', background: '#fff', height: '400px', padding: `0 ${v.gut}` }}>
           <img src="/assets/truck-shop-contact-hero.jpg" alt="Mid-Wis Pump & Well service truck in the shop" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.heroOv }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '200px', background: v.heroTop, pointerEvents: 'none' }} />
@@ -94,8 +94,8 @@ export default class ContactThankYouPage extends React.Component {
         <section data-screen-label="Thank you" style={{ background: 'rgb(246, 250, 254)', padding: v.sp(56, 112), flex: '1' }}>
           <div role="status" style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <div style={{ color: '#C1272D', fontFamily: "'Raleway',sans-serif", fontSize: '15px', fontWeight: '800', letterSpacing: '.08em', textTransform: 'uppercase' }}>Request Received</div>
-            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.h1Fs, lineHeight: '1.08', letterSpacing: '-.02em', margin: '12px 0 0', textWrap: 'balance' }}>Thanks for contacting us!</h2>
-            <p style={{ margin: '20px 0 0', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '640px', textWrap: 'pretty' }}>We will get in touch with you shortly.</p>
+            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.h1Fs, lineHeight: '1.08', letterSpacing: '-.02em', margin: '12px 0 0', textWrap: 'balance' }}>{noWidow('Thanks for contacting us!')}</h2>
+            <p style={{ margin: '20px 0 0', fontSize: '18px', lineHeight: '1.65', color: '#000', maxWidth: '640px', textWrap: 'pretty' }}>{noWidow('We will get in touch with you shortly.')}</p>
           </div>
         </section>
 
