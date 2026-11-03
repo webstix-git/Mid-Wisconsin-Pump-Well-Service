@@ -13,6 +13,25 @@ export default class ContactThankYouPage extends React.Component {
     this.onR = () => this.setState({ w: viewportWidth() });
     this.onS = () => { const s = window.scrollY > 40, t = window.scrollY > 600; if (s !== this.state.scrolled || t !== this.state.showTop) this.setState({ scrolled: s, showTop: t }); };
     window.addEventListener('resize', this.onR); window.addEventListener('scroll', this.onS, { passive: true }); this.onR(); this.onS();
+    this.trackThankYouEvent();
+  }
+  trackThankYouEvent() {
+    try {
+      if (typeof window === 'undefined' || typeof window.gtag !== 'function') return;
+      const key = 'ga_event_thank_you_generate_lead';
+      if (sessionStorage.getItem(key)) return;
+      window.gtag('event', 'generate_lead', {
+        form_name: 'contact',
+        page_path: '/thank-you',
+        send_to: 'G-76XNH7XZ8L'
+      });
+      window.gtag('event', 'thank_you_page', {
+        form_name: 'contact',
+        page_path: '/thank-you',
+        send_to: 'G-76XNH7XZ8L'
+      });
+      sessionStorage.setItem(key, '1');
+    } catch {}
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onR); window.removeEventListener('scroll', this.onS); }
   renderVals() {
