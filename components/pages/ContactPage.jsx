@@ -5,11 +5,12 @@ import SiteHeader from '@/components/SiteHeader';
 import viewportWidth from '@/components/viewportWidth';
 import SiteFooter from '@/components/SiteFooter';
 import BackToTop from '@/components/BackToTop';
+import TurnstileWidget from '@/components/TurnstileWidget';
 
 const REQUIRED = ["fullName","phone","email","message"];
 
 export default class ContactPage extends React.Component {
-  state = { w: 1280, menu: false, scrolled: false, showTop: false, err: '', errs: {} };
+  state = { w: 1280, menu: false, scrolled: false, showTop: false, err: '', errs: {}, turnstileToken: '', submitting: false };
   componentDidMount() {
     document.title = "Contact Us | Mid-Wisconsin Pump & Well";
     this.onR = () => this.setState({ w: viewportWidth() });
@@ -66,25 +67,54 @@ export default class ContactPage extends React.Component {
             this.setState({ errs, err: Object.keys(errs).length ? 'Please complete the highlighted fields.' : '' });
           }]
         ])),
-        submit: e => {
+        turnstileToken: this.state.turnstileToken,
+        submitting: this.state.submitting,
+        setTurnstileToken: (token) => this.setState({ turnstileToken: token || '', err: token ? (this.state.err === 'Please complete the security check.' ? '' : this.state.err) : this.state.err }),
+        clearTurnstileToken: () => this.setState({ turnstileToken: '' }),
+        submit: async e => {
           e.preventDefault();
+          if (this.state.submitting) return;
           const f = e.currentTarget.elements;
-          const v = k => f[k].value.trim();
+          const val = k => f[k].value.trim();
           const errs = {};
-          if (!v('fullName')) errs.fullName = 'Please enter your name.';
-          if (!v('phone')) errs.phone = 'Please enter your phone number.';
-          if (!v('email')) errs.email = 'Please enter your email address.';
-          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) errs.email = 'Please enter a valid email address.';
-          if (!v('message')) errs.message = 'Please tell us how we can help.';
+          if (!val('fullName')) errs.fullName = 'Please enter your name.';
+          if (!val('phone')) errs.phone = 'Please enter your phone number.';
+          if (!val('email')) errs.email = 'Please enter your email address.';
+          else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) errs.email = 'Please enter a valid email address.';
+          if (!val('message')) errs.message = 'Please tell us how we can help.';
           const bad = REQUIRED.filter(k => errs[k]);
           if (bad.length) {
-            const empty = REQUIRED.every(k => !v(k));
+            const empty = REQUIRED.every(k => !val(k));
             this.setState({ errs, err: empty ? 'The form is empty. Please fill in the required fields marked with an asterisk (*).' : 'Please complete the highlighted fields.' });
             f[bad[0]].focus();
             return;
           }
-          this.setState({ err: '', errs: {} });
-          window.location.assign('/thank-you');
+          if (!this.state.turnstileToken) {
+            this.setState({ errs: {}, err: 'Please complete the security check.' });
+            return;
+          }
+          this.setState({ err: '', errs: {}, submitting: true });
+          try {
+            const res = await fetch('/api/contact', {
+              method: 'POST',
+              headers: { 'content-type': 'application/json' },
+              body: JSON.stringify({
+                turnstileToken: this.state.turnstileToken,
+                fullName: val('fullName'),
+                phone: val('phone'),
+                email: val('email'),
+                message: val('message')
+              })
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok || !data.ok) {
+              this.setState({ submitting: false, turnstileToken: '', err: data.error || 'Something went wrong. Please try again.' });
+              return;
+            }
+            window.location.assign(data.redirect_url || '/thank-you');
+          } catch {
+            this.setState({ submitting: false, err: 'Something went wrong. Please try again.' });
+          }
         }
       }))()
     };
@@ -155,10 +185,17 @@ export default class ContactPage extends React.Component {
                         <span role="alert" style={{ fontSize: '14px', fontWeight: '600', color: '#C1272D' }}>{v.msg_message}</span>
                       )}
                     </label>
+                    <div>
+                      <TurnstileWidget
+                        onToken={v.setTurnstileToken}
+                        onExpire={v.clearTurnstileToken}
+                        onError={v.clearTurnstileToken}
+                      />
+                    </div>
                     {v.hasErr && (
                       <p role="alert" style={{ margin: '0', fontSize: '15px', fontWeight: '600', color: '#C1272D' }}>{v.err}</p>
                     )}
-                    <button type="submit" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '15px 22px', borderRadius: '30px', border: '0', fontWeight: '700', fontSize: '16px', cursor: 'pointer' }} className="h-bd9fe2">Send request</button>
+                    <button type="submit" disabled={v.submitting} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '10px', background: '#C1272D', color: '#fff', padding: '15px 22px', borderRadius: '30px', border: '0', fontWeight: '700', fontSize: '16px', cursor: v.submitting ? 'wait' : 'pointer', opacity: v.submitting ? '.75' : '1' }} className="h-bd9fe2">{v.submitting ? 'Sending…' : 'Send request'}</button>
                   </form>
             </div>
             <div>
