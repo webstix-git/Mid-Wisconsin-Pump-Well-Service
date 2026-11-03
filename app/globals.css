@@ -1,5 +1,15 @@
 html,body{height:100%;margin:0}
 
+/* Capitalize labels on pill CTAs and form/submit buttons site-wide */
+a.h-d10c8f,
+a.h-6bbf96,
+a.h-729218,
+a.h-2eec3d,
+button.h-bd9fe2,
+.call-bar a.h-6bbf96{
+  text-transform:capitalize;
+}
+
 /* Pages are laid out from the measured window width, so keep the server-rendered
    markup hidden until hydration has applied the real width. */
 html:not([data-hydrated]) body{visibility:hidden}
