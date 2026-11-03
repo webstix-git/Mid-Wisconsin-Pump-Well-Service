@@ -110,6 +110,43 @@ export default class SiteMapPage extends React.Component {
                   </li>
                 </ul>
               </div>
+              <div style={{ marginBottom: '48px' }}>
+                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Services</h2>
+                <ul style={{ margin: '0', paddingLeft: '22px', listStyle: 'disc', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/pump-installation-and-repair#installation" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">Pump Installation</a>
+                  </li>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/pump-installation-and-repair#repair" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">Repair &amp; Replacement</a>
+                  </li>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/well-pump-services#video-inspection" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">Video Well Diagnostics</a>
+                  </li>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/well-pump-services#system-updates" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">System Updates</a>
+                  </li>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/well-pump-services#emergency" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">24/7 Emergency</a>
+                  </li>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/products" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">Pumps, Drives &amp; Pressure Tanks</a>
+                  </li>
+                </ul>
+              </div>
+              <div style={{ marginBottom: '48px' }}>
+                <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '35px', lineHeight: '1.05', margin: '0 0 20px', textWrap: 'balance' }}>Policies</h2>
+                <ul style={{ margin: '0', padding: '0', listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/privacy-policy" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">Privacy Policy</a>
+                  </li>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/ai-policy" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">AI Policy</a>
+                  </li>
+                  <li style={{ fontSize: '18px', lineHeight: '1.5', color: '#000' }}>
+                    <a href="/ai-readiness-service-index" style={{ color: '#C1272D', fontWeight: '600', textDecoration: 'underline', textUnderlineOffset: '3px' }} className="h-a6c3ef">AI Readiness Service Index</a>
+                  </li>
+                </ul>
+              </div>
               <a href="/" style={{ display: 'inline-flex', alignItems: 'center', background: 'transparent', color: '#004580', padding: '13px 26px', borderRadius: '30px', border: '1.5px solid #004580', fontWeight: '700', fontSize: '15.5px', lineHeight: '1.2', transition: 'background .2s,color .2s' }} className="h-d10c8f">Back to home</a>
             </div>
           </div>

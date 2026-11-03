@@ -72,8 +72,8 @@ export default class HomePage extends React.Component {
     const dark = solid || white;
     const phone = w < 600, compactHdr = w < 680;
     return {
-      navGap: w >= 1360 ? '18px' : '12px', navFs: w >= 1360 ? '16px' : '14.5px', phonePad: compactHdr ? '3px 16px 3px 3px' : w >= 1360 ? '10px 20px 10px 10px' : '8px 14px 8px 8px', phoneLabel: w >= 1360 || !wide ? 'block' : 'none',
-      phoneIcon: compactHdr ? '36px' : '40px', phoneNumFs: '20px', phoneLabelFs: '11px', hdrGap: compactHdr ? '12px' : w >= 1360 ? '40px' : '28px',
+      navGap: w >= 1360 ? '32px' : '24px', navFs: w >= 1360 ? '16px' : '14.5px', phonePad: compactHdr ? '3px 16px 3px 3px' : w >= 1360 ? '10px 20px 10px 10px' : '8px 14px 8px 8px', phoneLabel: w >= 1360 || !wide ? 'block' : 'none',
+      phoneIcon: compactHdr ? '36px' : '40px', phoneNumFs: '20px', phoneLabelFs: '11px', hdrGap: compactHdr ? '8px' : w >= 1360 ? '16px' : '12px',
       phoneGap: compactHdr ? '8px' : '12px', phoneTextDisplay: compactHdr ? 'none' : 'flex',
       logoTextDisplay: w < 360 ? 'none' : 'flex',
       hx, photoLeft: L + 'px', photoMask: L ? 'linear-gradient(90deg,transparent 0,#000 260px)' : 'none',
@@ -82,7 +82,7 @@ export default class HomePage extends React.Component {
       hdrBlur: solid ? 'blur(8px)' : 'none',
       hdrH: solid ? (phone ? '72px' : '84px') : (phone ? '100px' : '150px'),
       hdrShift: solid ? (phone ? '-72px' : '-84px') : (phone ? '-100px' : '-150px'),
-      hdrPad: phone ? (solid ? '8px 20px' : '10px 20px') : (solid ? '8px 24px' : '10px 24px'), burgerSz: phone ? '42px' : '46px',
+      hdrPad: phone ? (solid ? '8px 16px' : '10px 16px') : (solid ? '8px 20px' : '10px 20px'), burgerSz: phone ? '42px' : '46px',
       logoH: solid ? (phone ? '44px' : '56px') : (phone ? '48px' : '100px'),
       logoTitle: solid ? (phone ? '16px' : '17px') : (phone ? '17px' : '21px'),
       logoSub: solid ? (phone ? '9.5px' : '10px') : (phone ? '9.5px' : '11.5px'),
@@ -137,9 +137,9 @@ export default class HomePage extends React.Component {
         { img: '/assets/14e122c5-c49e-5c53-aceb-f3506b7af981.jpg', pos: '35% 55%', alt: 'Mid-Wisconsin Pump & Well service truck ready for an emergency call', tag: '24/7 Emergency Pump Service', title: '24/7 Emergency\nNo\u2011Water Service', body: 'Fast emergency assistance when your water system stops working. Mid-Wisconsin Pump provides around-the-clock service for urgent no-water situations.', cta: 'Get Emergency Service', href: '/contact' }
       ],
       helpList: [
-        { icon: '/assets/icon-house.png', title: 'Homeowners', body: 'Well and pump service for residential water systems.' },
-        { icon: '/assets/icon-barn.png', title: 'Agricultural Properties', body: 'Well and pump services for farms and agricultural operations.' },
-        { icon: '/assets/icon-building.png', title: 'Businesses', body: 'Reliable water-system service for local businesses.' }
+        { icon: '/assets/icon-house.png', title: 'Homeowners', body: 'Well and pump service for residential water systems.', href: '/well-pump-services' },
+        { icon: '/assets/icon-barn.png', title: 'Agricultural Properties', body: 'Well and pump services for farms and agricultural operations.', href: '/pump-installation-and-repair' },
+        { icon: '/assets/icon-building.png', title: 'Businesses', body: 'Reliable water-system service for local businesses.', href: '/contact' }
       ],
       triggers: [
         { title: 'No water', body: 'Sudden loss of water. We take emergency calls 24/7.', bg: '#C1272D', fg: '#fff', bd: '#C1272D', sub: '#fff' },
@@ -179,18 +179,13 @@ export default class HomePage extends React.Component {
 
         {/* Hero */}
         <section id="top" data-screen-label="Hero" style={{ background: '#fff', color: v.hx.fg, position: 'relative', overflow: 'hidden', minHeight: v.heroMin }}>
-          <img src="/assets/ea5835eb-eaa4-480f-aef2-fd1853e74826.jpg" alt="Mid-Wisconsin pump truck lifting an old pressure tank from the ground" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '72% 55%', display: 'block' }} />
+          <img src="/assets/ea5835eb-eaa4-480f-aef2-fd1853e74826.jpg" alt="Mid-Wisconsin pump truck lifting an old pressure tank from the ground" fetchPriority="high" decoding="async" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: '72% 55%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.hx.overlay }} />
           <div style={{ position: 'absolute', left: '0', right: '0', top: '0', height: '230px', background: v.hx.top, pointerEvents: 'none' }} />
           <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', minHeight: '750px', display: 'flex', alignItems: 'flex-start', padding: v.heroPad }}>
             <div style={{ maxWidth: v.heroTextMax }}>
               <div style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: v.hx.eyebrow, margin: '0 0 18px' }}>Sparta &amp; Western Wisconsin</div>
-              {v.heroWide && (
-                <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '60px', lineHeight: '1.05', letterSpacing: '-.03em', margin: '0 0 20px', color: v.hx.fg, textWrap: 'balance' }}>Reliable Well &amp; Pump Service, Right When You Need It</h1>
-              )}
-              {v.heroNarrow && (
-                <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.h1NarrowFs, lineHeight: '1.08', letterSpacing: '-.03em', margin: '0 0 20px', color: v.hx.fg, textWrap: 'balance' }}>Reliable Well &amp; Pump Service, Right When You Need It</h1>
-              )}
+              <h1 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: v.heroWide ? '60px' : v.h1NarrowFs, lineHeight: v.heroWide ? '1.05' : '1.08', letterSpacing: '-.03em', margin: '0 0 20px', color: v.hx.fg, textWrap: 'balance' }}>Reliable Well &amp; Pump Service, Right When You Need It</h1>
               <p style={{ fontSize: '18px', lineHeight: '1.65', margin: '0 0 32px', color: v.hx.sub, maxWidth: '440px', textWrap: 'pretty' }}>Pump installation, repair, and video well inspection for homes, farms, and small businesses across Western Wisconsin.</p>
               <a href="/contact" style={{ display: 'inline-flex', alignItems: 'center', background: v.hx.btnBg, color: v.hx.btnFg, padding: '13px 22px', borderRadius: '30px', border: `1.5px solid ${v.hx.btnBd}`, fontWeight: '600', fontSize: '15.5px', lineHeight: '1.2' }} className="h-2eec3d">Get a Free Estimate</a>
             </div>
@@ -244,12 +239,12 @@ export default class HomePage extends React.Component {
               </div>
               <div data-help-cards="" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '16px' }}>
                 {v.helpList.map((t, i) => (
-                  <a key={i} href="/well-pump-services" style={{ display: 'grid', gridTemplateColumns: v.helpCols, gap: v.helpGap, alignItems: 'center', padding: v.helpPad, background: '#fff', border: '1px solid #F0EBE3', borderRadius: '10px', color: '#000', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
+                  <a key={i} href={t.href} style={{ display: 'grid', gridTemplateColumns: v.helpCols, gap: v.helpGap, alignItems: 'center', padding: v.helpPad, background: '#fff', border: '1px solid #F0EBE3', borderRadius: '10px', color: '#000', boxShadow: '0 1px 2px rgba(0,69,128,.06),0 8px 24px rgba(0,69,128,.06)', transition: 'transform .2s,box-shadow .2s' }} className="h-d1b715">
                     <span style={{ width: v.helpIcon, height: v.helpIcon, borderRadius: '12px', background: '#FBF8F3', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <img src={t.icon} alt="" width="30" height="30" style={{ width: '30px', height: '30px', display: 'block' }} />
+                      <img src={t.icon} alt="" width="30" height="30" style={{ width: '30px', height: '30px', display: 'block' }} loading="lazy" decoding="async" />
                     </span>
                     <span style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                      <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.helpTitleFs, lineHeight: '1.15' }}>{t.title}</span>
+                      <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: v.helpTitleFs, lineHeight: '1.15', margin: '0' }}>{t.title}</h3>
                       <span style={{ fontSize: v.helpBodyFs, lineHeight: '1.55', color: '#000' }}>{t.body}</span>
                     </span>
                     <span aria-hidden="true" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#C1272D' }}>
@@ -412,7 +407,7 @@ export default class HomePage extends React.Component {
 
         {/* Contact */}
         <section id="contact" data-screen-label="Contact" style={{ position: 'relative', overflow: 'hidden', background: '#000', color: '#fff' }}>
-          <img src="/assets/truck-lawn-cta-banner.jpg" alt="" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
+          <img src="/assets/truck-lawn-cta-banner.jpg" alt="Mid-Wisconsin Pump & Well service truck on a residential lawn" loading="lazy" decoding="async" style={{ position: 'absolute', inset: '0', width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 14%', display: 'block' }} />
           <div style={{ position: 'absolute', inset: '0', background: v.ctaOv }} />
           <div style={{ position: 'relative', maxWidth: '1280px', margin: '0 auto', padding: v.sp(92, 84) }}>
             <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '800', fontSize: '35px', lineHeight: '1.02', letterSpacing: '-.02em', textTransform: 'uppercase', margin: '0 0 18px', maxWidth: '820px' }}>Let's talk about your water.</h2>

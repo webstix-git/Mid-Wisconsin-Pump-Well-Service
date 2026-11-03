@@ -88,6 +88,7 @@ export default class AiReadinessServiceIndexPage extends React.Component {
           <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
             <p style={{ margin: '0 0 40px', fontSize: '15px', fontWeight: '600', color: '#000', opacity: '.7' }}>Last updated: September 30, 2026</p>
             <p style={{ margin: '0 0 32px', fontSize: '18px', lineHeight: '1.65', color: '#000', textWrap: 'pretty', maxWidth: '860px' }}>This index summarizes how Mid-Wisconsin Pump &amp; Well Service approaches responsible use of digital and AI-assisted services on our public website.</p>
+            <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.15', margin: '0 0 20px', textWrap: 'balance' }}>Service readiness overview</h2>
             <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #DCE9F6', boxShadow: '0 8px 24px rgba(0,69,128,.06)', background: '#fff' }}>
               <table className="ai-table" style={{ width: '100%', minWidth: '640px', borderCollapse: 'collapse', fontSize: '16px' }}>
                 <thead>

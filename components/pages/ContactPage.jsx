@@ -84,7 +84,7 @@ export default class ContactPage extends React.Component {
             return;
           }
           this.setState({ err: '', errs: {} });
-          window.location.assign('/contact/thank-you');
+          window.location.assign('/thank-you');
         }
       }))()
     };
@@ -118,7 +118,7 @@ export default class ContactPage extends React.Component {
         <section id="estimate" data-screen-label="Contact form" style={{ background: 'rgb(246, 250, 254)', padding: v.sp(104) }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(min(100%,440px),1fr))', gap: '48px 64px', alignItems: 'start' }}>
             <div style={{ background: '#fff', border: '1px solid #EDE7DE', borderRadius: '16px', padding: '36px 32px', boxShadow: '0 2px 6px rgba(0,0,0,.04),0 18px 44px rgba(0,69,128,.1)' }}>
-                  <h3 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 8px' }}>Request a free estimate</h3>
+                  <h2 style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '28px', lineHeight: '1.1', margin: '0 0 8px' }}>Request a free estimate</h2>
                   <p style={{ margin: '0 0 16px', fontSize: '16px', lineHeight: '1.6', color: '#000' }}>Tell us what is going on and we will follow up with options.</p>
                   <div role="note" style={{ margin: '0 0 16px', padding: '14px 16px', borderRadius: '10px', background: '#FFF6D5', border: '1px solid #F1DE94' }}>
                     <p style={{ margin: '0', fontSize: '15.5px', lineHeight: '1.55', color: '#000' }}><strong>Do not use this form if you have an emergency.</strong> It might take up to 72 hours for us to reply to your inquiry. If you have an emergency, call <a href="tel:6082695178" style={{ color: '#C1272D', fontWeight: '700', whiteSpace: 'nowrap', textDecoration: 'underline' }}>608-269-5178</a>.</p>
@@ -202,20 +202,22 @@ export default class ContactPage extends React.Component {
                     <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>Monday to Friday, 8:00 am to 5:00 pm</span>
                   </span>
                 </div>
-                <div style={{ display: 'flex', gap: '18px', alignItems: 'center', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
-                  <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none' }}>
+                <div style={{ display: 'flex', gap: '18px', alignItems: 'flex-start', padding: '20px 0', borderBottom: '1px solid #DCE9F6', color: '#000' }}>
+                  <span style={{ width: '28px', color: '#004580', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: 'none', marginTop: '2px' }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="3" y="5" width="18" height="14" rx="2" />
                       <path d="m3 7 9 7 9-7" />
                     </svg>
                   </span>
-                  <span style={{ display: 'flex', flexDirection: 'column', gap: '3px', minWidth: '0' }}>
+                  <span style={{ display: 'flex', flexDirection: 'column', gap: '12px', minWidth: '0' }}>
                     <span style={{ fontSize: '12.5px', fontWeight: '800', letterSpacing: '.14em', textTransform: 'uppercase', color: '#C1272D' }}>Email</span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
-                      Billing and invoicing: <a href="mailto:randismidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">randismidwispump@outlook.com</a>
+                    <span style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
+                      <span>Billing and invoicing:</span>
+                      <a href="mailto:randismidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">randismidwispump@outlook.com</a>
                     </span>
-                    <span style={{ fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
-                      Technical and estimates: <a href="mailto:Jasonsmidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">Jasonsmidwispump@outlook.com</a>
+                    <span style={{ display: 'flex', flexDirection: 'column', gap: '2px', fontSize: '17px', fontWeight: '600', lineHeight: '1.45', overflowWrap: 'anywhere' }}>
+                      <span>Technical and estimates:</span>
+                      <a href="mailto:Jasonsmidwispump@outlook.com" style={{ color: 'inherit', transition: 'color .2s' }} className="h-6bd792">Jasonsmidwispump@outlook.com</a>
                     </span>
                   </span>
                 </div>

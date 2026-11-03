@@ -77,7 +77,7 @@ export default function SiteHeader({ v, active, logoHref = '/' }) {
         <div id="site-drawer" role="dialog" aria-modal="true" aria-label="Site menu" inert={!open} style={{ position: 'fixed', top: '0', right: '0', bottom: '0', zIndex: '61', width: 'min(86vw, 360px)', background: '#fff', boxShadow: '-12px 0 40px rgba(0,0,0,.18)', display: 'flex', flexDirection: 'column', overflowY: 'auto', transform: open ? 'translateX(0)' : 'translateX(100%)', visibility: open ? 'visible' : 'hidden', transition: `transform .35s cubic-bezier(.4,0,.2,1), visibility 0s linear ${open ? '0s' : '.35s'}` }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '12px', padding: '14px 20px', borderBottom: '1px solid #F0EBE3' }}>
             <a href="/" onClick={v.closeMenu} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#000' }}>
-              <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="" width="195" height="144" style={{ height: '44px', width: 'auto', display: 'block' }} />
+              <img src="/assets/57eded74-c71e-4674-bae1-30d9f8d22464.png" alt="Mid-Wisconsin Pump & Well" width="195" height="144" style={{ height: '44px', width: 'auto', display: 'block' }} />
               <span style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.05' }}>
                 <span style={{ fontFamily: "'Raleway',sans-serif", fontWeight: '700', fontSize: '16px' }}>Mid-Wisconsin</span>
                 <span style={{ fontSize: '9.5px', fontWeight: '700', letterSpacing: '.12em', textTransform: 'uppercase', color: '#C1272D', marginTop: '3px' }}>Pump &amp; Well Service</span>

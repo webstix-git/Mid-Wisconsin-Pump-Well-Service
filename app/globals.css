@@ -249,12 +249,14 @@ a[href^="mailto:"]{overflow-wrap:anywhere}
 @media (max-width:559px){.site-footer-grid>:first-child,.site-footer-grid>:last-child{grid-column:1/-1}}
 @media (max-width:599px){
   .site-footer{padding:48px 20px 24px !important}
-  .site-footer-bottom{padding:18px 0 0 !important}
+  .site-footer-bottom{padding:18px 0 0 !important;flex-direction:column;align-items:center !important;text-align:center}
+  .site-footer-designed{margin-left:0 !important}
 }
 @media (max-width:1023px){
-  .site-footer-bottom{gap:10px 18px !important}
-  .site-footer-bottom>span[aria-hidden]{display:none}
-  .site-footer-bottom>span:first-child{flex-basis:100%}
+  .site-footer-bottom{gap:12px 18px !important}
+  .site-footer-bottom-links{gap:10px 18px !important}
+  .site-footer-bottom-links>span[aria-hidden]{display:none}
+  .site-footer-bottom-links>span:first-child{flex-basis:100%}
 }
 @media (min-width:960px){.site-footer-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
